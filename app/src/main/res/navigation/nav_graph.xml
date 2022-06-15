@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FragmentPaginaInicial"
-        android:name="pt.ipg.trabalhofinal.FirstFragment"
+        android:name="pt.ipg.trabalhofinal.FragmentPaginaInicial"
         android:label="@string/FragmentPaginaInicial"
         tools:layout="@layout/fragment_paginainicial">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/FragmentPaginaGestao"
-        android:name="pt.ipg.trabalhofinal.SecondFragment"
+        android:name="pt.ipg.trabalhofinal.FragmentPaginaGestao"
         android:label="@string/FragmentPaginaGestao"
         tools:layout="@layout/fragment_paginagestao">
 
