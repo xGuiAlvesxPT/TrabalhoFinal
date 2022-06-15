@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/whatsapp_wallpaper_001"
+    android:orientation="vertical"
     tools:context=".FragmentPaginaInicial">
 
+    <ImageView
+        android:id="@+id/imageViewStore"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@drawable/_847540" />
+
     <TextView
-        android:id="@+id/textview_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/textViewGameStore2"
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="GAME STORE"
+        android:textColor="#3F51B5"
+        android:textSize="48sp"
+        android:typeface="serif" />
 
     <Button
-        android:id="@+id/button_first"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonEntrar"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="ENTRAR"
+        android:textColor="#000000"
+        app:backgroundTint="#7FE15F"
+        app:iconTint="#000000" />
+</LinearLayout>
