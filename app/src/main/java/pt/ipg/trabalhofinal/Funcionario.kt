@@ -8,7 +8,7 @@ data class Funcionario(
     var nome: String,
     var nif: String,
     var contacto: String,
-    var data_de_nascimento: String,
+    var data_de_nascimento: Date,
     var id: Long = -1
 
 ) {
@@ -19,7 +19,7 @@ data class Funcionario(
         valores.put(TabelaFuncionarios.NOME_FUNCIONARIO,nome)
         valores.put(TabelaFuncionarios.NIF_FUNCIONARIO,nif)
         valores.put(TabelaFuncionarios.CONTACTO,contacto)
-        valores.put(TabelaFuncionarios.DATA_DE_NASCIMENTO,data_de_nascimento)
+        valores.put(TabelaFuncionarios.DATA_DE_NASCIMENTO,data_de_nascimento.toString())
         return valores
     }
 
@@ -35,6 +35,7 @@ data class Funcionario(
             val nome = cursor.getString(posNome)
             val nif = cursor.getString(posNif)
             val contacto = cursor.getString(posContacto)
+            //erro
             val dataNascimento = cursor.getString(posDataNascimento)
 
             return Funcionario(nome,nif,contacto,dataNascimento, id)

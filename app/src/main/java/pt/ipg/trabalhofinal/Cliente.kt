@@ -2,12 +2,13 @@ package pt.ipg.trabalhofinal
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.util.*
 
 data class Cliente(
     var nome: String,
     var nif: String,
     var contacto: String,
-    var data_de_nascimento: String,
+    var data_de_nascimento: Date,
     var idSexo: Long,
     var id: Long = -1
 ) {
@@ -18,7 +19,7 @@ data class Cliente(
         valores.put(TabelaClientes.NOME_CLIENTE,nome)
         valores.put(TabelaClientes.NIF_CLIENTE,nif)
         valores.put(TabelaClientes.CONTACTO,contacto)
-        valores.put(TabelaClientes.DATA_DE_NASCIMENTO,data_de_nascimento)
+        valores.put(TabelaClientes.DATA_DE_NASCIMENTO,data_de_nascimento.toString())
         valores.put(TabelaClientes.CAMPO_FK_SEXO,idSexo)
         return valores
     }
@@ -36,7 +37,8 @@ data class Cliente(
             val nome = cursor.getString(posNome)
             val nif = cursor.getString(posNif)
             val contacto = cursor.getString(posContacto)
-            val dataNascimento = cursor.getString(posDataNascimento)
+            //erro
+            val dataNascimento = cursor.get(posDataNascimento)
             val sexo = cursor.getLong(posSexo)
 
             return Cliente(nome,nif,contacto,dataNascimento,sexo, id)
