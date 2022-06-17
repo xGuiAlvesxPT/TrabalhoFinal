@@ -16,6 +16,7 @@ class BDLojaOpenHelper(
 
         requireNotNull(db)
 
+       TabelaPublicadora(db).cria()
        TabelaSexo(db).cria()
        TabelaClientes(db).cria()
        TabelaFuncionarios(db).cria()
