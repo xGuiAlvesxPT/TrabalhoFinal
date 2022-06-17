@@ -8,7 +8,7 @@ data class Cliente(
     var nif: String,
     var contacto: String,
     var data_de_nascimento: String,
-    var sexo: Long,
+    var idSexo: Long,
     var id: Long = -1
 ) {
 
@@ -19,7 +19,7 @@ data class Cliente(
         valores.put(TabelaClientes.NIF_CLIENTE,nif)
         valores.put(TabelaClientes.CONTACTO,contacto)
         valores.put(TabelaClientes.DATA_DE_NASCIMENTO,data_de_nascimento)
-        valores.put(TabelaClientes.CAMPO_FK_SEXO,sexo)
+        valores.put(TabelaClientes.CAMPO_FK_SEXO,idSexo)
         return valores
     }
 
