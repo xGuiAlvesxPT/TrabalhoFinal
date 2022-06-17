@@ -146,13 +146,13 @@ class BaseDeDadosTest {
     fun consegueInserirJogo() {
         val db = getWritableDatabase()
 
-        val jogo1 = Jogo("Grand Theft Auto 5","Take Two",30.99F,"17/09/2013",1,2)
+        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"17/09/2013",1,2,1)
         insereJogo(db, jogo1)
 
-        val jogo2 = Jogo("Halo Wars","Microsoft",39.99F,"26/02/2009",2,3)
+        val jogo2 = Jogo("Halo Wars",39.99F,"26/02/2009",2,3,2)
         insereJogo(db, jogo2)
 
-        val jogo3 = Jogo("Legend Of Zelda","Nintendo",59.99F,"23/05/2020",3,1)
+        val jogo3 = Jogo("Legend Of Zelda",59.99F,"23/05/2020",3,1,3)
         insereJogo(db, jogo3)
 
         db.close()
