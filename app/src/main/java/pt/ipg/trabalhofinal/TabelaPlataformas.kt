@@ -8,6 +8,9 @@ class TabelaPlataformas( db: SQLiteDatabase): TabelaBD(db, NOME) {
    override fun cria (){
 
         db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $NOME_PLATAFORMA TEXT NOT NULL) ")
+        db.execSQL("INSERT INTO $NOME ($NOME_PLATAFORMA) VALUES ('Playstation 4')")
+        db.execSQL("INSERT INTO $NOME ($NOME_PLATAFORMA) VALUES ('Xbox 360')")
+        db.execSQL("INSERT INTO $NOME ($NOME_PLATAFORMA) VALUES ('Playstation 5')")
     }
 
     companion object{
