@@ -32,9 +32,9 @@ class FragmentPaginaGestao : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_PaginaGestao_to_PaginaInicial)
-        }
+     //   binding.buttonSecond.setOnClickListener {
+        //    findNavController().navigate(R.id.action_PaginaGestao_to_PaginaInicial)
+       // }
     }
 
     override fun onDestroyView() {
