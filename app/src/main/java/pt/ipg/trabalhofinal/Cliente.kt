@@ -37,11 +37,10 @@ data class Cliente(
             val nome = cursor.getString(posNome)
             val nif = cursor.getString(posNif)
             val contacto = cursor.getString(posContacto)
-            //erro
-            val dataNascimento = cursor.get(posDataNascimento)
+            val dataNascimento = cursor.getLong(posDataNascimento)
             val sexo = cursor.getLong(posSexo)
 
-            return Cliente(nome,nif,contacto,dataNascimento,sexo, id)
+            return Cliente(nome,nif,contacto,Date(dataNascimento),sexo, id)
         }
     }
 }

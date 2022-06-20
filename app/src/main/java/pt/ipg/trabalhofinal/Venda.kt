@@ -28,12 +28,11 @@ data class Venda(
             val posIdFuncionario = cursor.getColumnIndex(TabelaVendas.CAMPO_FK_FUNCIONARIO)
 
             val id = cursor.getLong(posId)
-            //erro
-            val dataVenda = cursor.getString(posDataVenda)
+            val dataVenda = cursor.getLong(posDataVenda)
             val idCliente = cursor.getLong(posIdCliente)
             val idFuncionario = cursor.getLong(posIdFuncionario)
 
-            return Venda(dataVenda,idCliente,idFuncionario, id)
+            return Venda(Date(dataVenda),idCliente,idFuncionario, id)
         }
     }
 

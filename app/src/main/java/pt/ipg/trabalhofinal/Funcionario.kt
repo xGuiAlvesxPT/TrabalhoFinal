@@ -35,10 +35,9 @@ data class Funcionario(
             val nome = cursor.getString(posNome)
             val nif = cursor.getString(posNif)
             val contacto = cursor.getString(posContacto)
-            //erro
-            val dataNascimento = cursor.getString(posDataNascimento)
+            val dataNascimento = cursor.getLong(posDataNascimento)
 
-            return Funcionario(nome,nif,contacto,dataNascimento, id)
+            return Funcionario(nome,nif,contacto,Date(dataNascimento), id)
         }
     }
 

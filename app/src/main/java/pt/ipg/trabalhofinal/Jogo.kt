@@ -41,13 +41,12 @@ data class Jogo(
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
             val preco = cursor.getFloat(posPreco)
-            //erro
-            val dataLancamento = cursor.getString(posDataLancamento)
+            val dataLancamento = cursor.getLong(posDataLancamento)
             val idPlataforma = cursor.getLong(posIdPlataforma)
             val idGenero = cursor.getLong(posIdGenero)
             val idPublicadora = cursor.getLong(posIdPublicadora)
 
-            return Jogo(nome,preco,dataLancamento,idPlataforma,idGenero,idPublicadora,id)
+            return Jogo(nome,preco,Date(dataLancamento),idPlataforma,idGenero,idPublicadora,id)
         }
     }
 
