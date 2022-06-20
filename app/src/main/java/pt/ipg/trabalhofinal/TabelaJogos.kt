@@ -12,6 +12,7 @@ class TabelaJogos( db: SQLiteDatabase): TabelaBD(db, NOME) {
 
     companion object{
         const val NOME = "Jogos"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val NOME_JOGO = "Nome"
         const val PRECO= "Preco"
         const val DATA_DE_LANCAMENTO = "DatadeLancamento"
@@ -19,7 +20,8 @@ class TabelaJogos( db: SQLiteDatabase): TabelaBD(db, NOME) {
         const val CAMPO_FK_GENERO = "idGenero"
         const val CAMPO_FK_PUBLICADORA = "idPublicadora"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME_JOGO, PRECO, DATA_DE_LANCAMENTO,
+        val TODAS_COLUNAS = arrayOf(
+            CAMPO_ID, NOME_JOGO, PRECO, DATA_DE_LANCAMENTO,
             CAMPO_FK_PLATAFORMA, CAMPO_FK_GENERO, CAMPO_FK_PUBLICADORA)
     }
 

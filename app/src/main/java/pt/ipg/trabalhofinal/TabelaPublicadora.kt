@@ -16,8 +16,9 @@ class TabelaPublicadora( db: SQLiteDatabase): TabelaBD(db, TabelaPlataformas.NOM
 
     companion object{
         const val NOME = "Publicadora"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val NOME_PUBLICADORA = "Nome"
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME_PUBLICADORA)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, NOME_PUBLICADORA)
 
     }
 

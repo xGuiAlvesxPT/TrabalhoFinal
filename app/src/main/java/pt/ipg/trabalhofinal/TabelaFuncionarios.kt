@@ -14,10 +14,12 @@ class TabelaFuncionarios( db: SQLiteDatabase): TabelaBD(db, NOME) {
     companion object{
         const val NOME = "Funcionarios"
         const val NOME_FUNCIONARIO = "Nome"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val NIF_FUNCIONARIO = "Nif"
         const val CONTACTO= "Contacto"
         const val DATA_DE_NASCIMENTO = "DatadeNascimento"
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NIF_FUNCIONARIO, NIF_FUNCIONARIO, CONTACTO,
+        val TODAS_COLUNAS = arrayOf(
+            CAMPO_ID, NIF_FUNCIONARIO, NIF_FUNCIONARIO, CONTACTO,
             DATA_DE_NASCIMENTO)
     }
 
