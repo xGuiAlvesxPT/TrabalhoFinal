@@ -1,7 +1,9 @@
 package pt.ipg.trabalhofinal
 
 
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteQueryBuilder
 import android.provider.BaseColumns
 
 class TabelaFuncionarios( db: SQLiteDatabase): TabelaBD(db, NOME) {
@@ -10,6 +12,23 @@ class TabelaFuncionarios( db: SQLiteDatabase): TabelaBD(db, NOME) {
 
         db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT,$NOME_FUNCIONARIO TEXT NOT NULL,$NIF_FUNCIONARIO TEXT NOT NULL ,$CONTACTO TEXT NOT NULL ,$DATA_DE_NASCIMENTO INTEGER NOT NULL) ")
     }
+
+    override fun query(
+        columns: Array<String>,
+        selection: String,
+        selectionArgs: Array<String>,
+        groupBy: String?,
+        having: String?,
+        orderBy: String?
+    ): Cursor? {
+        val queryBuilder = SQLiteQueryBuilder()
+
+
+        return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
+    }
+
+
+
 
     companion object{
         const val NOME = "Funcionarios"
