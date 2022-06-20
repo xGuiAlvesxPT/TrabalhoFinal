@@ -335,37 +335,41 @@ class ContentProviderLojaJogos : ContentProvider() {
     }
 
     companion object {
-        const val AUTHORITY = "pt.ipg.projetofinallojajogos"
+        private const val AUTHORITY = "pt.ipg.projetofinallojajogos"
 
-        const val URI_SEXO = 100
-        const val URI_SEXO_ESPECIFICO = 101
+        private const val URI_SEXO = 100
+        private const val URI_SEXO_ESPECIFICO = 101
 
-        const val URI_CLIENTE = 200
-        const val URI_CLIENTE_ESPECIFICO = 201
+        private const val URI_CLIENTE = 200
+        private const val URI_CLIENTE_ESPECIFICO = 201
 
-        const val URI_FUNCIONARIO = 300
-        const val URI_FUNCIONARIO_ESPECIFICO = 301
+        private const val URI_FUNCIONARIO = 300
+        private const val URI_FUNCIONARIO_ESPECIFICO = 301
 
-        const val URI_GENERO = 400
-        const val URI_GENERO_ESPECIFICO = 401
+        private const val URI_GENERO = 400
+        private const val URI_GENERO_ESPECIFICO = 401
 
-        const val URI_JOGO = 500
-        const val URI_JOGO_ESPECIFICO = 501
+        private const val URI_JOGO = 500
+        private const val URI_JOGO_ESPECIFICO = 501
 
-        const val URI_LINHA_VENDA = 600
-        const val URI_LINHA_VENDA_ESPECIFICO = 601
+        private const val URI_LINHA_VENDA = 600
+        private const val URI_LINHA_VENDA_ESPECIFICO = 601
 
-        const val URI_PLATAFORMA = 700
-        const val URI_PLATAFORMA_ESPECIFICA = 701
+        private  const val URI_PLATAFORMA = 700
+        private const val URI_PLATAFORMA_ESPECIFICA = 701
 
-        const val URI_VENDA = 800
-        const val URI_VENDA_ESPECIFICA = 801
+        private const val URI_VENDA = 800
+        private const val URI_VENDA_ESPECIFICA = 801
 
-        const val URI_PUBLICADORA = 900
-        const val URI_PUBLICADORA_ESPECIFICA = 901
+        private const val URI_PUBLICADORA = 900
+        private const val URI_PUBLICADORA_ESPECIFICA = 901
 
-        const val UNICO_REGISTO = "vnd.android.cursor.item"
-        const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+        private const val UNICO_REGISTO = "vnd.android.cursor.item"
+        private const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
+        val ENDERECO_FUNCIONARIOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaFuncionarios.NOME)
+
 
         fun getUriMatcher() : UriMatcher {
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)

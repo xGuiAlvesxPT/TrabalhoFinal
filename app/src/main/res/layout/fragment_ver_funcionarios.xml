@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/textViewVerFuncionario"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_width="331dp"
+        android:layout_height="50dp"
         android:layout_marginStart="64dp"
         android:layout_marginLeft="64dp"
         android:layout_marginTop="16dp"
@@ -18,7 +18,7 @@
         android:layout_marginRight="64dp"
         android:layout_marginBottom="8dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/gest_o_da_loja"
+        android:text="@string/funcionarios_lista"
         android:textColor="#3F51B5"
         android:textSize="34sp"
         android:typeface="serif"
@@ -29,6 +29,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewFuncionarios"
         android:layout_width="399dp"
         android:layout_height="644dp"
         android:layout_marginStart="2dp"
