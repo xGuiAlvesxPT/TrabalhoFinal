@@ -6,6 +6,15 @@
     app:startDestination="@id/FragmentPaginaInicial">
 
     <fragment
+        android:id="@+id/fragmentverfuncionarios"
+        android:name="pt.ipg.trabalhofinal.FragmentVerFuncionarios"
+        android:label="fragmentverfuncionarios"
+        tools:layout="@layout/fragment_ver_funcionarios" >
+        <action
+            android:id="@+id/action_fragmentverfuncionarios_to_FragmentPaginaGestao"
+            app:destination="@id/FragmentPaginaGestao" />
+    </fragment>
+    <fragment
         android:id="@+id/FragmentPaginaInicial"
         android:name="pt.ipg.trabalhofinal.FragmentPaginaInicial"
         android:label="@string/FragmentPaginaInicial"
@@ -24,5 +33,8 @@
         <action
             android:id="@+id/action_PaginaGestao_to_PaginaInicial"
             app:destination="@id/FragmentPaginaInicial" />
+        <action
+            android:id="@+id/action_FragmentPaginaGestao_to_fragmentverfuncionarios"
+            app:destination="@id/fragmentverfuncionarios" />
     </fragment>
 </navigation>

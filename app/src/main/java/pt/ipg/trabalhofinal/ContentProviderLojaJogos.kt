@@ -156,7 +156,7 @@ class ContentProviderLojaJogos : ContentProvider() {
             else -> null
         }
 
-        db.close()
+
 
         return cursor
     }
