@@ -28,26 +28,47 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="105dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/funcion_rios"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:drawableLeftCompat="@drawable/ic_baseline_supervisor_account_24"
-        app:drawableStartCompat="@drawable/ic_baseline_supervisor_account_24" />
+        app:drawableLeftCompat="@drawable/ic_baseline_supervisor_account_24" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp">
+
+        <Button
+            android:id="@+id/buttonFuncionarios"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/funcionarios"
+            android:textColor="#000000"
+            app:backgroundTint="#7FE15F"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textViewClientes"
+        android:id="@+id/textViewVendas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="105dp"
-        android:text="@string/clientes"
+        android:layout_marginBottom="93dp"
+        android:text="@string/vendas"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:drawableLeftCompat="@drawable/ic_baseline_person_24" />
+        app:drawableLeftCompat="@drawable/ic_baseline_person_24"
+        tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     <TextView
         android:id="@+id/textViewJogos"
@@ -65,18 +86,17 @@
         tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     <TextView
-        android:id="@+id/textViewVendas"
+        android:id="@+id/textViewClientes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="93dp"
-        android:text="@string/vendas"
+        android:layout_marginBottom="105dp"
+        android:text="@string/clientes"
         android:textColor="#000000"
         android:textSize="16sp"
-        tools:ignore="TextContrastCheck,TextContrastCheck"
-        app:drawableStartCompat="@drawable/ic_baseline_attach_money_24"
         app:drawableLeftCompat="@drawable/ic_baseline_attach_money_24" />
+
 </LinearLayout>
