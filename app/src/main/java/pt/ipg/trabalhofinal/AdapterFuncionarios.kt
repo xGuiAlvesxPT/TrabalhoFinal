@@ -34,7 +34,7 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
                 textViewNomeFuncionario.text = Funcionario?.nome ?: ""
                 textViewFuncionarioNif.text = Funcionario?.nif ?: ""
                 textViewFuncionarioContacto.text = Funcionario?.contacto ?: ""
-                textViewFuncionarioDataNasc.text = (Funcionario?.data_de_nascimento ?: "").toString()
+                textViewFuncionarioDataNasc.text = "${Funcionario?.data_de_nascimento}"
             }
     }
 

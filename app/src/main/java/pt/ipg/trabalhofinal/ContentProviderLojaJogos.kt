@@ -335,7 +335,7 @@ class ContentProviderLojaJogos : ContentProvider() {
     }
 
     companion object {
-        private const val AUTHORITY = "pt.ipg.projetofinallojajogos"
+        private const val AUTHORITY = "pt.ipg.trabalhofinal"
 
         private const val URI_SEXO = 100
         private const val URI_SEXO_ESPECIFICO = 101
