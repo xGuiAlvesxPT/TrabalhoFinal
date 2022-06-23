@@ -5,7 +5,7 @@ import android.provider.BaseColumns
 import java.util.*
 
 data class Venda(
-    var data_de_venda: Date,
+    var data_de_venda: String,
     var idcliente: Long,
     var idfuncionario: Long,
     var id: Long = -1,
@@ -14,7 +14,7 @@ data class Venda(
     fun toContentValues():ContentValues{
 
         val valores = ContentValues()
-        valores.put(TabelaVendas.DATA_DE_VENDA,data_de_venda.toString())
+        valores.put(TabelaVendas.DATA_DE_VENDA,data_de_venda)
         valores.put(TabelaVendas.CAMPO_FK_CLIENTE,idcliente)
         valores.put(TabelaVendas.CAMPO_FK_FUNCIONARIO,idfuncionario)
         return valores
@@ -28,11 +28,11 @@ data class Venda(
             val posIdFuncionario = cursor.getColumnIndex(TabelaVendas.CAMPO_FK_FUNCIONARIO)
 
             val id = cursor.getLong(posId)
-            val dataVenda = cursor.getLong(posDataVenda)
+            val dataVenda = cursor.getString(posDataVenda)
             val idCliente = cursor.getLong(posIdCliente)
             val idFuncionario = cursor.getLong(posIdFuncionario)
 
-            return Venda(Date(dataVenda),idCliente,idFuncionario, id)
+            return Venda(dataVenda,idCliente,idFuncionario, id)
         }
     }
 

@@ -8,7 +8,7 @@ data class Cliente(
     var nome: String,
     var nif: String,
     var contacto: String,
-    var data_de_nascimento: Date,
+    var data_de_nascimento: String,
     var idSexo: Long,
     var id: Long = -1
 ) {
@@ -19,7 +19,7 @@ data class Cliente(
         valores.put(TabelaClientes.NOME_CLIENTE,nome)
         valores.put(TabelaClientes.NIF_CLIENTE,nif)
         valores.put(TabelaClientes.CONTACTO,contacto)
-        valores.put(TabelaClientes.DATA_DE_NASCIMENTO,data_de_nascimento.toString())
+        valores.put(TabelaClientes.DATA_DE_NASCIMENTO,data_de_nascimento)
         valores.put(TabelaClientes.CAMPO_FK_SEXO,idSexo)
         return valores
     }
@@ -37,10 +37,10 @@ data class Cliente(
             val nome = cursor.getString(posNome)
             val nif = cursor.getString(posNif)
             val contacto = cursor.getString(posContacto)
-            val dataNascimento = cursor.getLong(posDataNascimento)
+            val dataNascimento = cursor.getString(posDataNascimento)
             val sexo = cursor.getLong(posSexo)
 
-            return Cliente(nome,nif,contacto,Date(dataNascimento),sexo, id)
+            return Cliente(nome,nif,contacto,dataNascimento,sexo, id)
         }
     }
 }

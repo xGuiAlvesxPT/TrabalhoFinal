@@ -4,7 +4,6 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
-import android.database.sqlite.SQLiteOpenHelper
 import android.net.Uri
 import android.provider.BaseColumns
 
@@ -120,13 +119,10 @@ class ContentProviderLojaJogos : ContentProvider() {
     ): Cursor? {
         val db = dbOpenHelper!!.readableDatabase
 
-
-        requireNotNull(selection)
         requireNotNull(projection)
         val colunas = projection as Array<String>
 
-        val argsSeleccao = selectionArgs as Array<String>
-
+        val argsSeleccao = selectionArgs as Array<String>?
 
         val id = uri.lastPathSegment
 
@@ -152,14 +148,13 @@ class ContentProviderLojaJogos : ContentProvider() {
             URI_VENDA_ESPECIFICA -> TabelaVendas(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_JOGO_ESPECIFICO -> TabelaJogos(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_PUBLICADORA_ESPECIFICA -> TabelaPublicadora(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
-
             else -> null
         }
 
-
-
         return cursor
     }
+
+
 
     /**
      * Implement this to handle requests for the MIME type of the data at the

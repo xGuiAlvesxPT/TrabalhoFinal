@@ -80,7 +80,7 @@ class BaseDeDadosTest {
 
     @Before
     fun apagaBaseDados() {
-        appContext().deleteDatabase(BDLojaOpenHelper.NOME)
+        //appContext().deleteDatabase(BDLojaOpenHelper.NOME)
     }
 
     @Test
@@ -136,9 +136,9 @@ class BaseDeDadosTest {
         val sexoF = Sexo("Feminino")
         insereSexo(db,sexoF)
 
-        insereCliente(db, Cliente("Guilherme Alves","250116278","963355065",Date(2000,10,15,0,0,0),sexoM.id))
-        insereCliente(db, Cliente("Maria Almeida","258524687","954798855",Date(2020,10,9,0,0,0),sexoF.id))
-        insereCliente(db, Cliente("Joao Pires","254566278","9745354789",Date(1980,2,14,0,0,0),sexoM.id))
+        insereCliente(db, Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id))
+        insereCliente(db, Cliente("Maria Almeida","258524687","954798855","15/02/1998",sexoF.id))
+        insereCliente(db, Cliente("Joao Pires","254566278","9745354789","01/05/2010",sexoM.id))
 
         db.close()
     }
@@ -147,13 +147,13 @@ class BaseDeDadosTest {
     fun consegueInserirJogo() {
         val db = getWritableDatabase()
 
-        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,Date(2000,10,15,0,0,0),1,2,1)
+        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",1,2,1)
         insereJogo(db, jogo1)
 
-        val jogo2 = Jogo("Halo Wars",39.99F,Date(2000,10,15,0,0,0),2,3,2)
+        val jogo2 = Jogo("Halo Wars",39.99F,"06/02/2011",2,3,2)
         insereJogo(db, jogo2)
 
-        val jogo3 = Jogo("Legend Of Zelda",59.99F,Date(2000,10,15,0,0,0),3,1,3)
+        val jogo3 = Jogo("Legend Of Zelda",59.99F,"09/03/2015",3,1,3)
         insereJogo(db, jogo3)
 
         db.close()
@@ -163,9 +163,9 @@ class BaseDeDadosTest {
     fun consegueInserirFuncionario() {
         val db = getWritableDatabase()
 
-        insereFuncionario(db, Funcionario("Jacinto Alves","548625789","150116278",Date(2000,10,15,0,0,0)))
-        insereFuncionario(db, Funcionario("André Almeida","247954869","248524687",Date(2000,11,15,0,0,0)))
-       insereFuncionario(db, Funcionario("Pedro Pires","789546578","254565278",Date(2000,10,15,0,0,0)))
+        insereFuncionario(db, Funcionario("Jacinto Alves","548625789","150116278","12/12/2005"))
+        insereFuncionario(db, Funcionario("André Almeida","247954869","248524687","30/07/1970"))
+       insereFuncionario(db, Funcionario("Pedro Pires","789546578","254565278","10/10/1974"))
 
         db.close()
     }
@@ -174,9 +174,9 @@ class BaseDeDadosTest {
     fun consegueInserirVenda() {
         val db = getWritableDatabase()
 
-        insereVenda(db, Venda(Date(2000,10,15,0,0,0),1,1))
-        insereVenda(db, Venda(Date(2000,10,15,0,0,0),2,2))
-        insereVenda(db, Venda(Date(2000,10,15,0,0,0),3,3))
+        insereVenda(db, Venda("11/07/2022",1,1))
+        insereVenda(db, Venda("15/08/2021",2,2))
+        insereVenda(db, Venda("16/09/2020",3,3))
 
         db.close()
     }
@@ -252,6 +252,32 @@ class BaseDeDadosTest {
         val plataformaBD = Plataforma.fromCursor(cursor)
 
         assertEquals(plataforma,plataformaBD)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueLerFuncionario() {
+        val db = getWritableDatabase()
+
+        val funcionario = Funcionario("Pedro Pires","789546578","254565278","01/04/2000")
+        insereFuncionario(db, funcionario)
+
+    val cursor = TabelaFuncionarios(db).query(
+            TabelaFuncionarios.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${funcionario.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val funcionarioBD = Funcionario.fromCursor(cursor)
+
+        assertEquals(funcionario,funcionarioBD)
 
         db.close()
     }

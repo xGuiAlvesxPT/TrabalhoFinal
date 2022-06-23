@@ -8,7 +8,7 @@ data class Jogo(
 
     var nome: String,
     var preco: Float,
-    var data_de_lancamento: Date ,
+    var data_de_lancamento: String,
     var idplataforma: Long,
     var idgenero: Long,
     var idpublicadora: Long,
@@ -21,7 +21,7 @@ data class Jogo(
         val valores = ContentValues()
         valores.put(TabelaJogos.NOME_JOGO,nome)
         valores.put(TabelaJogos.PRECO,preco)
-        valores.put(TabelaJogos.DATA_DE_LANCAMENTO,data_de_lancamento.toString())
+        valores.put(TabelaJogos.DATA_DE_LANCAMENTO,data_de_lancamento)
         valores.put(TabelaJogos.CAMPO_FK_PLATAFORMA,idplataforma)
         valores.put(TabelaJogos.CAMPO_FK_GENERO,idgenero)
         valores.put(TabelaJogos.CAMPO_FK_PUBLICADORA,idpublicadora)
@@ -41,12 +41,12 @@ data class Jogo(
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
             val preco = cursor.getFloat(posPreco)
-            val dataLancamento = cursor.getLong(posDataLancamento)
+            val dataLancamento = cursor.getString(posDataLancamento)
             val idPlataforma = cursor.getLong(posIdPlataforma)
             val idGenero = cursor.getLong(posIdGenero)
             val idPublicadora = cursor.getLong(posIdPublicadora)
 
-            return Jogo(nome,preco,Date(dataLancamento),idPlataforma,idGenero,idPublicadora,id)
+            return Jogo(nome,preco,dataLancamento,idPlataforma,idGenero,idPublicadora,id)
         }
     }
 

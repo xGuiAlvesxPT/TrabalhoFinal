@@ -30,14 +30,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerViewFuncionarios"
-        android:layout_width="399dp"
-        android:layout_height="644dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="408dp"
+        android:layout_height="637dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewVerFuncionario" />
 </androidx.constraintlayout.widget.ConstraintLayout>
