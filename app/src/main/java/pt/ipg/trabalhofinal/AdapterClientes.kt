@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.Adapter<AdapterFuncionarios.ViewHolderFuncionario>() {
+class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<AdapterClientes.ViewHolderCliente>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
@@ -16,7 +16,7 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
             }
         }
 
-    class ViewHolderFuncionario(itemFuncionario: View) : RecyclerView.ViewHolder(itemFuncionario) {
+    class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente) {
         val textViewNomeFuncionario =
             itemFuncionario.findViewById<TextView>(R.id.textViewNomeFuncionario)
         val textViewFuncionarioNif =
@@ -61,10 +61,10 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderFuncionario {
-        val itemFuncionario =
-            fragment.layoutInflater.inflate(R.layout.item_funcionario, parent, false)
-        return ViewHolderFuncionario(itemFuncionario)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCliente {
+        val itemCliente =
+            fragment.layoutInflater.inflate(R.layout.item_cliente, parent, false)
+        return ViewHolderCliente(itemCliente)
     }
 
     /**
@@ -88,9 +88,9 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: ViewHolderFuncionario, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderCliente, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.Funcionario = Funcionario.fromCursor(cursor!!)
+        holder.c = Cliente.fromCursor(cursor!!)
     }
 
     /**
