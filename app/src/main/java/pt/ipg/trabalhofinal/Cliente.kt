@@ -38,9 +38,9 @@ data class Cliente(
             val nif = cursor.getString(posNif)
             val contacto = cursor.getString(posContacto)
             val dataNascimento = cursor.getString(posDataNascimento)
-            val sexo = cursor.getLong(posSexo)
+            val sexoid = cursor.getLong(posSexo)
 
-            return Cliente(nome,nif,contacto,dataNascimento,sexo, id)
+            return Cliente(nome,nif,contacto,dataNascimento,sexoid, id)
         }
     }
 }

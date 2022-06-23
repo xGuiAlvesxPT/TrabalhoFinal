@@ -5,6 +5,7 @@
     <string name="FragmentPaginaInicial">First Fragment</string>
     <string name="FragmentPaginaGestao">Second Fragment</string>
     <string name="FragmentVerFuncionarios">Third Fragment</string>
+    <string name="FragmentVerClientes">four Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -20,4 +21,9 @@
     <string name="funcionarios">Funcionarios</string>
     <string name="funcionarios_lista">Funcionários</string>
     <string name="clientesbutton">Clientes</string>
+    <string name="guilherme_alves">Guilherme Alves</string>
+    <string name="_250116278">250116278</string>
+    <string name="masculino">Masculino</string>
+    <string name="_963355065">963355065</string>
+    <string name="_22_10_2000">22/10/2000</string>
 </resources>

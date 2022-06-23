@@ -35,6 +35,9 @@ class FragmentPaginaGestao : Fragment() {
         binding.buttonFuncionarios.setOnClickListener() {
            findNavController().navigate(R.id.action_FragmentPaginaGestao_to_fragmentverfuncionarios)
         }
+        binding.buttonClientes.setOnClickListener() {
+            findNavController().navigate(R.id.action_FragmentPaginaGestao_to_fragmentVerClientes)
+        }
     }
 
     override fun onDestroyView() {

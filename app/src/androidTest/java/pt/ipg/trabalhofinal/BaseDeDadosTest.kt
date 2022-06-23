@@ -282,4 +282,37 @@ class BaseDeDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueLerCliente() {
+        val db = getWritableDatabase()
+
+        val sexoM = Sexo("Masculino")
+        insereSexo(db,sexoM)
+        val sexoF = Sexo("Feminino")
+        insereSexo(db,sexoF)
+
+        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id)
+        insereCliente(db, cliente)
+
+        val cursor = TabelaClientes(db).query(
+            TabelaClientes.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${cliente.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val clienteBD = Funcionario.fromCursor(cursor)
+
+        assertEquals(cliente,clienteBD)
+
+        db.close()
+    }
+
+
+
 }

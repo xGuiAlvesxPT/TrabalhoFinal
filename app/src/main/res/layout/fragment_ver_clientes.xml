@@ -24,6 +24,7 @@
         android:typeface="serif" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewClientes"
         android:layout_width="411dp"
         android:layout_height="667dp" />
 </LinearLayout>

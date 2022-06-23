@@ -17,24 +17,27 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
         }
 
     class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente) {
-        val textViewNomeFuncionario =
-            itemFuncionario.findViewById<TextView>(R.id.textViewNomeFuncionario)
-        val textViewFuncionarioNif =
-            itemFuncionario.findViewById<TextView>(R.id.textViewFuncionarioNif)
-        val textViewFuncionarioContacto =
-            itemFuncionario.findViewById<TextView>(R.id.textViewFuncionarioContacto)
-        val textViewFuncionarioDataNasc =
-            itemFuncionario.findViewById<TextView>(R.id.textViewFuncionarioDataNasc)
+        val textViewNomeCliente =
+            itemCliente.findViewById<TextView>(R.id.textViewNomeCliente)
+        val textViewClienteSexo =
+            itemCliente.findViewById<TextView>(R.id.textViewClienteSexo)
+        val textViewClienteNif =
+            itemCliente.findViewById<TextView>(R.id.textViewClienteNif)
+        val textViewClienteContacto =
+            itemCliente.findViewById<TextView>(R.id.textViewFuncionarioContacto)
+        val textViewClienteDataNasc =
+            itemCliente.findViewById<TextView>(R.id.textViewFuncionarioDataNasc)
 
-        var Funcionario: Funcionario? = null
+        var Cliente: Cliente? = null
             get() = field
-            set(value: Funcionario?) {
+            set(value: Cliente?) {
                 field = value
 
-                textViewNomeFuncionario.text = Funcionario?.nome ?: ""
-                textViewFuncionarioNif.text = Funcionario?.nif ?: ""
-                textViewFuncionarioContacto.text = Funcionario?.contacto ?: ""
-                textViewFuncionarioDataNasc.text = Funcionario?.data_de_nascimento ?: ""
+                textViewNomeCliente.text = Cliente?.nome ?: ""
+                textViewClienteSexo.text = "${Cliente?.idSexo}"
+                textViewClienteNif.text = Cliente?.nif ?: ""
+                textViewClienteContacto.text = Cliente?.contacto ?: ""
+                textViewClienteDataNasc.text = Cliente?.data_de_nascimento ?: ""
             }
     }
 
@@ -90,7 +93,7 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
      */
     override fun onBindViewHolder(holder: ViewHolderCliente, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.c = Cliente.fromCursor(cursor!!)
+        holder.Cliente = Cliente.fromCursor(cursor!!)
     }
 
     /**
