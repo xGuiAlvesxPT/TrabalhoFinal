@@ -260,7 +260,7 @@ class BaseDeDadosTest {
     fun consegueLerFuncionario() {
         val db = getWritableDatabase()
 
-        val funcionario = Funcionario("Pedro Pires","789546578","254565278","01/04/2000")
+        val funcionario = Funcionario("José Alves","789546578","254564778","01/04/2000")
         insereFuncionario(db, funcionario)
 
     val cursor = TabelaFuncionarios(db).query(
