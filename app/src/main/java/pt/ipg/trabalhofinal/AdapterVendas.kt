@@ -19,23 +19,22 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
     class ViewHolderVenda(itemVenda: View) : RecyclerView.ViewHolder(itemVenda) {
 
         val textViewVendaData =
-            itemVenda.findViewById<TextView>(R.id.textViewJogoDataLancamento)
+            itemVenda.findViewById<TextView>(R.id.textViewDataVenda)
         val textViewVendaFuncionario =
-            itemVenda.findViewById<TextView>(R.id.textViewJogoPlataforma)
+            itemVenda.findViewById<TextView>(R.id.textViewVendaFuncionario)
         val textViewVendaCliente =
-            itemVenda.findViewById<TextView>(R.id.textViewJogoPublicadora)
+            itemVenda.findViewById<TextView>(R.id.textViewVendaCliente)
 
         var Venda: Venda? = null
             get() = field
             set(value: Venda?) {
                 field = value
 
-                textViewNomeJogo.text = Jogo?.nome ?: ""
-                textViewPrecoJogo.text = "${Jogo?.preco}"
-                textViewJogoDataLancamento.text = Jogo?.data_de_lancamento ?: ""
-                textViewJogoGenero.text = "${Jogo?.idgenero}"
-                textViewJogoPlataforma.text = "${Jogo?.idplataforma}"
-                textViewJogoPublicadora.text = "${Jogo?.idpublicadora}"
+
+                textViewVendaData.text = Venda?.data_de_venda ?: ""
+                textViewVendaFuncionario.text = "${Venda?.idfuncionario}"
+                textViewVendaCliente.text = "${Venda?.idcliente}"
+
             }
     }
 

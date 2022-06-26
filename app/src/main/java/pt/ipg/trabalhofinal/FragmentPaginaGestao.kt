@@ -41,6 +41,9 @@ class FragmentPaginaGestao : Fragment() {
         binding.buttonJogos.setOnClickListener() {
             findNavController().navigate(R.id.action_FragmentPaginaGestao_to_fragmentVerJogos)
         }
+        binding.buttonVendas.setOnClickListener() {
+            findNavController().navigate(R.id.action_FragmentPaginaGestao_to_fragmentVerVendas)
+        }
     }
 
     override fun onDestroyView() {
