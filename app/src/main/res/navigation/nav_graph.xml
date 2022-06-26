@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_FragmentPaginaGestao_to_fragmentVerJogos2"
             app:destination="@id/fragmentVerJogos" />
+        <action
+            android:id="@+id/action_FragmentPaginaGestao_to_fragmentVerVendas"
+            app:destination="@id/fragmentVerVendas" />
     </fragment>
     <fragment
         android:id="@+id/fragmentVerClientes"
@@ -62,6 +65,15 @@
         tools:layout="@layout/fragment_ver_jogos" >
         <action
             android:id="@+id/action_fragmentVerJogos_to_FragmentPaginaGestao"
+            app:destination="@id/FragmentPaginaGestao" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentVerVendas"
+        android:name="pt.ipg.trabalhofinal.FragmentVerVendas"
+        android:label="fragment_ver_vendas"
+        tools:layout="@layout/fragment_ver_vendas" >
+        <action
+            android:id="@+id/action_fragmentVerVendas_to_FragmentPaginaGestao"
             app:destination="@id/FragmentPaginaGestao" />
     </fragment>
 </navigation>
