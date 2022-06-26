@@ -9,7 +9,7 @@ data class Cliente(
     var nif: String,
     var contacto: String,
     var data_de_nascimento: String,
-    var sexo: Sexo,
+    var idSexo: Long,
     var id: Long = -1
 ) {
 
@@ -20,7 +20,7 @@ data class Cliente(
         valores.put(TabelaClientes.NIF_CLIENTE,nif)
         valores.put(TabelaClientes.CONTACTO,contacto)
         valores.put(TabelaClientes.DATA_DE_NASCIMENTO,data_de_nascimento)
-        valores.put(TabelaClientes.CAMPO_FK_SEXO,sexo.id)
+        valores.put(TabelaClientes.CAMPO_FK_SEXO,idSexo)
         return valores
     }
 
@@ -31,20 +31,16 @@ data class Cliente(
             val posNif = cursor.getColumnIndex(TabelaClientes.NIF_CLIENTE)
             val posContacto = cursor.getColumnIndex(TabelaClientes.CONTACTO)
             val posDataNascimento = cursor.getColumnIndex(TabelaClientes.DATA_DE_NASCIMENTO)
-            val posidSexo = cursor.getColumnIndex(TabelaClientes.CAMPO_FK_SEXO)
-            val posNomeSexo = cursor.getColumnIndex(TabelaSexo.NOME_SEXO)
+            val posSexo = cursor.getColumnIndex(TabelaClientes.CAMPO_FK_SEXO)
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
             val nif = cursor.getString(posNif)
             val contacto = cursor.getString(posContacto)
             val dataNascimento = cursor.getString(posDataNascimento)
+            val sexoid = cursor.getLong(posSexo)
 
-            val nomeSexo = cursor.getString(posNomeSexo)
-            val sexoid = cursor.getLong(posidSexo)
-            val sexo = Sexo(nomeSexo,sexoid)
-
-            return Cliente(nome,nif,contacto,dataNascimento,sexo,id)
+            return Cliente(nome,nif,contacto,dataNascimento,sexoid,id)
         }
     }
 }

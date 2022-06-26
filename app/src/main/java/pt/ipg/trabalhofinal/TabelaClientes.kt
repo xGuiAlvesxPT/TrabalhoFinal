@@ -36,7 +36,7 @@ class TabelaClientes( db: SQLiteDatabase): TabelaBD(db, NOME) {
         const val CAMPO_FK_SEXO = "sexoID"
         val TODAS_COLUNAS = arrayOf(
             CAMPO_ID, NOME_CLIENTE, NIF_CLIENTE, CONTACTO,
-            DATA_DE_NASCIMENTO, CAMPO_FK_SEXO,TabelaSexo.NOME)
+            DATA_DE_NASCIMENTO, CAMPO_FK_SEXO)
     }
 
 
