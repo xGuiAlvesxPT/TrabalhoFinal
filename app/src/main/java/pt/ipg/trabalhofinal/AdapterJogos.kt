@@ -38,9 +38,9 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
                 textViewNomeJogo.text = Jogo?.nome ?: ""
                 textViewPrecoJogo.text = "${Jogo?.preco}"
                 textViewJogoDataLancamento.text = Jogo?.data_de_lancamento ?: ""
-                textViewJogoGenero.text = "${Jogo?.idgenero}"
-                textViewJogoPlataforma.text = "${Jogo?.idplataforma}"
-                textViewJogoPublicadora.text = "${Jogo?.idpublicadora}"
+                textViewJogoGenero.text = Jogo?.genero?.nome ?: ""
+                textViewJogoPlataforma.text = Jogo?.plataforma?.nome ?: ""
+                textViewJogoPublicadora.text = Jogo?.publicadora?.nome ?: ""
             }
     }
 

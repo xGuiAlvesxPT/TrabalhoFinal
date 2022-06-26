@@ -16,7 +16,7 @@ class TabelaPlataformas( db: SQLiteDatabase): TabelaBD(db, NOME) {
     companion object{
         const val NOME = "Plataformas"
         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
-        const val NOME_PLATAFORMA = "Nome"
+        const val NOME_PLATAFORMA = "NomePlataforma"
         val TODAS_COLUNAS = arrayOf(CAMPO_ID, NOME_PLATAFORMA)
 
     }

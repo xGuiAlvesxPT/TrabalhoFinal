@@ -84,7 +84,7 @@ class BaseDeDadosTest {
 
     @Before
     fun apagaBaseDados() {
-        //appContext().deleteDatabase(BDLojaOpenHelper.NOME)
+        appContext().deleteDatabase(BDLojaOpenHelper.NOME)
     }
 
     @Test
@@ -152,28 +152,14 @@ class BaseDeDadosTest {
         val sexoF = Sexo("Feminino")
         insereSexo(db,sexoF)
 
-        insereCliente(db, Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id))
-        insereCliente(db, Cliente("Maria Almeida","258524687","954798855","15/02/1998",sexoF.id))
-        insereCliente(db, Cliente("Joao Pires","254566278","9745354789","01/05/2010",sexoM.id))
+        insereCliente(db, Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM))
+        insereCliente(db, Cliente("Maria Almeida","258524687","954798855","15/02/1998",sexoF))
+        insereCliente(db, Cliente("Joao Pires","254566278","9745354789","01/05/2010",sexoM))
 
         db.close()
     }
 
-    @Test
-    fun consegueInserirJogo() {
-        val db = getWritableDatabase()
 
-        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",1,2,1)
-        insereJogo(db, jogo1)
-
-        val jogo2 = Jogo("Halo Wars",39.99F,"06/02/2011",2,3,2)
-        insereJogo(db, jogo2)
-
-        val jogo3 = Jogo("Legend Of Zelda",59.99F,"09/03/2015",3,1,3)
-        insereJogo(db, jogo3)
-
-        db.close()
-    }
 
     @Test
     fun consegueInserirFuncionario() {
@@ -193,7 +179,7 @@ class BaseDeDadosTest {
         val sexoM = Sexo("Masculino")
         insereSexo(db, sexoM)
 
-        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id)
+        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM)
         insereCliente(db, cliente)
 
         val funcionario = Funcionario("Jacinto Alves","548625789","150116278","12/12/2005")
@@ -339,7 +325,7 @@ class BaseDeDadosTest {
         val sexoM = Sexo("Masculino")
         insereSexo(db,sexoM)
 
-        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id)
+        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM)
         insereCliente(db, cliente)
 
         val cursor = TabelaClientes(db).query(
@@ -426,7 +412,7 @@ class BaseDeDadosTest {
         val publicadora= Publicadora("Take Two")
         inserePublicadora(db, publicadora)
 
-        val jogo = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma.id,genero.id,publicadora.id)
+        val jogo = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma,genero,publicadora)
         insereJogo(db, jogo)
 
         val cursor = TabelaJogos(db).query(
