@@ -365,6 +365,7 @@ class ContentProviderLojaJogos : ContentProvider() {
         private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
         val ENDERECO_FUNCIONARIOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaFuncionarios.NOME)
         val ENDERECO_CLIENTES = Uri.withAppendedPath(ENDERECO_BASE, TabelaClientes.NOME)
+        val ENDERECO_JOGOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaJogos.NOME)
         val ENDERECO_SEXO = Uri.withAppendedPath(ENDERECO_BASE, TabelaSexo.NOME)
 
 
