@@ -17,24 +17,30 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
         }
 
     class ViewHolderJogo(itemJogo: View) : RecyclerView.ViewHolder(itemJogo) {
-        val textViewNomeFuncionario =
-            itemFuncionario.findViewById<TextView>(R.id.textViewNomeFuncionario)
-        val textViewFuncionarioNif =
-            itemFuncionario.findViewById<TextView>(R.id.textViewFuncionarioNif)
-        val textViewFuncionarioContacto =
-            itemFuncionario.findViewById<TextView>(R.id.textViewFuncionarioContacto)
-        val textViewFuncionarioDataNasc =
-            itemFuncionario.findViewById<TextView>(R.id.textViewFuncionarioDataNasc)
+        val textViewNomeJogo =
+            itemJogo.findViewById<TextView>(R.id.textViewNomeJogo)
+        val textViewPrecoJogo =
+            itemJogo.findViewById<TextView>(R.id.textViewPrecoJogo)
+        val textViewJogoDataLancamento =
+            itemJogo.findViewById<TextView>(R.id.textViewJogoDataLancamento)
+        val textViewJogoGenero =
+            itemJogo.findViewById<TextView>(R.id.textViewJogoGenero)
+        val textViewJogoPlataforma =
+            itemJogo.findViewById<TextView>(R.id.textViewJogoPlataforma)
+        val textViewJogoPublicadora =
+            itemJogo.findViewById<TextView>(R.id.textViewJogoPublicadora)
 
-        var Funcionario: Funcionario? = null
+        var Jogo: Jogo? = null
             get() = field
-            set(value: Funcionario?) {
+            set(value: Jogo?) {
                 field = value
 
-                textViewNomeFuncionario.text = Funcionario?.nome ?: ""
-                textViewFuncionarioNif.text = Funcionario?.nif ?: ""
-                textViewFuncionarioContacto.text = Funcionario?.contacto ?: ""
-                textViewFuncionarioDataNasc.text = Funcionario?.data_de_nascimento ?: ""
+                textViewNomeJogo.text = Jogo?.nome ?: ""
+                textViewPrecoJogo.text = "${Jogo?.preco}"
+                textViewJogoDataLancamento.text = Jogo?.data_de_lancamento ?: ""
+                textViewJogoGenero.text = "${Jogo?.idgenero}"
+                textViewJogoPlataforma.text = "${Jogo?.idplataforma}"
+                textViewJogoPublicadora.text = "${Jogo?.idpublicadora}"
             }
     }
 
@@ -63,7 +69,7 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderJogo {
         val itemFuncionario =
-            fragment.layoutInflater.inflate(R.layout.item_Jogo, parent, false)
+            fragment.layoutInflater.inflate(R.layout.item_jogo, parent, false)
         return ViewHolderJogo(itemFuncionario)
     }
 
@@ -90,7 +96,7 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
      */
     override fun onBindViewHolder(holder: ViewHolderJogo, position: Int) {
         cursor!!.moveToPosition(position)
-        holder. = Jogo.fromCursor(cursor!!)
+        holder.Jogo = Jogo.fromCursor(cursor!!)
     }
 
     /**
