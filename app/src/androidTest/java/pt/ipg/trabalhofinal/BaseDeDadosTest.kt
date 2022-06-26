@@ -190,9 +190,17 @@ class BaseDeDadosTest {
     fun consegueInserirVenda() {
         val db = getWritableDatabase()
 
-        insereVenda(db, Venda("11/07/2022",1,1))
-        insereVenda(db, Venda("15/08/2021",2,2))
-        insereVenda(db, Venda("16/09/2020",3,3))
+        val sexoM = Sexo("Masculino")
+        insereSexo(db, sexoM)
+
+        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id)
+        insereCliente(db, cliente)
+
+        val funcionario = Funcionario("Jacinto Alves","548625789","150116278","12/12/2005")
+        insereFuncionario(db,funcionario)
+
+        insereVenda(db, Venda("11/07/2022",cliente.id,funcionario.id))
+
 
         db.close()
     }
@@ -348,7 +356,7 @@ class BaseDeDadosTest {
 
         val clienteBD = Cliente.fromCursor(cursor)
 
-        assertEquals(Cliente,clienteBD)
+        assertEquals(cliente,clienteBD)
 
         db.close()
     }

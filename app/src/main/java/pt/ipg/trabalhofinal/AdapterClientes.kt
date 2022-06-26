@@ -24,9 +24,9 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
         val textViewClienteNif =
             itemCliente.findViewById<TextView>(R.id.textViewClienteNif)
         val textViewClienteContacto =
-            itemCliente.findViewById<TextView>(R.id.textViewFuncionarioContacto)
+            itemCliente.findViewById<TextView>(R.id.textViewClienteContacto)
         val textViewClienteDataNasc =
-            itemCliente.findViewById<TextView>(R.id.textViewFuncionarioDataNasc)
+            itemCliente.findViewById<TextView>(R.id.textViewClienteDataNasc)
 
         var Cliente: Cliente? = null
             get() = field
