@@ -5,14 +5,14 @@ import android.database.Cursor
 import android.provider.BaseColumns
 
 data class Sexo(
-    var nome: String,
+    var nomeSexo: String,
     var id: Long = -1
 ) {
 
     fun toContentValues(): ContentValues {
 
         val valores = ContentValues()
-        valores.put(TabelaSexo.NOME_SEXO,nome)
+        valores.put(TabelaSexo.NOME_SEXO,nomeSexo)
 
         return valores
     }

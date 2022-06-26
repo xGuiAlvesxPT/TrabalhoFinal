@@ -34,10 +34,10 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
                 field = value
 
                 textViewNomeCliente.text = Cliente?.nome ?: ""
-                textViewClienteSexo.text = "${Cliente?.idSexo}"
                 textViewClienteNif.text = Cliente?.nif ?: ""
                 textViewClienteContacto.text = Cliente?.contacto ?: ""
                 textViewClienteDataNasc.text = Cliente?.data_de_nascimento ?: ""
+                textViewClienteSexo.text = "${Cliente?.idSexo}"
             }
     }
 

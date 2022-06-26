@@ -76,6 +76,10 @@ class BaseDeDadosTest {
         assertNotEquals(-1, LinhaVenda.id)
     }
 
+    private fun inserePublicadora(db: SQLiteDatabase, Publicadora:Publicadora) {
+        Publicadora.id = TabelaPublicadora(db).insert(Publicadora.toContentValues())
+        assertNotEquals(-1, Publicadora.id)
+    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Before
@@ -102,6 +106,18 @@ class BaseDeDadosTest {
         insereGenero(db, Genero("Aventura"))
         insereGenero(db, Genero("Açao"))
         insereGenero(db, Genero("Estrategia"))
+
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirPublicadora() {
+        val db = getWritableDatabase()
+
+        inserePublicadora(db, Publicadora("Take Two"))
+        inserePublicadora(db, Publicadora("Ubisoft"))
+        inserePublicadora(db, Publicadora("Square Enix"))
+
 
         db.close()
     }
@@ -206,7 +222,7 @@ class BaseDeDadosTest {
 
         val registosAlterados = TabelaPlataformas(db).update(
             plataforma.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaPlataformas.CAMPO_ID}=?",
             arrayOf("${plataforma.id}"))
 
         assertEquals(1, registosAlterados)
@@ -222,7 +238,7 @@ class BaseDeDadosTest {
         inserePlataforma(db, plataforma)
 
         val registosEliminados = TabelaPlataformas(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaPlataformas.CAMPO_ID}=?",
             arrayOf("${plataforma.id}"))
 
         assertEquals(1, registosEliminados)
@@ -239,7 +255,7 @@ class BaseDeDadosTest {
 
         val cursor = TabelaPlataformas(db).query(
             TabelaPlataformas.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaPlataformas.CAMPO_ID}=?",
             arrayOf("${plataforma.id}"),
             null,
             null,
@@ -265,7 +281,7 @@ class BaseDeDadosTest {
 
     val cursor = TabelaFuncionarios(db).query(
             TabelaFuncionarios.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+        "${TabelaFuncionarios.CAMPO_ID}=?",
             arrayOf("${funcionario.id}"),
             null,
             null,
@@ -283,20 +299,44 @@ class BaseDeDadosTest {
     }
 
     @Test
+    fun consegueLerSexo() {
+        val db = getWritableDatabase()
+
+        val sexo = Sexo("Masculino")
+        insereSexo(db, sexo)
+
+        val cursor = TabelaSexo(db).query(
+            TabelaSexo.TODAS_COLUNAS,
+            "${TabelaSexo.CAMPO_ID}=?",
+            arrayOf("${sexo.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val sexoBD = Sexo.fromCursor(cursor)
+
+        assertEquals(sexo, sexoBD)
+
+        db.close()
+    }
+
+    @Test
     fun consegueLerCliente() {
         val db = getWritableDatabase()
 
         val sexoM = Sexo("Masculino")
         insereSexo(db,sexoM)
-        val sexoF = Sexo("Feminino")
-        insereSexo(db,sexoF)
 
         val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id)
         insereCliente(db, cliente)
 
         val cursor = TabelaClientes(db).query(
             TabelaClientes.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaClientes.CAMPO_ID}=?",
             arrayOf("${cliente.id}"),
             null,
             null,
@@ -306,9 +346,96 @@ class BaseDeDadosTest {
         assertEquals(1, cursor.count)
         assertTrue(cursor.moveToNext())
 
-        val clienteBD = Funcionario.fromCursor(cursor)
+        val clienteBD = Cliente.fromCursor(cursor)
 
-        assertEquals(cliente,clienteBD)
+        assertEquals(Cliente,clienteBD)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueLerGenero() {
+        val db = getWritableDatabase()
+
+        val genero = Genero("Açao")
+        insereGenero(db, genero)
+
+        val cursor = TabelaGeneros(db).query(
+            TabelaGeneros.TODAS_COLUNAS,
+            "${TabelaGeneros.CAMPO_ID}=?",
+            arrayOf("${genero.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val generoBD = Genero.fromCursor(cursor)
+
+        assertEquals(genero, generoBD)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueLerPublicadora() {
+        val db = getWritableDatabase()
+
+        val genero = Genero("Açao")
+        insereGenero(db, genero)
+
+        val cursor = TabelaGeneros(db).query(
+            TabelaGeneros.TODAS_COLUNAS,
+            "${TabelaGeneros.CAMPO_ID}=?",
+            arrayOf("${genero.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val generoBD = Genero.fromCursor(cursor)
+
+        assertEquals(genero, generoBD)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueLerJogos() {
+        val db = getWritableDatabase()
+
+        val genero = Genero("Açao")
+        insereGenero(db, genero)
+
+        val plataforma = Plataforma("Playstation 4")
+        inserePlataforma(db, plataforma)
+
+        val publicadora= Publicadora("Take Two")
+        inserePublicadora(db, publicadora)
+
+        val jogo = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma.id,genero.id,publicadora.id)
+        insereJogo(db, jogo)
+
+        val cursor = TabelaJogos(db).query(
+            TabelaJogos.TODAS_COLUNAS,
+            "${TabelaJogos.CAMPO_ID}=?",
+            arrayOf("${jogo.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val jogoBD = Jogo.fromCursor(cursor)
+
+        assertEquals(jogo,jogoBD)
 
         db.close()
     }

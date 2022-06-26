@@ -3,7 +3,7 @@ package pt.ipg.trabalhofinal
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
-class TabelaSexo ( db: SQLiteDatabase): TabelaBD(db, TabelaPlataformas.NOME) {
+class TabelaSexo ( db: SQLiteDatabase): TabelaBD(db, NOME) {
 
     override fun cria (){
 
@@ -14,7 +14,7 @@ class TabelaSexo ( db: SQLiteDatabase): TabelaBD(db, TabelaPlataformas.NOME) {
     companion object{
         const val NOME = "Sexo"
         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
-        const val NOME_SEXO = "nome"
+        const val NOME_SEXO = "NomeSexo"
         val TODAS_COLUNAS = arrayOf(CAMPO_ID, NOME_SEXO)
 
     }
