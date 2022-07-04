@@ -152,9 +152,9 @@ class BaseDeDadosTest {
         val sexoF = Sexo("Feminino")
         insereSexo(db,sexoF)
 
-        insereCliente(db, Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id))
-        insereCliente(db, Cliente("Maria Almeida","258524687","954798855","15/02/1998",sexoF.id))
-        insereCliente(db, Cliente("Joao Pires","254566278","9745354789","01/05/2010",sexoM.id))
+        insereCliente(db, Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM))
+        insereCliente(db, Cliente("Maria Almeida","258524687","954798855","15/02/1998",sexoF))
+        insereCliente(db, Cliente("Joao Pires","254566278","9745354789","01/05/2010",sexoM))
 
         db.close()
     }
@@ -193,7 +193,7 @@ class BaseDeDadosTest {
         val sexoM = Sexo("Masculino")
         insereSexo(db, sexoM)
 
-        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id)
+        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM)
         insereCliente(db, cliente)
 
         val funcionario = Funcionario("Jacinto Alves","548625789","150116278","12/12/2005")
@@ -339,7 +339,7 @@ class BaseDeDadosTest {
         val sexoM = Sexo("Masculino")
         insereSexo(db,sexoM)
 
-        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM.id)
+        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM)
         insereCliente(db, cliente)
 
         val cursor = TabelaClientes(db).query(
