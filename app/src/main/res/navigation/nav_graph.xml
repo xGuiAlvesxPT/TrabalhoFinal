@@ -57,6 +57,18 @@
         <action
             android:id="@+id/action_fragmentVerClientes_to_FragmentPaginaGestao2"
             app:destination="@id/FragmentPaginaGestao" />
+        <action
+            android:id="@+id/action_fragmentVerClientes_to_fragment_insert_cliente"
+            app:destination="@id/fragment_insert_cliente" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_insert_cliente"
+        android:name="pt.ipg.trabalhofinal.FragmentInsertCliente"
+        android:label="fragment_insert_cliente"
+        tools:layout="@layout/fragment_insert_cliente">
+        <action
+            android:id="@+id/action_fragment_insert_cliente_to_fragmentVerClientes"
+            app:destination="@id/fragmentVerClientes" />
     </fragment>
     <fragment
         android:id="@+id/fragmentVerJogos"
@@ -76,4 +88,6 @@
             android:id="@+id/action_fragmentVerVendas_to_FragmentPaginaGestao"
             app:destination="@id/FragmentPaginaGestao" />
     </fragment>
+
+
 </navigation>

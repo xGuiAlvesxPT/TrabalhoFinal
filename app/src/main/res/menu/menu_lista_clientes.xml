@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_inserir"
+        android:id="@+id/action_guardar"
         android:icon="@drawable/ic_baseline_add_24"
         android:title="@string/inserir"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_editar"
+        android:id="@+id/action_cancelar"
         android:icon="@drawable/ic_baseline_edit_24"
         android:title="@string/editar"
         app:showAsAction="ifRoom" />

@@ -29,4 +29,15 @@
     <string name="inserir">Inserir</string>
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="novo_cliente">NOVO CLIENTE</string>
+    <string name="nome_cliente">Nome Cliente</string>
+    <string name="nif">NIF</string>
+    <string name="sexo">Sexo</string>
+    <string name="oo">Sexo</string>
+    <string name="sexoo">Sexo</string>
+    <string name="niff">NIF</string>
+    <string name="contactoo">Contacto</string>
+    <string name="data_de_nascimento">Data de Nascimento</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
