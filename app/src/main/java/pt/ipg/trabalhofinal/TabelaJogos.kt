@@ -39,7 +39,7 @@ class TabelaJogos( db: SQLiteDatabase): TabelaBD(db, NOME) {
 
         val TODAS_COLUNAS = arrayOf(
             CAMPO_ID, NOME_JOGO, PRECO, DATA_DE_LANCAMENTO,
-            CAMPO_FK_PLATAFORMA, CAMPO_FK_GENERO, CAMPO_FK_PUBLICADORA,TabelaGeneros.NOME_GENERO,TabelaPlataformas.NOME_PLATAFORMA,TabelaPublicadora.NOME_PUBLICADORA)
+            CAMPO_FK_PLATAFORMA, CAMPO_FK_GENERO, CAMPO_FK_PUBLICADORA)
     }
 
 

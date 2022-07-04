@@ -9,6 +9,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
 import pt.ipg.trabalhofinal.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
                 invalidateOptionsMenu()
             }
         }
+
+    var fragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(idMenuAtual, menu)
         return true
     }
 
@@ -50,10 +53,21 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        val opcaoProcessada: Boolean
+
+        if (fragment is FragmentPaginaGestao) {
+            opcaoProcessada = (fragment as FragmentPaginaGestao).processaOpcaoMenu(item)
+        } else if (fragment is FragmentVerClientes) {
+            opcaoProcessada = (fragment as FragmentVerClientes).processaOpcaoMenu(item)
+       // } else if (fragment is InserirLivroFragment) {
+         //   opcaoProcessada = (fragment as InserirLivroFragment).processaOpcaoMenu(item)
+        } else {
+            opcaoProcessada = false
         }
+
+        if (opcaoProcessada) return true
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {

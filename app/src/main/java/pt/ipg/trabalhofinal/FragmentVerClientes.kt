@@ -4,11 +4,13 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.trabalhofinal.databinding.FragmentVerClientesBinding
 
@@ -47,6 +49,7 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         binding.RecyclerViewClientes.layoutManager = LinearLayoutManager(requireContext())
 
         val activity = activity as MainActivity
+        activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista_clientes
     }
 
@@ -135,6 +138,17 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onLoaderReset(loader: Loader<Cursor>) {
         adapterClientes!!.cursor = null
     }
+
+    fun processaOpcaoMenu(item: MenuItem) : Boolean =
+        when(item.itemId) {
+            R.id.action_inserir -> {
+
+                true
+            }
+            R.id.action_editar -> true
+            R.id.action_eliminar -> true
+            else -> false
+        }
 
     companion object {
         const val ID_LOADER_CLIENTES = 0
