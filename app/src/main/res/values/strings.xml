@@ -26,4 +26,7 @@
     <string name="masculino">Masculino</string>
     <string name="_963355065">963355065</string>
     <string name="_22_10_2000">22/10/2000</string>
+    <string name="inserir">Inserir</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
 </resources>

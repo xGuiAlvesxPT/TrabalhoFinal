@@ -45,6 +45,9 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         adapterClientes = AdapterClientes(this)
         binding.RecyclerViewClientes.adapter = adapterClientes
         binding.RecyclerViewClientes.layoutManager = LinearLayoutManager(requireContext())
+
+        val activity = activity as MainActivity
+        activity.idMenuAtual = R.menu.menu_lista_clientes
     }
 
     override fun onDestroyView() {
