@@ -152,9 +152,13 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         when(item.itemId) {
             R.id.action_Inserir -> {
                 findNavController().navigate(R.id.action_fragmentVerClientes_to_fragment_editar_cliente)
+                 true
+            }
+            R.id.action_alterar -> {
+                val acao = FragmentVerClientesDirections.actionFragmentVerClientesToFragmentEditarCliente(clienteSelecionado)
+                findNavController().navigate(acao)
                 true
             }
-            R.id.action_alterar -> true
             R.id.action_eliminar -> {
                 val acao = FragmentVerClientesDirections.actionFragmentVerClientesToFragmentEliminarCliente(clienteSelecionado!!)
                 findNavController().navigate(acao)

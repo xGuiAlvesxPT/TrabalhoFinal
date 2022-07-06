@@ -25,6 +25,8 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var cliente: Cliente? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -45,6 +47,18 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_editar
+
+        if (arguments != null) {
+            cliente = FragmentEditarClienteArgs.fromBundle(arguments!!).cliente
+            if (cliente != null) {
+                binding.editTextNomeCliente.setText(cliente!!.nome)
+                binding.editTextNifCliente.setText(cliente!!.nif)
+                binding.editTextContatoCliente.setText(cliente!!.contacto)
+                binding.editTextDataNasCliente.setText(cliente!!.data_de_nascimento)
+            }
+        }
+
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_SEXO, null, this)
     }
 
     override fun onDestroyView() {
@@ -128,8 +142,21 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             intArrayOf(android.R.id.text1),
             0
         )
+        mostraSexoSelecionadoSpinner()
+}
 
-        binding.spinnerSexo.adapter = adapterSexo
+    private fun mostraSexoSelecionadoSpinner() {
+        if (cliente == null) return
+
+        val idSexo = cliente!!.sexo.id
+
+        val ultimaCategoria = binding.spinnerSexo.count - 1
+        for (i in 0..ultimaCategoria) {
+            if (idSexo == binding.spinnerSexo.getItemIdAtPosition(i)) {
+                binding.spinnerSexo.setSelection(i)
+                return
+            }
+        }
     }
 
     /**
