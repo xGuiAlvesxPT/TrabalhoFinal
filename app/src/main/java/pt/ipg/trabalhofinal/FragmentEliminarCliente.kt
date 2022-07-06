@@ -55,12 +55,41 @@ class FragmentEliminarCliente : Fragment() {
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_eliminar -> {
+                confirmaEliminaCliente()
                 true
             }
             R.id.action_cancelar -> {
+                voltaListaClientes()
                 true
             }
             else -> false
         }
+    }
+
+    private fun confirmaEliminaCliente() {
+        val alert = AlertDialog.Builder(requireContext())
+        alert.setTitle("Apagar Cliente")
+        alert.setMessage("Deseja apagar o cliente?")
+        alert.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialog, which ->  })
+        alert.setPositiveButton(R.string.eliminar, DialogInterface.OnClickListener { dialog, which -> eliminaCliente() })
+        alert.show()
+    }
+
+    private fun eliminaCliente() {
+        val enderecoClienteApagar = Uri.withAppendedPath(ContentProviderLojaJogos.ENDERECO_CLIENTES, "${cliente.id}")
+
+        val registosEliminados = requireActivity().contentResolver.delete(enderecoClienteApagar, null, null)
+
+        if (registosEliminados == 1) {
+            Toast.makeText(requireContext(), "Cliente eliminado com sucesso", Toast.LENGTH_LONG).show()
+            voltaListaClientes()
+        } else {
+            Snackbar.make(binding.textViewNomeClienteEli, "Erro ao eliminar Cliente", Snackbar.LENGTH_INDEFINITE).show()
+        }
+    }
+
+    private fun voltaListaClientes() {
+        val acao = FragmentEliminarClienteDirections.actionFragmentEliminarClienteToFragmentVerClientes()
+        findNavController().navigate(acao)
     }
 }
