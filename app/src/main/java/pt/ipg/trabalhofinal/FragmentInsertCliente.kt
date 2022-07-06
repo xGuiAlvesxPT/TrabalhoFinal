@@ -8,10 +8,13 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.trabalhofinal.databinding.FragmentInsertClienteBinding
 
 
@@ -39,7 +42,7 @@ class FragmentInsertCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_SEXO, null, this)
 
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_editar
     }
@@ -146,13 +149,76 @@ class FragmentInsertCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_guardar -> {
+                guardar()
                 true
             }
             R.id.action_cancelar -> {
-                findNavController().navigate(R.id.action_fragment_insert_cliente_to_fragmentVerClientes)
+                voltaListaClientes()
                 true
             }
             else -> false
         }
+
+    private fun voltaListaClientes() {
+        findNavController().navigate(R.id.action_fragment_insert_cliente_to_fragmentVerClientes)
+    }
+
+    private fun guardar() {
+        val nomeCliente = binding.editTextNomeCliente.text.toString()
+        if (nomeCliente.isBlank()) {
+            binding.editTextNomeCliente.error = "Nome Obrigatorio"
+            binding.editTextNomeCliente.requestFocus()
+            return
+        }
+
+        val nifCliente = binding.editTextNifCliente.text.toString()
+        if (nifCliente.isBlank()) {
+            binding.editTextNifCliente.error = "Nif Obrigatorio"
+            binding.editTextNifCliente.requestFocus()
+            return
+        }
+
+        val contatoCliente = binding.editTextContatoCliente.text.toString()
+        if (contatoCliente.isBlank()) {
+            binding.editTextContatoCliente.error = "Contato Obrigatorio"
+            binding.editTextContatoCliente.requestFocus()
+            return
+        }
+
+        val datanascCliente = binding.editTextDataNasCliente.text.toString()
+        if (datanascCliente.isBlank()) {
+            binding.editTextDataNasCliente.error = "Data de Nascimento Obrigatoria"
+            binding.editTextDataNasCliente.requestFocus()
+            return
+        }
+
+        val idSexo = binding.spinnerSexo.selectedItemId
+        if (idSexo == Spinner.INVALID_ROW_ID) {
+            binding.textViewSexo.error = "Sexo Obrigatorio"
+            binding.spinnerSexo.requestFocus()
+            return
+        }
+
+        val cliente = Cliente(
+            nomeCliente,
+            nifCliente,
+            contatoCliente,
+            datanascCliente,
+            Sexo("", idSexo)
+        )
+
+        val endereco = requireActivity().contentResolver.insert(
+            ContentProviderLojaJogos.ENDERECO_CLIENTES,
+            cliente.toContentValues()
+        )
+
+        if (endereco != null) {
+            Toast.makeText(requireContext(),"Cliente Inserido com sucesso", Toast.LENGTH_LONG).show()
+            voltaListaClientes()
+        } else {
+            Snackbar.make(binding.editTextNomeCliente, "Erro ao inserir Cliente", Snackbar.LENGTH_INDEFINITE).show()
+        }
+    }
+
 
 }
