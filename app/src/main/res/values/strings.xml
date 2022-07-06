@@ -40,4 +40,5 @@
     <string name="data_de_nascimento">Data de Nascimento</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="eliminar_cliente">ELIMINAR CLIENTE</string>
 </resources>
