@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_fragmentVerClientes_to_fragment_insert_cliente"
             app:destination="@id/fragment_insert_cliente" />
+        <action
+            android:id="@+id/action_fragmentVerClientes_to_fragmentEliminarCliente"
+            app:destination="@id/fragmentEliminarCliente" />
     </fragment>
     <fragment
         android:id="@+id/fragment_insert_cliente"
@@ -87,6 +90,18 @@
         <action
             android:id="@+id/action_fragmentVerVendas_to_FragmentPaginaGestao"
             app:destination="@id/FragmentPaginaGestao" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEliminarCliente"
+        android:name="pt.ipg.trabalhofinal.FragmentEliminarCliente"
+        android:label="fragment_eliminar_cliente"
+        tools:layout="@layout/fragment_eliminar_cliente" >
+        <action
+            android:id="@+id/action_fragmentEliminarCliente_to_fragmentVerClientes"
+            app:destination="@id/fragmentVerClientes" />
+        <argument
+            android:name="cliente"
+            app:argType="pt.ipg.trabalhofinal.Cliente" />
     </fragment>
 
 
