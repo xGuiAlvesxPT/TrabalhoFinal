@@ -150,12 +150,12 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
-            R.id.action_elimina -> {
+            R.id.action_guardar -> {
                 findNavController().navigate(R.id.action_fragmentVerClientes_to_fragment_insert_cliente)
                 true
             }
             R.id.action_editar -> true
-            R.id.action_cancelar -> true
+            R.id.action_eliminar -> true
             else -> false
         }
 

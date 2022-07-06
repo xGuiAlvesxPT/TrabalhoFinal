@@ -62,7 +62,7 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
 
         private fun desseleciona() {
 
-            itemView.setBackgroundResource(android.R.color.background_light)
+            itemView.setBackgroundResource(android.R.color.holo_purple)
         }
 
 

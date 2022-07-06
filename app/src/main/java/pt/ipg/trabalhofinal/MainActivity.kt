@@ -1,6 +1,7 @@
 package pt.ipg.trabalhofinal
 
 import android.os.Bundle
+import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -79,6 +80,6 @@ class MainActivity : AppCompatActivity() {
     }
     fun atualizaOpcoesLista(mostraAlterarEliminar: Boolean) {
         menu!!.findItem(R.id.action_editar).setVisible(mostraAlterarEliminar)
-        menu!!.findItem(R.id.action_cancelar).setVisible(mostraAlterarEliminar)
+        menu!!.findItem(R.id.action_eliminar).setVisible(mostraAlterarEliminar)
     }
 }
