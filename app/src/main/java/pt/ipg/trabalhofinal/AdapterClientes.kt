@@ -16,7 +16,7 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
             }
         }
 
-    class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente) {
+    class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente), View.OnClickListener {
         val textViewNomeCliente =
             itemCliente.findViewById<TextView>(R.id.textViewNomeCliente)
         val textViewClienteSexo =
@@ -27,6 +27,10 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
             itemCliente.findViewById<TextView>(R.id.textViewClienteContacto)
         val textViewClienteDataNasc =
             itemCliente.findViewById<TextView>(R.id.textViewClienteDataNasc)
+
+        init {
+            itemCliente.setOnClickListener(this)
+        }
 
         var Cliente: Cliente? = null
             get() = field
@@ -39,7 +43,32 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
                 textViewClienteDataNasc.text = Cliente?.data_de_nascimento ?: ""
                 textViewClienteSexo.text = Cliente?.sexo?.nomeSexo?: ""
             }
+
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        override fun onClick(v: View?) {
+            seleccionado?.desseleciona()
+            this.seleciona()
+        }
+
+        private fun seleciona() {
+            seleccionado = this
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+        }
+
+        private fun desseleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+        companion object {
+            var seleccionado : ViewHolderCliente? = null
+        }
     }
+
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent

@@ -216,7 +216,7 @@ class FragmentInsertCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             Toast.makeText(requireContext(),"Cliente Inserido com sucesso", Toast.LENGTH_LONG).show()
             voltaListaClientes()
         } else {
-            Snackbar.make(binding.editTextNomeCliente, "Erro ao inserir Cliente", Snackbar.LENGTH_INDEFINITE).show()
+            Snackbar.make(binding.editTextNomeCliente, "Erro ao inserir Client", Snackbar.LENGTH_INDEFINITE).show()
         }
     }
 
