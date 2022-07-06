@@ -32,16 +32,16 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
             itemCliente.setOnClickListener(this)
         }
 
-        var Cliente: Cliente? = null
+        var cliente: Cliente? = null
             get() = field
             set(value: Cliente?) {
                 field = value
 
-                textViewNomeCliente.text = Cliente?.nome ?: ""
-                textViewClienteNif.text = Cliente?.nif ?: ""
-                textViewClienteContacto.text = Cliente?.contacto ?: ""
-                textViewClienteDataNasc.text = Cliente?.data_de_nascimento ?: ""
-                textViewClienteSexo.text = Cliente?.sexo?.nomeSexo?: ""
+                textViewNomeCliente.text = cliente?.nome ?: ""
+                textViewClienteNif.text = cliente?.nif ?: ""
+                textViewClienteContacto.text = cliente?.contacto ?: ""
+                textViewClienteDataNasc.text = cliente?.data_de_nascimento ?: ""
+                textViewClienteSexo.text = cliente?.sexo?.nomeSexo?: ""
             }
 
 
@@ -56,12 +56,13 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
         }
 
         private fun seleciona() {
-            fragment.clienteSelecionado = Cliente
+            fragment.clienteSelecionado = cliente
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
         }
 
         private fun desseleciona() {
-            itemView.setBackgroundResource(android.R.color.white)
+
+            itemView.setBackgroundResource(android.R.color.holo_purple)
         }
 
 
@@ -120,7 +121,7 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
      */
     override fun onBindViewHolder(holder: ViewHolderCliente, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.Cliente = Cliente.fromCursor(cursor!!)
+        holder.cliente = Cliente.fromCursor(cursor!!)
     }
 
     /**

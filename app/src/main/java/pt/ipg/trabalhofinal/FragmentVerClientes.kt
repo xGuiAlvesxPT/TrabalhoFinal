@@ -57,7 +57,7 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         binding.RecyclerViewClientes.adapter = adapterClientes
         binding.RecyclerViewClientes.layoutManager = LinearLayoutManager(requireContext())
 
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista_clientes
     }
