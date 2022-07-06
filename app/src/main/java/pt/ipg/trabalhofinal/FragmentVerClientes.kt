@@ -155,7 +155,11 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
                 true
             }
             R.id.action_alterar -> true
-            R.id.action_eliminar -> true
+            R.id.action_eliminar -> {
+                val acao = FragmentVerClientesDirections.actionFragmentVerClientesToFragmentEliminarCliente(clienteSelecionado!!)
+                findNavController().navigate(acao)
+                true
+            }
             else -> false
         }
 
