@@ -21,6 +21,8 @@ class FragmentEliminarCliente : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var cliente: Cliente
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +42,14 @@ class FragmentEliminarCliente : Fragment() {
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
+
+        cliente = FragmentEliminarClienteArgs.fromBundle(arguments!!).cliente
+
+        binding.textViewNomeClienteEli.text = cliente.nome
+        binding.textViewSexoClienteEli.text = cliente.sexo.nomeSexo
+        binding.textViewNifClienteEli.text = cliente.nif
+        binding.textViewContatoClienteEli.text = cliente.contacto
+        binding.textViewDataNascClienteEli.text = cliente.data_de_nascimento
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
