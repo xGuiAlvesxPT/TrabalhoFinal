@@ -151,13 +151,14 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_Inserir -> {
-                findNavController().navigate(R.id.action_fragmentVerClientes_to_fragment_editar_cliente)
+                val acao = FragmentVerClientesDirections.actionFragmentVerClientesToFragmentEditarCliente()
+                findNavController().navigate(acao)
                  true
             }
             R.id.action_alterar -> {
                 val acao = FragmentVerClientesDirections.actionFragmentVerClientesToFragmentEditarCliente(clienteSelecionado)
                 findNavController().navigate(acao)
-                true
+                 true
             }
             R.id.action_eliminar -> {
                 val acao = FragmentVerClientesDirections.actionFragmentVerClientesToFragmentEliminarCliente(clienteSelecionado!!)
