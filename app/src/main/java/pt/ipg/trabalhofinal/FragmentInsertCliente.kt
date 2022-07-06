@@ -152,7 +152,7 @@ class FragmentInsertCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
                 guardar()
                 true
             }
-            R.id.action_cancelar -> {
+            R.id.action_editar -> {
                 voltaListaClientes()
                 true
             }

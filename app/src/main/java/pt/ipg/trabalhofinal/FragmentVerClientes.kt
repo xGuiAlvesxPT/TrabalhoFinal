@@ -22,6 +22,15 @@ import pt.ipg.trabalhofinal.databinding.FragmentVerClientesBinding
  */
 class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
+    var clienteSelecionado: Cliente? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
+            }
+        }
+
     private var _binding: FragmentVerClientesBinding? = null
     private var adapterClientes : AdapterClientes? = null
 
@@ -145,7 +154,7 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
                 findNavController().navigate(R.id.action_fragmentVerClientes_to_fragment_insert_cliente)
                 true
             }
-            R.id.action_cancelar -> true
+            R.id.action_editar -> true
             R.id.action_eliminar -> true
             else -> false
         }

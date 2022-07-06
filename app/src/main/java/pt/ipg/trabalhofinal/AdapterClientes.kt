@@ -16,7 +16,7 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
             }
         }
 
-    class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente), View.OnClickListener {
+    inner class ViewHolderCliente(itemCliente: View) : RecyclerView.ViewHolder(itemCliente), View.OnClickListener {
         val textViewNomeCliente =
             itemCliente.findViewById<TextView>(R.id.textViewNomeCliente)
         val textViewClienteSexo =
@@ -56,7 +56,7 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
         }
 
         private fun seleciona() {
-            seleccionado = this
+            fragment.clienteSelecionado = Cliente
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
         }
 
@@ -64,9 +64,7 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
             itemView.setBackgroundResource(android.R.color.white)
         }
 
-        companion object {
-            var seleccionado : ViewHolderCliente? = null
-        }
+
     }
 
 
@@ -134,5 +132,9 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
         if (cursor == null) return 0
 
         return cursor!!.count
+    }
+
+    companion object {
+        var seleccionado : ViewHolderCliente? = null
     }
 }

@@ -8,13 +8,15 @@
         android:title="@string/inserir"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_cancelar"
+        android:id="@+id/action_editar"
         android:icon="@drawable/ic_baseline_edit_24"
         android:title="@string/editar"
+        android:visible="false"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_eliminar"
         android:icon="@drawable/ic_baseline_delete_24"
         android:title="@string/eliminar"
+        android:visible="false"
         app:showAsAction="ifRoom" />
 </menu>
