@@ -148,11 +148,11 @@ class FragmentInsertCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
-            R.id.action_guardar -> {
+            R.id.action_eliminar -> {
                 guardar()
                 true
             }
-            R.id.action_editar -> {
+            R.id.action_cancelar -> {
                 voltaListaClientes()
                 true
             }
