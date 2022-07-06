@@ -25,10 +25,8 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     var clienteSelecionado: Cliente? = null
         get() = field
         set(value) {
-            if (value != field) {
                 field = value
                 (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
-            }
         }
 
     private var _binding: FragmentVerClientesBinding? = null
@@ -145,6 +143,7 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
+
         adapterClientes!!.cursor = null
     }
 

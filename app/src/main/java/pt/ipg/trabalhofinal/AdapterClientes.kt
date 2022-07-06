@@ -41,9 +41,8 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
                 textViewClienteNif.text = cliente?.nif ?: ""
                 textViewClienteContacto.text = cliente?.contacto ?: ""
                 textViewClienteDataNasc.text = cliente?.data_de_nascimento ?: ""
-                textViewClienteSexo.text = cliente?.sexo?.nomeSexo?: ""
+                textViewClienteSexo.text = cliente?.sexo?.nomeSexo ?: ""
             }
-
 
         /**
          * Called when a view has been clicked.
@@ -56,17 +55,20 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
         }
 
         private fun seleciona() {
+            seleccionado = this
             fragment.clienteSelecionado = cliente
-            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            itemView.setBackgroundResource(android.R.drawable.alert_light_frame)
         }
 
         private fun desseleciona() {
-
-            itemView.setBackgroundResource(android.R.color.holo_purple)
+            itemView.setBackgroundResource(android.R.drawable.alert_dark_frame)
         }
 
 
+
+
     }
+
 
 
     /**
@@ -136,6 +138,7 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
     }
 
     companion object {
-        var seleccionado : ViewHolderCliente? = null
+        var seleccionado: ViewHolderCliente? = null
     }
+
 }

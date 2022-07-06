@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    var fragment: Fragment? = null
+
     var idMenuAtual = R.menu.menu_main
         get() = field
         set(value) {
@@ -24,8 +26,6 @@ class MainActivity : AppCompatActivity() {
                 invalidateOptionsMenu()
             }
         }
-
-    var fragment: Fragment? = null
 
     private var menu: Menu? = null
 
