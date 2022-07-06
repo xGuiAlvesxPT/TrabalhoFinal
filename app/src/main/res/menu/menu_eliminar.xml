@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_elimina"
-        android:icon="@drawable/ic_baseline_save_24"
+        android:icon="@drawable/ic_baseline_delete_24"
         android:title="@string/guardar"
         app:showAsAction="ifRoom" />
     <item
