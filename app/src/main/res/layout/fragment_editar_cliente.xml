@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/whatsapp_wallpaper_001"
     android:orientation="vertical"
-    tools:context=".FragmentInsertCliente">
+    tools:context=".FragmentEditarCliente">
 
     <TextView
         android:id="@+id/textViewNovoCliente"

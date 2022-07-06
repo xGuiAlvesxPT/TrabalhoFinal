@@ -61,8 +61,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as FragmentPaginaGestao).processaOpcaoMenu(item)
         } else if (fragment is FragmentVerClientes) {
             opcaoProcessada = (fragment as FragmentVerClientes).processaOpcaoMenu(item)
-        } else if (fragment is FragmentInsertCliente) {
-            opcaoProcessada = (fragment as FragmentInsertCliente).processaOpcaoMenu(item)
+        } else if (fragment is FragmentEditarCliente) {
+            opcaoProcessada = (fragment as FragmentEditarCliente).processaOpcaoMenu(item)
         }  else if (fragment is FragmentEliminarCliente) {
              opcaoProcessada = (fragment as FragmentEliminarCliente).processaOpcaoMenu(item)
         }else {

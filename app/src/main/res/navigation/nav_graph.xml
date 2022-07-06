@@ -58,19 +58,19 @@
             android:id="@+id/action_fragmentVerClientes_to_FragmentPaginaGestao2"
             app:destination="@id/FragmentPaginaGestao" />
         <action
-            android:id="@+id/action_fragmentVerClientes_to_fragment_insert_cliente"
-            app:destination="@id/fragment_insert_cliente" />
+            android:id="@+id/action_fragmentVerClientes_to_fragment_editar_cliente"
+            app:destination="@id/fragment_editar_cliente" />
         <action
             android:id="@+id/action_fragmentVerClientes_to_fragmentEliminarCliente"
             app:destination="@id/fragmentEliminarCliente" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_insert_cliente"
-        android:name="pt.ipg.trabalhofinal.FragmentInsertCliente"
-        android:label="fragment_insert_cliente"
-        tools:layout="@layout/fragment_insert_cliente">
+        android:id="@+id/fragment_editar_cliente"
+        android:name="pt.ipg.trabalhofinal.FragmentEditarCliente"
+        android:label="fragment_editar_cliente"
+        tools:layout="@layout/fragment_editar_cliente">
         <action
-            android:id="@+id/action_fragment_insert_cliente_to_fragmentVerClientes"
+            android:id="@+id/action_fragment_editar_cliente_to_fragmentVerClientes"
             app:destination="@id/fragmentVerClientes" />
     </fragment>
     <fragment

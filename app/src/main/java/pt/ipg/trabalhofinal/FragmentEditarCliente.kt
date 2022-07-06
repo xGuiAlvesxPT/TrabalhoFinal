@@ -15,11 +15,11 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import pt.ipg.trabalhofinal.databinding.FragmentInsertClienteBinding
+import pt.ipg.trabalhofinal.databinding.FragmentEditarClienteBinding
 
 
-class FragmentInsertCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-    private var _binding: FragmentInsertClienteBinding? = null
+class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    private var _binding: FragmentEditarClienteBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -33,7 +33,7 @@ class FragmentInsertCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentInsertClienteBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarClienteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -160,7 +160,7 @@ class FragmentInsertCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         }
 
     private fun voltaListaClientes() {
-        findNavController().navigate(R.id.action_fragment_insert_cliente_to_fragmentVerClientes)
+        findNavController().navigate(R.id.action_fragment_editar_cliente_to_fragmentVerClientes)
     }
 
     private fun guardar() {
