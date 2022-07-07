@@ -3,12 +3,14 @@ package pt.ipg.trabalhofinal
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.trabalhofinal.databinding.FragmentVerFuncionariosBinding
 
@@ -39,9 +41,24 @@ class FragmentVerFuncionarios : Fragment(), LoaderManager.LoaderCallbacks<Cursor
         adapterFuncionarios = AdapterFuncionarios(this)
         binding.RecyclerViewFuncionarios.adapter = adapterFuncionarios
         binding.RecyclerViewFuncionarios.layoutManager = LinearLayoutManager(requireContext())
-        (activity as MainActivity).idMenuAtual = R.menu.menu_lista
+
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_lista
     }
 
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_Inserir -> {
+                findNavController().navigate(R.id.action_fragmentverfuncionarios_to_fragmentEditarFuncionarios)
+                return true
+            }
+            R.id.action_alterar -> true
+            R.id.action_eliminar -> true
+            else -> false
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_fragmentverfuncionarios_to_FragmentPaginaGestao"
             app:destination="@id/FragmentPaginaGestao" />
+        <action
+            android:id="@+id/action_fragmentverfuncionarios_to_fragmentEditarFuncionarios"
+            app:destination="@id/fragmentEditarFuncionarios" />
     </fragment>
     <fragment
         android:id="@+id/FragmentPaginaInicial"
@@ -107,6 +110,15 @@
         <argument
             android:name="cliente"
             app:argType="pt.ipg.trabalhofinal.Cliente" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEditarFuncionarios"
+        android:name="pt.ipg.trabalhofinal.FragmentEditarFuncionarios"
+        android:label="fragment_editar_funcionarios"
+        tools:layout="@layout/fragment_editar_funcionarios" >
+        <action
+            android:id="@+id/action_fragmentEditarFuncionarios_to_fragmentverfuncionarios"
+            app:destination="@id/fragmentverfuncionarios" />
     </fragment>
 
 
