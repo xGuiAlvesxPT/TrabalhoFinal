@@ -16,6 +16,15 @@ import pt.ipg.trabalhofinal.databinding.FragmentVerFuncionariosBinding
 
 class FragmentVerFuncionarios : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
+    var funcionarioSelecionado: Funcionario? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
+            }
+        }
+
     private var _binding: FragmentVerFuncionariosBinding? = null
     private var adapterFuncionarios : AdapterFuncionarios? = null
 
@@ -43,7 +52,7 @@ class FragmentVerFuncionarios : Fragment(), LoaderManager.LoaderCallbacks<Cursor
         binding.RecyclerViewFuncionarios.layoutManager = LinearLayoutManager(requireContext())
 
 
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista
     }

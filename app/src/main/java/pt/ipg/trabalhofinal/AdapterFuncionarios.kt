@@ -16,7 +16,7 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
             }
         }
 
-    class ViewHolderFuncionario(itemFuncionario: View) : RecyclerView.ViewHolder(itemFuncionario), View.OnClickListener {
+    inner class ViewHolderFuncionario(itemFuncionario: View) : RecyclerView.ViewHolder(itemFuncionario), View.OnClickListener {
         val textViewNomeFuncionario =
             itemFuncionario.findViewById<TextView>(R.id.textViewNomeFuncionario)
         val textViewFuncionarioNif =
@@ -53,6 +53,7 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
 
         private fun seleciona() {
             seleccionado = this
+            fragment.funcionarioSelecionado = Funcionario
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
         }
 
@@ -60,9 +61,7 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
             itemView.setBackgroundResource(android.R.color.white)
         }
 
-        companion object {
-            var seleccionado : ViewHolderFuncionario? = null
-        }
+
     }
 
 
@@ -133,5 +132,8 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
         if (cursor == null) return 0
 
         return cursor!!.count
+    }
+    companion object {
+        var seleccionado : ViewHolderFuncionario? = null
     }
 }
