@@ -6,75 +6,111 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import pt.ipg.trabalhofinal.databinding.FragmentEditarFuncionariosBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentEditarFuncionarios.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentEditarFuncionarios : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentEditarFuncionariosBinding? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_editar_funcionarios, container, false)
+        _binding = FragmentEditarFuncionariosBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_editar
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_eliminar -> true
+            R.id.action_eliminar -> {
+                guardar()
+                true
+            }
             R.id.action_cancelar -> {
-                findNavController().navigate(R.id.action_fragmentEditarFuncionarios_to_fragmentverfuncionarios)
+                voltaListaFuncionarios()
                 true
             }
             else -> false
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentEditarFuncionarios.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentEditarFuncionarios().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun voltaListaFuncionarios() {
+        findNavController().navigate(R.id.action_fragmentEditarFuncionarios_to_fragmentverfuncionarios)
     }
+
+    private fun guardar() {
+
+        val nomeFuncionario = binding.editTextNomeFuncionario.text.toString()
+        if (nomeFuncionario.isBlank()) {
+            binding.editTextNomeFuncionario.error = "Nome Obrigatorio"
+            binding.editTextNomeFuncionario.requestFocus()
+            return
+        }
+
+        val nifFuncionario = binding.editTextNifFuncionario.text.toString()
+        if (nifFuncionario.isBlank()) {
+            binding.editTextNifFuncionario.error = "Nif Obrigatorio"
+            binding.editTextNifFuncionario.requestFocus()
+            return
+        }
+
+        val contatoFuncionario = binding.editTextContatoFuncionario.text.toString()
+        if (contatoFuncionario.isBlank()) {
+            binding.editTextContatoFuncionario.error = "Contato Obrigatorio"
+            binding.editTextContatoFuncionario.requestFocus()
+            return
+        }
+
+        val datanascFuncionario = binding.editTextDataNasFuncionario.text.toString()
+        if (datanascFuncionario.isBlank()) {
+            binding.editTextDataNasFuncionario.error = "Data de Nascimento Obrigatoria"
+            binding.editTextDataNasFuncionario.requestFocus()
+            return
+        }
+
+        val funcionario = Funcionario(
+            nomeFuncionario,
+            nifFuncionario,
+            contatoFuncionario,
+            datanascFuncionario,
+
+        )
+
+        val endereco = requireActivity().contentResolver.insert(
+            ContentProviderLojaJogos.ENDERECO_FUNCIONARIOS,
+            funcionario.toContentValues()
+        )
+
+        if (endereco != null) {
+            Toast.makeText(requireContext(), "Funcionario Inserido com sucesso", Toast.LENGTH_LONG)
+                .show()
+            voltaListaFuncionarios()
+        } else {
+            Snackbar.make(
+                binding.editTextNomeFuncionario,
+                "Erro ao inserir Funcionario",
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
+        }
+    }
+
+
+
+
 }
