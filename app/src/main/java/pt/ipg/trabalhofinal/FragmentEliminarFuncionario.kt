@@ -16,6 +16,8 @@ class FragmentEliminarFuncionario : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var funcionario: Funcionario
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +37,13 @@ class FragmentEliminarFuncionario : Fragment() {
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
+
+        funcionario = FragmentEliminarFuncionarioArgs.fromBundle(arguments!!).funcionario
+
+        binding.textViewNomeFuncionarioEli.text = funcionario.nome
+        binding.textViewNifFuncionarioEli.text = funcionario.nif
+        binding.textViewContatoFuncionarioEli.text = funcionario.contacto
+        binding.textViewDataNascFuncionarioEli.text = funcionario.data_de_nascimento
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
