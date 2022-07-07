@@ -69,6 +69,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as FragmentVerFuncionarios).processaOpcaoMenu(item)
         } else if (fragment is FragmentEditarFuncionarios) {
             opcaoProcessada = (fragment as FragmentEditarFuncionarios).processaOpcaoMenu(item)
+        } else if (fragment is FragmentEliminarFuncionario) {
+            opcaoProcessada = (fragment as FragmentEliminarFuncionario).processaOpcaoMenu(item)
         }else {
             opcaoProcessada = false
         }
