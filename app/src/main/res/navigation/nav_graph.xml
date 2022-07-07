@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_fragmentverfuncionarios_to_fragmentEditarFuncionarios"
             app:destination="@id/fragmentEditarFuncionarios" />
+        <action
+            android:id="@+id/action_fragmentverfuncionarios_to_fragmentEliminarFuncionario"
+            app:destination="@id/fragmentEliminarFuncionario" />
     </fragment>
     <fragment
         android:id="@+id/FragmentPaginaInicial"
@@ -118,6 +121,15 @@
         tools:layout="@layout/fragment_editar_funcionarios" >
         <action
             android:id="@+id/action_fragmentEditarFuncionarios_to_fragmentverfuncionarios"
+            app:destination="@id/fragmentverfuncionarios" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEliminarFuncionario"
+        android:name="pt.ipg.trabalhofinal.FragmentEliminarFuncionario"
+        android:label="fragment_eliminar_funcionario"
+        tools:layout="@layout/fragment_eliminar_funcionario" >
+        <action
+            android:id="@+id/action_fragmentEliminarFuncionario_to_fragmentverfuncionarios"
             app:destination="@id/fragmentverfuncionarios" />
     </fragment>
 
