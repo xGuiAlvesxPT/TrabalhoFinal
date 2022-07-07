@@ -60,10 +60,15 @@ class FragmentVerFuncionarios : Fragment(), LoaderManager.LoaderCallbacks<Cursor
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_Inserir -> {
-                findNavController().navigate(R.id.action_fragmentverfuncionarios_to_fragmentEditarFuncionarios)
+                val acao = FragmentVerFuncionariosDirections.actionFragmentverfuncionariosToFragmentEditarFuncionarios()
+                findNavController().navigate(acao)
                 return true
             }
-            R.id.action_alterar -> true
+            R.id.action_alterar -> {
+                val acao = FragmentVerFuncionariosDirections.actionFragmentverfuncionariosToFragmentEditarFuncionarios(funcionarioSelecionado)
+                findNavController().navigate(acao)
+                return true
+            }
             R.id.action_eliminar -> {
                 val acao = FragmentVerFuncionariosDirections.actionFragmentverfuncionariosToFragmentEliminarFuncionario(funcionarioSelecionado!!)
                 findNavController().navigate(acao)
