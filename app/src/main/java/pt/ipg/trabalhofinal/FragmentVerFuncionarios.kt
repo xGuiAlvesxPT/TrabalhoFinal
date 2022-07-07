@@ -19,10 +19,10 @@ class FragmentVerFuncionarios : Fragment(), LoaderManager.LoaderCallbacks<Cursor
     var funcionarioSelecionado: Funcionario? = null
         get() = field
         set(value) {
-            if (value != field) {
+
                 field = value
                 (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
-            }
+            
         }
 
     private var _binding: FragmentVerFuncionariosBinding? = null
