@@ -20,6 +20,8 @@ class FragmentEditarFuncionarios : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var funcionario: Funcionario? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +36,16 @@ class FragmentEditarFuncionarios : Fragment() {
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_editar
+
+        if (arguments != null) {
+            funcionario = FragmentEditarFuncionariosArgs.fromBundle(arguments!!).funcionario
+            if (funcionario != null) {
+                binding.editTextNomeFuncionario.setText(funcionario!!.nome)
+                binding.editTextNifFuncionario.setText(funcionario!!.nif)
+                binding.editTextContatoFuncionario.setText(funcionario!!.contacto)
+                binding.editTextDataNasFuncionario.setText(funcionario!!.data_de_nascimento)
+            }
+        }
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
