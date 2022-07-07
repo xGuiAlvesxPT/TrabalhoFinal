@@ -1,5 +1,6 @@
 package pt.ipg.trabalhofinal
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -96,6 +97,24 @@ class FragmentEditarFuncionarios : Fragment() {
             return
         }
 
+        if (funcionario == null) {
+            insereFuncionario(nomeFuncionario, nifFuncionario, contatoFuncionario, datanascFuncionario)
+        } else {
+            alteraCliente(nomeFuncionario, nifFuncionario, contatoFuncionario, datanascFuncionario)
+        }
+    }
+
+    private fun alteraCliente(
+        nomeFuncionario: String,
+        nifFuncionario: String,
+        contatoFuncionario: String,
+        datanascFuncionario: String
+
+    ) {
+
+        val enderecoFuncionario =
+            Uri.withAppendedPath(ContentProviderLojaJogos.ENDERECO_FUNCIONARIOS, "${funcionario!!.id}")
+
         val funcionario = Funcionario(
             nomeFuncionario,
             nifFuncionario,
@@ -103,6 +122,40 @@ class FragmentEditarFuncionarios : Fragment() {
             datanascFuncionario,
 
         )
+
+        val registosAlterados = requireActivity().contentResolver.update(
+            enderecoFuncionario,
+            funcionario.toContentValues(),
+            null,
+            null
+        )
+
+        if (registosAlterados == 1) {
+            Toast.makeText(requireContext(), "Funcionario alterado com sucesso", Toast.LENGTH_LONG)
+                .show()
+            voltaListaFuncionarios()
+        } else {
+            Snackbar.make(
+                binding.editTextNomeFuncionario,
+                "Erro ao atualizar funcionario",
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
+        }
+    }
+
+    private fun insereFuncionario(
+        nomeFuncionario: String,
+        nifFuncionario: String,
+        contatoFuncionario: String,
+        datanascFuncionario: String
+    ) {
+        val funcionario = Funcionario(
+            nomeFuncionario,
+            nifFuncionario,
+            contatoFuncionario,
+            datanascFuncionario,
+
+            )
 
         val endereco = requireActivity().contentResolver.insert(
             ContentProviderLojaJogos.ENDERECO_FUNCIONARIOS,
@@ -116,11 +169,12 @@ class FragmentEditarFuncionarios : Fragment() {
         } else {
             Snackbar.make(
                 binding.editTextNomeFuncionario,
-                "Erro ao inserir Funcionario",
+                "Erro ao inserir Client",
                 Snackbar.LENGTH_INDEFINITE
             ).show()
         }
     }
+}
 
 
 
