@@ -122,6 +122,11 @@
         <action
             android:id="@+id/action_fragmentEditarFuncionarios_to_fragmentverfuncionarios"
             app:destination="@id/fragmentverfuncionarios" />
+        <argument
+            android:name="funcionario"
+            app:argType="pt.ipg.trabalhofinal.Funcionario"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/fragmentEliminarFuncionario"
