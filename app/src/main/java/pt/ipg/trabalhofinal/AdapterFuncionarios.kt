@@ -16,7 +16,7 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
             }
         }
 
-    class ViewHolderFuncionario(itemFuncionario: View) : RecyclerView.ViewHolder(itemFuncionario) {
+    class ViewHolderFuncionario(itemFuncionario: View) : RecyclerView.ViewHolder(itemFuncionario), View.OnClickListener {
         val textViewNomeFuncionario =
             itemFuncionario.findViewById<TextView>(R.id.textViewNomeFuncionario)
         val textViewFuncionarioNif =
@@ -25,6 +25,10 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
             itemFuncionario.findViewById<TextView>(R.id.textViewFuncionarioContacto)
         val textViewFuncionarioDataNasc =
             itemFuncionario.findViewById<TextView>(R.id.textViewFuncionarioDataNasc)
+
+        init {
+            itemFuncionario.setOnClickListener(this)
+        }
 
         var Funcionario: Funcionario? = null
             get() = field
@@ -36,7 +40,34 @@ class AdapterFuncionarios(val fragment: FragmentVerFuncionarios) : RecyclerView.
                 textViewFuncionarioContacto.text = Funcionario?.contacto ?: ""
                 textViewFuncionarioDataNasc.text = Funcionario?.data_de_nascimento ?: ""
             }
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        override fun onClick(v: View?) {
+            seleccionado?.desseleciona()
+            this.seleciona()
+        }
+
+        private fun seleciona() {
+            seleccionado = this
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+        }
+
+        private fun desseleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+        companion object {
+            var seleccionado : ViewHolderFuncionario? = null
+        }
     }
+
+
+
+
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
