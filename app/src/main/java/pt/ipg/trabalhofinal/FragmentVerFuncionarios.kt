@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.trabalhofinal.databinding.FragmentVerFuncionariosBinding
 
@@ -40,6 +39,7 @@ class FragmentVerFuncionarios : Fragment(), LoaderManager.LoaderCallbacks<Cursor
         adapterFuncionarios = AdapterFuncionarios(this)
         binding.RecyclerViewFuncionarios.adapter = adapterFuncionarios
         binding.RecyclerViewFuncionarios.layoutManager = LinearLayoutManager(requireContext())
+        (activity as MainActivity).idMenuAtual = R.menu.menu_lista
     }
 
     override fun onDestroyView() {

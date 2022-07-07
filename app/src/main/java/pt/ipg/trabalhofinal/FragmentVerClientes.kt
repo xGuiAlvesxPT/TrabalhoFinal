@@ -57,7 +57,7 @@ class FragmentVerClientes : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
         val activity = requireActivity() as MainActivity
         activity.fragment = this
-        activity.idMenuAtual = R.menu.menu_lista_clientes
+        activity.idMenuAtual = R.menu.menu_lista
     }
 
     override fun onDestroyView() {
