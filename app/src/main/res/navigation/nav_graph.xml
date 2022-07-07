@@ -131,6 +131,9 @@
         <action
             android:id="@+id/action_fragmentEliminarFuncionario_to_fragmentverfuncionarios"
             app:destination="@id/fragmentverfuncionarios" />
+        <argument
+            android:name="funcionario"
+            app:argType="pt.ipg.trabalhofinal.Funcionario" />
     </fragment>
 
 
