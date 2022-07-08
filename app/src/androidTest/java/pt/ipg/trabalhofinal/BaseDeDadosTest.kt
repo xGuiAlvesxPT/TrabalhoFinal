@@ -163,14 +163,23 @@ class BaseDeDadosTest {
     fun consegueInserirJogo() {
         val db = getWritableDatabase()
 
-        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",1,2,1)
+        val genero = Genero("Açao")
+        insereGenero(db, genero)
+
+        val plataforma = Plataforma("Playstation 4")
+        inserePlataforma(db, plataforma)
+
+        val publicadora= Publicadora("Take Two")
+        inserePublicadora(db, publicadora)
+
+        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma,genero,publicadora)
         insereJogo(db, jogo1)
 
-        val jogo2 = Jogo("Halo Wars",39.99F,"06/02/2011",2,3,2)
-        insereJogo(db, jogo2)
+        //val jogo2 = Jogo("Halo Wars",39.99F,"06/02/2011",2,3,2)
+       // insereJogo(db, jogo2)
 
-        val jogo3 = Jogo("Legend Of Zelda",59.99F,"09/03/2015",3,1,3)
-        insereJogo(db, jogo3)
+       // val jogo3 = Jogo("Legend Of Zelda",59.99F,"09/03/2015",3,1,3)
+       // insereJogo(db, jogo3)
 
         db.close()
     }
@@ -426,7 +435,7 @@ class BaseDeDadosTest {
         val publicadora= Publicadora("Take Two")
         inserePublicadora(db, publicadora)
 
-        val jogo = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma.id,genero.id,publicadora.id)
+        val jogo = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma,genero,publicadora)
         insereJogo(db, jogo)
 
         val cursor = TabelaJogos(db).query(

@@ -21,9 +21,8 @@ class TabelaJogos( db: SQLiteDatabase): TabelaBD(db, NOME) {
         orderBy: String?
     ): Cursor {
         val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaGeneros.NOME} ON ${TabelaGeneros.CAMPO_ID} = $CAMPO_FK_GENERO "
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaPlataformas.NOME} ON ${TabelaPlataformas.CAMPO_ID} = $CAMPO_FK_PLATAFORMA "
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaPublicadora.NOME} ON ${TabelaPublicadora.CAMPO_ID} = $CAMPO_FK_PUBLICADORA"
+        queryBuilder.tables = "$NOME INNER JOIN ${TabelaGeneros.NOME} ON ${TabelaGeneros.CAMPO_ID} = $CAMPO_FK_GENERO INNER JOIN ${TabelaPlataformas.NOME} ON ${TabelaPlataformas.CAMPO_ID} = $CAMPO_FK_PLATAFORMA INNER JOIN ${TabelaPublicadora.NOME} ON ${TabelaPublicadora.CAMPO_ID} = $CAMPO_FK_PUBLICADORA "
+
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
@@ -39,7 +38,7 @@ class TabelaJogos( db: SQLiteDatabase): TabelaBD(db, NOME) {
 
         val TODAS_COLUNAS = arrayOf(
             CAMPO_ID, NOME_JOGO, PRECO, DATA_DE_LANCAMENTO,
-            CAMPO_FK_PLATAFORMA, CAMPO_FK_GENERO, CAMPO_FK_PUBLICADORA)
+            CAMPO_FK_PLATAFORMA, CAMPO_FK_GENERO, CAMPO_FK_PUBLICADORA,TabelaPlataformas.NOME_PLATAFORMA,TabelaGeneros.NOME_GENERO,TabelaPublicadora.NOME_PUBLICADORA)
     }
 
 

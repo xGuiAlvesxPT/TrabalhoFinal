@@ -22,7 +22,7 @@ class FragmentVerFuncionarios : Fragment(), LoaderManager.LoaderCallbacks<Cursor
 
                 field = value
                 (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
-            
+
         }
 
     private var _binding: FragmentVerFuncionariosBinding? = null
