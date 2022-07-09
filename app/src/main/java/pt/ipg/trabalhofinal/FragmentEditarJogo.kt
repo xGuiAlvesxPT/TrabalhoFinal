@@ -21,6 +21,7 @@ import pt.ipg.trabalhofinal.databinding.FragmentEditarJogoBinding
 class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentEditarJogoBinding? = null
 
+    private var jogo: Jogo? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -46,6 +47,19 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_editar
+
+        if (arguments != null) {
+            jogo = FragmentEditarJogoArgs.fromBundle(arguments!!).jogo
+            if (jogo != null) {
+                binding.EditTextNomeJogo.setText(jogo!!.nome)
+                binding.EditTextPreco.setText(jogo!!.preco)
+                binding.EditTextGenero.setText(jogo!!.genero)
+                binding.EditTextPublicadora.setText(jogo!!.publicadora)
+                binding.EditTextDataLancamento.setText(jogo!!.data_de_lancamento)
+            }
+        }
+
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_PLATAFORMAS, null, this)
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
@@ -155,6 +169,8 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             TabelaPlataformas.NOME_PLATAFORMA
         )
 
+
+
     /**
      * Called when a previously created loader has finished its load.  Note
      * that normally an application is *not* allowed to commit fragment
@@ -207,6 +223,21 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             intArrayOf(android.R.id.text1),
             0
         )
+        mostraPlataformaSelecionadaSpinner()
+    }
+
+    private fun mostraPlataformaSelecionadaSpinner() {
+        if (jogo == null) return
+
+        val idPlataforma = jogo!!.plataforma.id
+
+        val ultimaPlataforma = binding.spinnerPlataformas.count - 1
+        for (i in 0..ultimaPlataforma) {
+            if (idPlataforma == binding.spinnerPlataformas.getItemIdAtPosition(i)) {
+                binding.spinnerPlataformas.setSelection(i)
+                return
+            }
+        }
     }
 
     /**
