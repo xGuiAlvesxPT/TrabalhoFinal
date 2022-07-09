@@ -75,7 +75,7 @@ class BaseDeDadosTest {
 
     @Before
     fun apagaBaseDados() {
-        //appContext().deleteDatabase(BDLojaOpenHelper.NOME)
+        appContext().deleteDatabase(BDLojaOpenHelper.NOME)
     }
 
     @Test

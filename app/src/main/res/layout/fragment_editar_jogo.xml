@@ -47,6 +47,32 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/EditTextGenero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/genero"
+                    tools:ignore="TextContrastCheck" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/EditTextPublicadora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/publicadora"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp">
 
@@ -72,44 +98,6 @@
 
                     <Spinner
                         android:id="@+id/spinnerPlataformas"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:minHeight="48dp"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <TextView
-                        android:id="@+id/textViewGenero"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight="0"
-                        android:text="@string/genero"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        tools:ignore="TextContrastCheck" />
-
-                    <Spinner
-                        android:id="@+id/spinnerGenero"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:minHeight="48dp"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <TextView
-                        android:id="@+id/textViewPublicadora"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight="0"
-                        android:text="@string/publicadora"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        tools:ignore="TextContrastCheck" />
-
-                    <Spinner
-                        android:id="@+id/spinnerPublicadora"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"

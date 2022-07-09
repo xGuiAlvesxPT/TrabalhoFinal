@@ -355,7 +355,7 @@ class ContentProviderLojaJogos : ContentProvider() {
         val ENDERECO_JOGOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaJogos.NOME)
         val ENDERECO_VENDAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaVendas.NOME)
         val ENDERECO_SEXO = Uri.withAppendedPath(ENDERECO_BASE, TabelaSexo.NOME)
-
+        val ENDERECO_PLATAFORMAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaPlataformas.NOME)
 
         fun getUriMatcher() : UriMatcher {
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
