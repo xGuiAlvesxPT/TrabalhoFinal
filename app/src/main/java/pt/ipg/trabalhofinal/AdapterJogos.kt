@@ -16,7 +16,7 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
             }
         }
 
-    class ViewHolderJogo(itemJogo: View) : RecyclerView.ViewHolder(itemJogo) {
+    class ViewHolderJogo(itemJogo: View) : RecyclerView.ViewHolder(itemJogo), View.OnClickListener {
         val textViewNomeJogo =
             itemJogo.findViewById<TextView>(R.id.textViewNomeJogo)
         val textViewPrecoJogo =
@@ -30,6 +30,10 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
         val textViewJogoPublicadora =
             itemJogo.findViewById<TextView>(R.id.textViewJogoPublicadora)
 
+        init {
+            itemJogo.setOnClickListener(this)
+        }
+
         var Jogo: Jogo? = null
             get() = field
             set(value: Jogo?) {
@@ -42,6 +46,28 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
                 textViewJogoPlataforma.text = Jogo?.plataforma?.nome ?: ""
                 textViewJogoPublicadora.text = Jogo?.publicadora ?: ""
             }
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        override fun onClick(v: View?) {
+            seleccionado?.desseleciona()
+            this.seleciona()
+        }
+
+        private fun seleciona() {
+            seleccionado = this
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+        }
+
+        private fun desseleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+        companion object {
+            var seleccionado : ViewHolderJogo? = null
+        }
     }
 
     /**
