@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,6 +49,11 @@ class FragmentEditarJogo : Fragment() {
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.action_eliminar -> true
+            R.id.action_cancelar -> {
+                findNavController().navigate(R.id.action_fragmentEditarJogo_to_fragmentVerJogos)
+                true
+            }
             else -> false
         }
     }
