@@ -2,14 +2,13 @@ package pt.ipg.trabalhofinal
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
-import java.util.*
 
 data class Jogo(
 
     var nome: String,
-    var preco: Float,
+    var preco: String,
     var genero: String,
-    var publicadora : String,
+    var publicadora: String,
     var data_de_lancamento: String,
     var plataforma: Plataforma,
 
@@ -45,7 +44,7 @@ data class Jogo(
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
-            val preco = cursor.getFloat(posPreco)
+            val preco = cursor.getString(posPreco)
             val genero = cursor.getString(posGenero)
             val publicadora = cursor.getString(posPublicadora)
             val dataLancamento = cursor.getString(posDataLancamento)

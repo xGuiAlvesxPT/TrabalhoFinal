@@ -8,10 +8,13 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.trabalhofinal.databinding.FragmentEditarJogoBinding
 
 
@@ -40,21 +43,94 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_PLATAFORMAS, null, this)
 
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_editar
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_eliminar -> true
+            R.id.action_eliminar -> {
+                guardar()
+                true
+            }
             R.id.action_cancelar -> {
-                findNavController().navigate(R.id.action_fragmentEditarJogo_to_fragmentVerJogos)
+                voltaListaJogos()
                 true
             }
             else -> false
         }
     }
+
+    private fun voltaListaJogos() {
+        findNavController().navigate(R.id.action_fragmentEditarJogo_to_fragmentVerJogos)
+    }
+
+    private fun guardar() {
+        val nomeJogo = binding.EditTextNomeJogo.text.toString()
+        if (nomeJogo.isBlank()) {
+            binding.EditTextNomeJogo.error = "Nome Obrigatorio"
+            binding.EditTextNomeJogo.requestFocus()
+            return
+        }
+
+        val preco = binding.EditTextPreco.text.toString()
+        if (preco.isBlank()) {
+            binding.EditTextPreco.error = "Preco Obrigatorio"
+            binding.EditTextPreco.requestFocus()
+            return
+        }
+
+        val genero = binding.EditTextGenero.text.toString()
+        if (genero.isBlank()) {
+            binding.EditTextGenero.error = "Genero Obrigatorio"
+            binding.EditTextGenero.requestFocus()
+            return
+        }
+
+        val publicadora = binding.EditTextPublicadora.text.toString()
+        if (publicadora.isBlank()) {
+            binding.EditTextPublicadora.error = "Publicadora Obrigatoria"
+            binding.EditTextPublicadora.requestFocus()
+            return
+        }
+
+        val dataLancamento = binding.EditTextDataLancamento.text.toString()
+        if (dataLancamento.isBlank()) {
+            binding.EditTextDataLancamento.error = "Data de Lancamento Obrigatoria"
+            binding.EditTextDataLancamento.requestFocus()
+            return
+        }
+
+        val idPlataforma = binding.spinnerPlataformas.selectedItemId
+        if (idPlataforma == Spinner.INVALID_ROW_ID) {
+            binding.textViewPlataforma.error = "Plataforma Obrigatoria"
+            binding.spinnerPlataformas.requestFocus()
+            return
+        }
+
+        val jogo = Jogo(
+            nomeJogo,
+            preco  ,
+            genero,
+            publicadora,
+            dataLancamento,
+            Plataforma("", idPlataforma)
+        )
+
+        val endereco = requireActivity().contentResolver.insert(
+            ContentProviderLojaJogos.ENDERECO_JOGOS,
+            jogo.toContentValues()
+        )
+
+        if (endereco != null) {
+            Toast.makeText(requireContext(), "Jogo Inserido com sucesso", Toast.LENGTH_LONG).show()
+            voltaListaJogos()
+        } else {
+            Snackbar.make(binding.EditTextNomeJogo, "Erro ao inserir jogo", Snackbar.LENGTH_INDEFINITE).show()
+        }
+    }
+
     companion object {
         const val ID_LOADER_PLATAFORMAS = 0
     }
