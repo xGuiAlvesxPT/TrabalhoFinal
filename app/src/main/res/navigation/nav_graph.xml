@@ -95,6 +95,9 @@
         <action
             android:id="@+id/action_fragmentVerJogos_to_fragmentEditarJogo"
             app:destination="@id/fragmentEditarJogo" />
+        <action
+            android:id="@+id/action_fragmentVerJogos_to_fragmentEliminarJogo"
+            app:destination="@id/fragmentEliminarJogo" />
     </fragment>
     <fragment
         android:id="@+id/fragmentVerVendas"
@@ -150,6 +153,15 @@
         tools:layout="@layout/fragment_editar_jogo" >
         <action
             android:id="@+id/action_fragmentEditarJogo_to_fragmentVerJogos"
+            app:destination="@id/fragmentVerJogos" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEliminarJogo"
+        android:name="pt.ipg.trabalhofinal.FragmentEliminarJogo"
+        android:label="fragment_eliminar_jogo"
+        tools:layout="@layout/fragment_eliminar_jogo" >
+        <action
+            android:id="@+id/action_fragmentEliminarJogo_to_fragmentVerJogos"
             app:destination="@id/fragmentVerJogos" />
     </fragment>
 
