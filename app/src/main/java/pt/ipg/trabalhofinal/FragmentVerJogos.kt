@@ -45,6 +45,8 @@ class FragmentVerJogos : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapterJogos = AdapterJogos(this)
         binding.RecyclerViewJogos.adapter = adapterJogos
         binding.RecyclerViewJogos.layoutManager = LinearLayoutManager(requireContext())
+
+        (activity as MainActivity).idMenuAtual = R.menu.menu_lista
     }
 
     override fun onDestroyView() {
