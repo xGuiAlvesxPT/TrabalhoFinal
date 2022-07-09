@@ -75,6 +75,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as FragmentVerJogos).processaOpcaoMenu(item)
         } else if (fragment is FragmentEditarJogo) {
             opcaoProcessada = (fragment as FragmentEditarJogo).processaOpcaoMenu(item)
+        } else if (fragment is FragmentEliminarJogo) {
+            opcaoProcessada = (fragment as FragmentEliminarJogo).processaOpcaoMenu(item)
         }else {
             opcaoProcessada = false
         }

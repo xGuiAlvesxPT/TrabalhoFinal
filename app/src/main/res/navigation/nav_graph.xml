@@ -154,6 +154,11 @@
         <action
             android:id="@+id/action_fragmentEditarJogo_to_fragmentVerJogos"
             app:destination="@id/fragmentVerJogos" />
+        <argument
+            android:name="jogo"
+            app:argType="pt.ipg.trabalhofinal.Jogo"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/fragmentEliminarJogo"
