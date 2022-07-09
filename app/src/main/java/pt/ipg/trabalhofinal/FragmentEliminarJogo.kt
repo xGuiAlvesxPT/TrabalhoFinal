@@ -11,6 +11,7 @@ import pt.ipg.trabalhofinal.databinding.FragmentEliminarJogoBinding
 
 class FragmentEliminarJogo : Fragment() {
 
+    private lateinit var jogo: Jogo
     private var _binding: FragmentEliminarJogoBinding? = null
 
     // This property is only valid between onCreateView and
@@ -36,6 +37,15 @@ class FragmentEliminarJogo : Fragment() {
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
+
+        jogo = FragmentEliminarJogoArgs.fromBundle(arguments!!).jogo
+
+        binding.textViewNomeJogoEli.text = jogo.nome
+        binding.textViewPrecoJogoEli.text = jogo.preco
+        binding.textViewGeneroJogoEli.text = jogo.genero
+        binding.textViewPublicadoraJogoEli.text = jogo.publicadora
+        binding.textViewDataLanJogoEli.text = jogo.data_de_lancamento
+        binding.textViewPlataformaJogoEli.text = jogo.plataforma.nome
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
