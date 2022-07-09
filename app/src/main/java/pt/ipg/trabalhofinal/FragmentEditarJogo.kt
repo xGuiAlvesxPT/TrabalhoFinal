@@ -1,6 +1,7 @@
 package pt.ipg.trabalhofinal
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -122,7 +123,47 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             binding.spinnerPlataformas.requestFocus()
             return
         }
+        if (jogo == null) {
+            insereJogo(nomeJogo, preco,genero,publicadora,dataLancamento, idPlataforma)
+        } else {
+            alteraJogo(nomeJogo, preco,genero,publicadora,dataLancamento, idPlataforma)
+        }
+    }
 
+    private fun alteraJogo(nomeJogo: String, preco: String,genero:String,publicadora:String,dataLancamento:String, idPlataforma: Long) {
+
+        val enderecoJogo = Uri.withAppendedPath(ContentProviderLojaJogos.ENDERECO_JOGOS, "${jogo!!.id}")
+
+
+        val jogo = Jogo(
+            nomeJogo,
+            preco  ,
+            genero,
+            publicadora,
+            dataLancamento,
+            Plataforma("", idPlataforma)
+        )
+
+        val registosAlterados = requireActivity().contentResolver.update(
+            enderecoJogo,
+            jogo.toContentValues(),
+            null,
+            null
+        )
+
+        if (registosAlterados == 1) {
+            Toast.makeText(requireContext(), "Jogo atualizado com sucesso", Toast.LENGTH_LONG).show()
+            voltaListaJogos()
+        } else {
+            Snackbar.make(
+                binding.EditTextNomeJogo,
+                "Erro ao atualizar jogo",
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
+        }
+    }
+
+    private fun insereJogo(nomeJogo: String, preco: String,genero:String,publicadora:String,dataLancamento:String, idPlataforma: Long){
         val jogo = Jogo(
             nomeJogo,
             preco  ,
@@ -138,10 +179,14 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         )
 
         if (endereco != null) {
-            Toast.makeText(requireContext(), "Jogo Inserido com sucesso", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Jogo inserido com sucesso", Toast.LENGTH_LONG).show()
             voltaListaJogos()
         } else {
-            Snackbar.make(binding.EditTextNomeJogo, "Erro ao inserir jogo", Snackbar.LENGTH_INDEFINITE).show()
+            Snackbar.make(
+                binding.EditTextNomeJogo,
+                "Erro ao inserir jogo",
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
         }
     }
 
@@ -251,6 +296,7 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
+        if (_binding == null) return
         binding.spinnerPlataformas.adapter = null
     }
 }
