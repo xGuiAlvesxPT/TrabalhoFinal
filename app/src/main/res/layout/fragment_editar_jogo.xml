@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/whatsapp_wallpaper_001"
     android:orientation="vertical"
-    tools:context=".FragmentEditarJogos" >
+    tools:context=".FragmentEditarJogo" >
 
     <TextView
         android:id="@+id/textViewNovoJogo"
