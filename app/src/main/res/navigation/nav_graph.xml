@@ -163,6 +163,9 @@
         <action
             android:id="@+id/action_fragmentEliminarJogo_to_fragmentVerJogos"
             app:destination="@id/fragmentVerJogos" />
+        <argument
+            android:name="jogo"
+            app:argType="pt.ipg.trabalhofinal.Jogo" />
     </fragment>
 
 

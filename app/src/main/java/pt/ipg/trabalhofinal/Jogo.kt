@@ -2,6 +2,7 @@ package pt.ipg.trabalhofinal
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Jogo(
 
@@ -14,7 +15,7 @@ data class Jogo(
 
     var id: Long = -1,
 
-    ) {
+    ) : Serializable {
 
     fun toContentValues():ContentValues{
 
