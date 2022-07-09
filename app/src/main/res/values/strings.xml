@@ -45,4 +45,11 @@
     <string name="nome_funcionario">Nome Funcionario</string>
     <string name="_957625894">957625894</string>
     <string name="_951625895">951625895</string>
+    <string name="novo_jogo">NOVO JOGO</string>
+    <string name="nome_jogo">Nome Jogo</string>
+    <string name="preco">Preco</string>
+    <string name="data_de_lancamento">Data de Lancamento</string>
+    <string name="plataforma">Plataforma</string>
+    <string name="genero">Genero</string>
+    <string name="publicadora">Publicadora</string>
 </resources>

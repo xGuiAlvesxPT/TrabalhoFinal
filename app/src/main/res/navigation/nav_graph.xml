@@ -92,6 +92,9 @@
         <action
             android:id="@+id/action_fragmentVerJogos_to_FragmentPaginaGestao"
             app:destination="@id/FragmentPaginaGestao" />
+        <action
+            android:id="@+id/action_fragmentVerJogos_to_fragmentEditarJogos"
+            app:destination="@id/fragmentEditarJogos" />
     </fragment>
     <fragment
         android:id="@+id/fragmentVerVendas"
@@ -139,6 +142,15 @@
         <argument
             android:name="funcionario"
             app:argType="pt.ipg.trabalhofinal.Funcionario" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEditarJogos"
+        android:name="pt.ipg.trabalhofinal.FragmentEditarJogos"
+        android:label="fragment_editar_jogos"
+        tools:layout="@layout/fragment_editar_jogos" >
+        <action
+            android:id="@+id/action_fragmentEditarJogos_to_fragmentVerJogos"
+            app:destination="@id/fragmentVerJogos" />
     </fragment>
 
 
