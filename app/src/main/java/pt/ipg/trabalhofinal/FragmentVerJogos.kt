@@ -22,6 +22,15 @@ import pt.ipg.trabalhofinal.databinding.FragmentVerJogosBinding
  */
 class FragmentVerJogos : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
+    var jogoSelecionado: Jogo? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
+            }
+        }
+
     private var _binding: FragmentVerJogosBinding? = null
     private var adapterJogos: AdapterJogos? = null
 
