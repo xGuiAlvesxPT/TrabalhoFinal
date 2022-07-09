@@ -34,10 +34,6 @@ class BaseDeDadosTest {
         return openHelper.writableDatabase
     }
 
-    private fun insereGenero(db: SQLiteDatabase, Genero: Genero) {
-        Genero.id = TabelaGeneros(db).insert(Genero.toContentValues())
-        assertNotEquals(-1, Genero.id)
-    }
 
     private fun inserePlataforma(db: SQLiteDatabase, Plataforma: Plataforma) {
         Plataforma.id = TabelaPlataformas(db).insert(Plataforma.toContentValues())
@@ -74,10 +70,7 @@ class BaseDeDadosTest {
         assertNotEquals(-1, LinhaVenda.id)
     }
 
-    private fun inserePublicadora(db: SQLiteDatabase, Publicadora:Publicadora) {
-        Publicadora.id = TabelaPublicadora(db).insert(Publicadora.toContentValues())
-        assertNotEquals(-1, Publicadora.id)
-    }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Before
@@ -97,28 +90,7 @@ class BaseDeDadosTest {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @Test
-    fun consegueInserirGenero() {
-        val db = getWritableDatabase()
 
-        insereGenero(db, Genero("Aventura"))
-        insereGenero(db, Genero("Açao"))
-        insereGenero(db, Genero("Estrategia"))
-
-        db.close()
-    }
-
-    @Test
-    fun consegueInserirPublicadora() {
-        val db = getWritableDatabase()
-
-        inserePublicadora(db, Publicadora("Take Two"))
-        inserePublicadora(db, Publicadora("Ubisoft"))
-        inserePublicadora(db, Publicadora("Square Enix"))
-
-
-        db.close()
-    }
 
     @Test
     fun consegueInserirPlataforma() {
@@ -161,16 +133,14 @@ class BaseDeDadosTest {
     fun consegueInserirJogo() {
         val db = getWritableDatabase()
 
-        val genero = Genero("Açao")
-        insereGenero(db, genero)
+
 
         val plataforma = Plataforma("Playstation 4")
         inserePlataforma(db, plataforma)
 
-        val publicadora= Publicadora("Take Two")
-        inserePublicadora(db, publicadora)
 
-        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma,genero,publicadora)
+
+        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"Açao","Take Two","24/11/2013",plataforma)
         insereJogo(db, jogo1)
 
         //val jogo2 = Jogo("Halo Wars",39.99F,"06/02/2011",2,3,2)
@@ -368,72 +338,18 @@ class BaseDeDadosTest {
         db.close()
     }
 
-    @Test
-    fun consegueLerGenero() {
-        val db = getWritableDatabase()
 
-        val genero = Genero("Açao")
-        insereGenero(db, genero)
-
-        val cursor = TabelaGeneros(db).query(
-            TabelaGeneros.TODAS_COLUNAS,
-            "${TabelaGeneros.CAMPO_ID}=?",
-            arrayOf("${genero.id}"),
-            null,
-            null,
-            null
-        )
-
-        assertEquals(1, cursor.count)
-        assertTrue(cursor.moveToNext())
-
-        val generoBD = Genero.fromCursor(cursor)
-
-        assertEquals(genero, generoBD)
-
-        db.close()
-    }
-
-    @Test
-    fun consegueLerPublicadora() {
-        val db = getWritableDatabase()
-
-        val genero = Genero("Açao")
-        insereGenero(db, genero)
-
-        val cursor = TabelaGeneros(db).query(
-            TabelaGeneros.TODAS_COLUNAS,
-            "${TabelaGeneros.CAMPO_ID}=?",
-            arrayOf("${genero.id}"),
-            null,
-            null,
-            null
-        )
-
-        assertEquals(1, cursor.count)
-        assertTrue(cursor.moveToNext())
-
-        val generoBD = Genero.fromCursor(cursor)
-
-        assertEquals(genero, generoBD)
-
-        db.close()
-    }
 
     @Test
     fun consegueLerJogos() {
         val db = getWritableDatabase()
 
-        val genero = Genero("Açao")
-        insereGenero(db, genero)
 
         val plataforma = Plataforma("Playstation 4")
         inserePlataforma(db, plataforma)
 
-        val publicadora= Publicadora("Take Two")
-        inserePublicadora(db, publicadora)
 
-        val jogo = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma,genero,publicadora)
+        val jogo = Jogo("Grand Theft Auto 5",30.99F,"Açao","Take Two","24/11/2013",plataforma)
         insereJogo(db, jogo)
 
         val cursor = TabelaJogos(db).query(

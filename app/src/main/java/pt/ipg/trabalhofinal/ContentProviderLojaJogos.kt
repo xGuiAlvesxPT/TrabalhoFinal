@@ -129,25 +129,22 @@ class ContentProviderLojaJogos : ContentProvider() {
         val cursor = when (getUriMatcher().match(uri)) {
             URI_CLIENTE -> TabelaClientes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_FUNCIONARIO -> TabelaFuncionarios(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
-            URI_GENERO -> TabelaGeneros(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_PLATAFORMA -> TabelaPlataformas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_SEXO -> TabelaSexo(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_LINHA_VENDA -> TabelaLinhaVenda(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_VENDA -> TabelaVendas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_JOGO -> TabelaJogos(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
-            URI_PUBLICADORA -> TabelaPublicadora(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
 
 
 
             URI_CLIENTE_ESPECIFICO -> TabelaClientes(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_FUNCIONARIO_ESPECIFICO -> TabelaFuncionarios(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
-            URI_GENERO_ESPECIFICO -> TabelaGeneros(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_PLATAFORMA_ESPECIFICA -> TabelaPlataformas(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_SEXO_ESPECIFICO -> TabelaSexo(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_LINHA_VENDA_ESPECIFICO -> TabelaLinhaVenda(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_VENDA_ESPECIFICA -> TabelaVendas(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_JOGO_ESPECIFICO -> TabelaJogos(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
-            URI_PUBLICADORA_ESPECIFICA -> TabelaPublicadora(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+
             else -> null
         }
 
@@ -180,23 +177,19 @@ class ContentProviderLojaJogos : ContentProvider() {
 
             URI_CLIENTE -> "$MULTIPLOS_REGISTOS/${TabelaClientes.NOME}"
             URI_FUNCIONARIO -> "$MULTIPLOS_REGISTOS/${TabelaFuncionarios.NOME}"
-            URI_GENERO -> "$MULTIPLOS_REGISTOS/${TabelaGeneros.NOME}"
             URI_PLATAFORMA -> "$MULTIPLOS_REGISTOS/${TabelaPlataformas.NOME}"
             URI_JOGO -> "$MULTIPLOS_REGISTOS/${TabelaJogos.NOME}"
             URI_SEXO -> "$MULTIPLOS_REGISTOS/${TabelaSexo.NOME}"
             URI_VENDA -> "$MULTIPLOS_REGISTOS/${TabelaVendas.NOME}"
             URI_LINHA_VENDA -> "$MULTIPLOS_REGISTOS/${TabelaLinhaVenda.NOME}"
-            URI_PUBLICADORA -> "$MULTIPLOS_REGISTOS/${TabelaPublicadora.NOME}"
 
             URI_CLIENTE_ESPECIFICO -> "$UNICO_REGISTO/${TabelaClientes.NOME}"
             URI_FUNCIONARIO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaFuncionarios.NOME}"
-            URI_GENERO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaGeneros.NOME}"
             URI_PLATAFORMA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaPlataformas.NOME}"
             URI_JOGO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaJogos.NOME}"
             URI_SEXO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaSexo.NOME}"
             URI_VENDA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaVendas.NOME}"
             URI_LINHA_VENDA_ESPECIFICO -> "$UNICO_REGISTO/${TabelaLinhaVenda.NOME}"
-            URI_PUBLICADORA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaPublicadora.NOME}"
 
             else -> null
         }
@@ -220,13 +213,11 @@ class ContentProviderLojaJogos : ContentProvider() {
         val id = when (getUriMatcher().match(uri)) {
             URI_CLIENTE -> TabelaClientes(db).insert(values)
             URI_FUNCIONARIO -> TabelaFuncionarios(db).insert(values)
-            URI_GENERO -> TabelaGeneros(db).insert(values)
             URI_PLATAFORMA -> TabelaPlataformas(db).insert(values)
             URI_JOGO -> TabelaJogos(db).insert(values)
             URI_VENDA -> TabelaVendas(db).insert(values)
             URI_LINHA_VENDA -> TabelaLinhaVenda(db).insert(values)
             URI_SEXO -> TabelaSexo(db).insert(values)
-            URI_PUBLICADORA -> TabelaPublicadora(db).insert(values)
 
             else -> -1
         }
@@ -269,13 +260,11 @@ class ContentProviderLojaJogos : ContentProvider() {
         val registosApagados = when (getUriMatcher().match(uri)) {
             URI_CLIENTE_ESPECIFICO -> TabelaClientes(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_FUNCIONARIO_ESPECIFICO -> TabelaFuncionarios(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_GENERO_ESPECIFICO -> TabelaGeneros(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_PLATAFORMA_ESPECIFICA -> TabelaPlataformas(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SEXO_ESPECIFICO -> TabelaSexo(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_LINHA_VENDA_ESPECIFICO -> TabelaLinhaVenda(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_VENDA_ESPECIFICA -> TabelaVendas(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_JOGO_ESPECIFICO -> TabelaJogos(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_PUBLICADORA_ESPECIFICA -> TabelaPublicadora(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
 
@@ -314,13 +303,11 @@ class ContentProviderLojaJogos : ContentProvider() {
         val registosAlterados = when (getUriMatcher().match(uri)) {
             URI_CLIENTE_ESPECIFICO -> TabelaClientes(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_FUNCIONARIO_ESPECIFICO -> TabelaFuncionarios(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_GENERO_ESPECIFICO -> TabelaGeneros(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_PLATAFORMA_ESPECIFICA -> TabelaPlataformas(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SEXO_ESPECIFICO -> TabelaSexo(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_LINHA_VENDA_ESPECIFICO -> TabelaLinhaVenda(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_VENDA_ESPECIFICA -> TabelaVendas(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_JOGO_ESPECIFICO -> TabelaJogos(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_PUBLICADORA_ESPECIFICA -> TabelaPublicadora(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
 
@@ -382,8 +369,6 @@ class ContentProviderLojaJogos : ContentProvider() {
             uriMatcher.addURI(AUTHORITY, TabelaFuncionarios.NOME, URI_FUNCIONARIO)
             uriMatcher.addURI(AUTHORITY, "${TabelaFuncionarios.NOME}/#", URI_FUNCIONARIO_ESPECIFICO)
 
-            uriMatcher.addURI(AUTHORITY, TabelaGeneros.NOME, URI_GENERO)
-            uriMatcher.addURI(AUTHORITY, "${TabelaGeneros.NOME}/#", URI_GENERO_ESPECIFICO)
 
             uriMatcher.addURI(AUTHORITY, TabelaJogos.NOME, URI_JOGO)
             uriMatcher.addURI(AUTHORITY, "${TabelaJogos.NOME}/#", URI_JOGO_ESPECIFICO)
@@ -397,8 +382,7 @@ class ContentProviderLojaJogos : ContentProvider() {
             uriMatcher.addURI(AUTHORITY, TabelaVendas.NOME, URI_VENDA)
             uriMatcher.addURI(AUTHORITY, "${TabelaVendas.NOME}/#", URI_VENDA_ESPECIFICA)
 
-            uriMatcher.addURI(AUTHORITY, TabelaPublicadora.NOME, URI_PUBLICADORA)
-            uriMatcher.addURI(AUTHORITY, "${TabelaPublicadora.NOME}/#", URI_PUBLICADORA_ESPECIFICA)
+
 
             return uriMatcher
         }
