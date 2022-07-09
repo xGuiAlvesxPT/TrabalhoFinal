@@ -65,10 +65,15 @@ class FragmentVerJogos : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_Inserir -> {
-                findNavController().navigate(R.id.action_fragmentVerJogos_to_fragmentEditarJogo)
+                val acao = FragmentVerJogosDirections.actionFragmentVerJogosToFragmentEditarJogo()
+                findNavController().navigate(acao)
                 return true
             }
-            R.id.action_alterar -> true
+            R.id.action_alterar -> {
+                val acao = FragmentVerJogosDirections.actionFragmentVerJogosToFragmentEditarJogo(jogoSelecionado)
+                findNavController().navigate(acao)
+                return true
+            }
             R.id.action_eliminar -> {
                 val acao = FragmentVerJogosDirections.actionFragmentVerJogosToFragmentEliminarJogo(jogoSelecionado!!)
                 findNavController().navigate(acao)
