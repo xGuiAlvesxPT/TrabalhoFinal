@@ -21,8 +21,8 @@ class TabelaVendas( db: SQLiteDatabase): TabelaBD(db, NOME){
         orderBy: String?
     ): Cursor {
         val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaFuncionarios.NOME} ON ${TabelaFuncionarios.CAMPO_ID} = $CAMPO_FK_FUNCIONARIO"
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaClientes.NOME} ON ${TabelaClientes.CAMPO_ID} = $CAMPO_FK_CLIENTE "
+        queryBuilder.tables = "$NOME INNER JOIN ${TabelaFuncionarios.NOME} ON ${TabelaFuncionarios.CAMPO_ID} = $CAMPO_FK_FUNCIONARIO INNER JOIN ${TabelaClientes.NOME} ON ${TabelaClientes.CAMPO_ID} = $CAMPO_FK_CLIENTE"
+
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
@@ -33,7 +33,7 @@ class TabelaVendas( db: SQLiteDatabase): TabelaBD(db, NOME){
         const val DATA_DE_VENDA = "DatadeVenda"
         const val CAMPO_FK_CLIENTE = "idCliente"
         const val CAMPO_FK_FUNCIONARIO = "idFuncionario"
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, DATA_DE_VENDA, CAMPO_FK_CLIENTE, CAMPO_FK_FUNCIONARIO)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, DATA_DE_VENDA, CAMPO_FK_CLIENTE, CAMPO_FK_FUNCIONARIO, TabelaClientes.NOME_CLIENTE,TabelaFuncionarios.NOME_FUNCIONARIO)
     }
 
 

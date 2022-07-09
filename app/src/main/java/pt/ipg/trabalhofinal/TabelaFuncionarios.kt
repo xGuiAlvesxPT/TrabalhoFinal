@@ -17,7 +17,7 @@ class TabelaFuncionarios( db: SQLiteDatabase): TabelaBD(db, NOME) {
     companion object{
         const val NOME = "Funcionarios"
         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
-        const val NOME_FUNCIONARIO = "Nome"
+        const val NOME_FUNCIONARIO = "NomeFuncionarios"
         const val NIF_FUNCIONARIO = "Nif"
         const val CONTACTO= "Contacto"
         const val DATA_DE_NASCIMENTO = "DatadeNascimento"

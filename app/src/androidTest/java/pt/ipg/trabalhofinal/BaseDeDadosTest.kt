@@ -1,7 +1,6 @@
 package pt.ipg.trabalhofinal
 
 import android.database.sqlite.SQLiteDatabase
-import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -10,7 +9,6 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
-import java.util.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -84,7 +82,7 @@ class BaseDeDadosTest {
 
     @Before
     fun apagaBaseDados() {
-        //appContext().deleteDatabase(BDLojaOpenHelper.NOME)
+        appContext().deleteDatabase(BDLojaOpenHelper.NOME)
     }
 
     @Test
@@ -208,7 +206,7 @@ class BaseDeDadosTest {
         val funcionario = Funcionario("Jacinto Alves","548625789","150116278","12/12/2005")
         insereFuncionario(db,funcionario)
 
-        insereVenda(db, Venda("11/07/2022",cliente.id,funcionario.id))
+        insereVenda(db, Venda("11/07/2022",cliente,funcionario))
 
 
         db.close()
@@ -457,6 +455,39 @@ class BaseDeDadosTest {
         db.close()
     }
 
+   /* @Test
+    fun consegueLerVendas() {
+        val db = getWritableDatabase()
 
+        val sexoM = Sexo("Masculino")
+        insereSexo(db,sexoM)
+
+        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM)
+        insereCliente(db, cliente)
+
+        val funcionario = Funcionario("José Alves","789546578","254564778","01/04/2000")
+        insereFuncionario(db, funcionario)
+
+        val venda = Venda("24/11/2013",cliente,funcionario)
+        insereVenda(db, venda)
+
+        val cursor = TabelaVendas(db).query(
+            TabelaVendas.TODAS_COLUNAS,
+            "${TabelaVendas.CAMPO_ID}=?",
+            arrayOf("${venda.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val vendaBD = Venda.fromCursor(cursor)
+
+        assertEquals(Venda,vendaBD)
+
+        db.close()
+    }*/
 
 }

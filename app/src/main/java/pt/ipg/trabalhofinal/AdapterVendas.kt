@@ -32,8 +32,8 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
 
 
                 textViewVendaData.text = Venda?.data_de_venda ?: ""
-                textViewVendaFuncionario.text = "${Venda?.idfuncionario}"
-                textViewVendaCliente.text = "${Venda?.idcliente}"
+                textViewVendaFuncionario.text = Venda?.funcionario?.nome ?: ""
+                textViewVendaCliente.text = Venda?.cliente?.nome ?: ""
 
             }
     }
