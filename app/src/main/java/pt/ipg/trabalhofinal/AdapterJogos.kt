@@ -59,11 +59,11 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
         private fun seleciona() {
             seleccionado = this
             fragment.jogoSelecionado = Jogo
-            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            itemView.setBackgroundResource(android.R.drawable.alert_light_frame)
         }
 
         private fun desseleciona() {
-            itemView.setBackgroundResource(android.R.color.white)
+            itemView.setBackgroundResource(android.R.drawable.alert_dark_frame)
         }
 
 

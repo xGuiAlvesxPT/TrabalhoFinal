@@ -7,7 +7,7 @@ import java.io.Serializable
 data class Jogo(
 
     var nome: String,
-    var preco: String,
+    var preco: Double,
     var genero: String,
     var publicadora: String,
     var data_de_lancamento: String,
@@ -45,7 +45,7 @@ data class Jogo(
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
-            val preco = cursor.getString(posPreco)
+            val preco = cursor.getDouble(posPreco)
             val genero = cursor.getString(posGenero)
             val publicadora = cursor.getString(posPublicadora)
             val dataLancamento = cursor.getString(posDataLancamento)

@@ -53,7 +53,7 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             jogo = FragmentEditarJogoArgs.fromBundle(arguments!!).jogo
             if (jogo != null) {
                 binding.EditTextNomeJogo.setText(jogo!!.nome)
-                binding.EditTextPreco.setText(jogo!!.preco)
+                binding.EditTextPreco.setText(jogo!!.preco.toString())
                 binding.EditTextGenero.setText(jogo!!.genero)
                 binding.EditTextPublicadora.setText(jogo!!.publicadora)
                 binding.EditTextDataLancamento.setText(jogo!!.data_de_lancamento)
@@ -137,7 +137,7 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         val jogo = Jogo(
             nomeJogo,
-            preco  ,
+            preco.toDouble()  ,
             genero,
             publicadora,
             dataLancamento,
@@ -166,7 +166,7 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private fun insereJogo(nomeJogo: String, preco: String,genero:String,publicadora:String,dataLancamento:String, idPlataforma: Long){
         val jogo = Jogo(
             nomeJogo,
-            preco  ,
+            preco.toDouble()  ,
             genero,
             publicadora,
             dataLancamento,

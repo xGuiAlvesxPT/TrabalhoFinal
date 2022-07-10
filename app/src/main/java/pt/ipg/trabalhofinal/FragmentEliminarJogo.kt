@@ -47,7 +47,7 @@ class FragmentEliminarJogo : Fragment() {
         jogo = FragmentEliminarJogoArgs.fromBundle(arguments!!).jogo
 
         binding.textViewNomeJogoEli.text = jogo.nome
-        binding.textViewPrecoJogoEli.text = jogo.preco
+        binding.textViewPrecoJogoEli.text = jogo.preco.toString()
         binding.textViewGeneroJogoEli.text = jogo.genero
         binding.textViewPublicadoraJogoEli.text = jogo.publicadora
         binding.textViewDataLanJogoEli.text = jogo.data_de_lancamento
