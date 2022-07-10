@@ -8,6 +8,7 @@ data class Venda(
     var data_de_venda: String,
     var cliente: Cliente,
     var funcionario: Funcionario,
+    var sexo : Sexo,
     var id: Long = -1,
 ) {
 
@@ -17,6 +18,7 @@ data class Venda(
         valores.put(TabelaVendas.DATA_DE_VENDA,data_de_venda)
         valores.put(TabelaVendas.CAMPO_FK_CLIENTE,cliente.id)
         valores.put(TabelaVendas.CAMPO_FK_FUNCIONARIO,funcionario.id)
+        valores.put(TabelaVendas.CAMPO_FK_SEXO,sexo.id)
         return valores
     }
 
@@ -67,7 +69,7 @@ data class Venda(
 
 
 
-            return Venda(dataVenda,Cliente,Funcionario, id)
+            return Venda(dataVenda,Cliente,Funcionario,Sexo, id)
         }
     }
 

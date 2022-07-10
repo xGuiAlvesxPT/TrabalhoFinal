@@ -75,7 +75,7 @@ class BaseDeDadosTest {
 
     @Before
     fun apagaBaseDados() {
-        appContext().deleteDatabase(BDLojaOpenHelper.NOME)
+        //appContext().deleteDatabase(BDLojaOpenHelper.NOME)
     }
 
     @Test
@@ -176,7 +176,7 @@ class BaseDeDadosTest {
         val funcionario = Funcionario("Jacinto Alves","548625789","150116278","12/12/2005")
         insereFuncionario(db,funcionario)
 
-        insereVenda(db, Venda("11/07/2022",cliente,funcionario))
+        insereVenda(db, Venda("11/07/2022",cliente,funcionario, sexoM))
 
 
         db.close()
@@ -384,7 +384,7 @@ class BaseDeDadosTest {
         val funcionario = Funcionario("José Alves","789546578","254564778","01/04/2000")
         insereFuncionario(db, funcionario)
 
-        val venda = Venda("24/11/2013",cliente,funcionario)
+        val venda = Venda("24/11/2013",cliente,funcionario,sexoM)
         insereVenda(db, venda)
 
         val cursor = TabelaVendas(db).query(
