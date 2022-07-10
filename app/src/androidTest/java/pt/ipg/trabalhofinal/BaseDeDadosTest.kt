@@ -140,7 +140,7 @@ class BaseDeDadosTest {
 
 
 
-        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"Açao","Take Two","24/11/2013",plataforma)
+        val jogo1 = Jogo("Grand Theft Auto 5",30.99,"Açao","Take Two","24/11/2013",plataforma)
         insereJogo(db, jogo1)
 
         //val jogo2 = Jogo("Halo Wars",39.99F,"06/02/2011",2,3,2)
@@ -349,7 +349,7 @@ class BaseDeDadosTest {
         inserePlataforma(db, plataforma)
 
 
-        val jogo = Jogo("Grand Theft Auto 5",30.99F,"Açao","Take Two","24/11/2013",plataforma)
+        val jogo = Jogo("Grand Theft Auto 5",30.99,"Açao","Take Two","24/11/2013",plataforma)
         insereJogo(db, jogo)
 
         val cursor = TabelaJogos(db).query(
@@ -371,7 +371,7 @@ class BaseDeDadosTest {
         db.close()
     }
 
-   /* @Test
+    @Test
     fun consegueLerVendas() {
         val db = getWritableDatabase()
 
@@ -401,9 +401,9 @@ class BaseDeDadosTest {
 
         val vendaBD = Venda.fromCursor(cursor)
 
-        assertEquals(Venda,vendaBD)
+        assertEquals(venda,vendaBD)
 
         db.close()
-    }*/
+    }
 
 }

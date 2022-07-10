@@ -33,7 +33,7 @@ class TabelaVendas( db: SQLiteDatabase): TabelaBD(db, NOME){
         const val DATA_DE_VENDA = "DatadeVenda"
         const val CAMPO_FK_CLIENTE = "idCliente"
         const val CAMPO_FK_FUNCIONARIO = "idFuncionario"
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, DATA_DE_VENDA, CAMPO_FK_CLIENTE, CAMPO_FK_FUNCIONARIO, TabelaClientes.NOME_CLIENTE,TabelaFuncionarios.NOME_FUNCIONARIO)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, DATA_DE_VENDA, CAMPO_FK_CLIENTE, CAMPO_FK_FUNCIONARIO, TabelaClientes.NOME_CLIENTE,TabelaClientes.NIF_CLIENTE,TabelaClientes.CONTACTO_CLIENTE,TabelaClientes.DATA_DE_NASCIMENTO_CLIENTE,TabelaClientes.CAMPO_FK_SEXO,TabelaFuncionarios.NOME_FUNCIONARIO,TabelaFuncionarios.NIF_FUNCIONARIO,TabelaFuncionarios.CONTACTO_FUNCIONARIO,TabelaFuncionarios.DATA_DE_NASCIMENTO_FUNCIONARIO)
     }
 
 

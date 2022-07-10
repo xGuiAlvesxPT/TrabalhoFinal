@@ -9,7 +9,7 @@ class TabelaClientes( db: SQLiteDatabase): TabelaBD(db, NOME) {
 
    override fun cria (){
 
-        db.execSQL("CREATE TABLE $NOME(${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $NOME_CLIENTE TEXT NOT NULL,$NIF_CLIENTE TEXT NOT NULL ,$CONTACTO TEXT NOT NULL ,$DATA_DE_NASCIMENTO TEXT NOT NULL,$CAMPO_FK_SEXO INTEGER NOT NULL,FOREIGN KEY($CAMPO_FK_SEXO) REFERENCES ${TabelaSexo.NOME} (${BaseColumns._ID}) ON DELETE RESTRICT) ")
+        db.execSQL("CREATE TABLE $NOME(${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $NOME_CLIENTE TEXT NOT NULL,$NIF_CLIENTE TEXT NOT NULL ,$CONTACTO_CLIENTE TEXT NOT NULL ,$DATA_DE_NASCIMENTO_CLIENTE TEXT NOT NULL,$CAMPO_FK_SEXO INTEGER NOT NULL,FOREIGN KEY($CAMPO_FK_SEXO) REFERENCES ${TabelaSexo.NOME} (${BaseColumns._ID}) ON DELETE RESTRICT) ")
     }
 
     override fun query(
@@ -30,13 +30,13 @@ class TabelaClientes( db: SQLiteDatabase): TabelaBD(db, NOME) {
         const val NOME = "Clientes"
         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val NOME_CLIENTE = "NomeCliente"
-        const val NIF_CLIENTE = "Nif"
-        const val CONTACTO= "Contacto"
-        const val DATA_DE_NASCIMENTO = "DatadeNascimento"
+        const val NIF_CLIENTE = "NifCliente"
+        const val CONTACTO_CLIENTE= "ContactoCliente"
+        const val DATA_DE_NASCIMENTO_CLIENTE = "DatadeNascimentoCliente"
         const val CAMPO_FK_SEXO = "sexoID"
         val TODAS_COLUNAS = arrayOf(
-            CAMPO_ID, NOME_CLIENTE, NIF_CLIENTE, CONTACTO,
-            DATA_DE_NASCIMENTO, CAMPO_FK_SEXO,TabelaSexo.NOME_SEXO)
+            CAMPO_ID, NOME_CLIENTE, NIF_CLIENTE, CONTACTO_CLIENTE,
+            DATA_DE_NASCIMENTO_CLIENTE, CAMPO_FK_SEXO,TabelaSexo.NOME_SEXO)
     }
 
 

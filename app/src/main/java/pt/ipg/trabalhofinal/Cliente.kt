@@ -19,8 +19,8 @@ data class Cliente(
         val valores = ContentValues()
         valores.put(TabelaClientes.NOME_CLIENTE,nome)
         valores.put(TabelaClientes.NIF_CLIENTE,nif)
-        valores.put(TabelaClientes.CONTACTO,contacto)
-        valores.put(TabelaClientes.DATA_DE_NASCIMENTO,data_de_nascimento)
+        valores.put(TabelaClientes.CONTACTO_CLIENTE,contacto)
+        valores.put(TabelaClientes.DATA_DE_NASCIMENTO_CLIENTE,data_de_nascimento)
         valores.put(TabelaClientes.CAMPO_FK_SEXO,sexo.id)
         return valores
     }
@@ -30,8 +30,8 @@ data class Cliente(
             val posId = cursor.getColumnIndex(BaseColumns._ID)
             val posNome = cursor.getColumnIndex(TabelaClientes.NOME_CLIENTE)
             val posNif = cursor.getColumnIndex(TabelaClientes.NIF_CLIENTE)
-            val posContacto = cursor.getColumnIndex(TabelaClientes.CONTACTO)
-            val posDataNascimento = cursor.getColumnIndex(TabelaClientes.DATA_DE_NASCIMENTO)
+            val posContacto = cursor.getColumnIndex(TabelaClientes.CONTACTO_CLIENTE)
+            val posDataNascimento = cursor.getColumnIndex(TabelaClientes.DATA_DE_NASCIMENTO_CLIENTE)
             val posSexo = cursor.getColumnIndex(TabelaClientes.CAMPO_FK_SEXO)
             val posNomeSexo =  cursor.getColumnIndex(TabelaSexo.NOME_SEXO)
 

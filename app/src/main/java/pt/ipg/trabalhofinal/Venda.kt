@@ -31,15 +31,15 @@ data class Venda(
 
             val posNomeCliente =  cursor.getColumnIndex(TabelaClientes.NOME_CLIENTE)
             val posNifCliente =  cursor.getColumnIndex(TabelaClientes.NIF_CLIENTE)
-            val posContatoCliente =  cursor.getColumnIndex(TabelaClientes.CONTACTO)
-            val posDataNascCliente =  cursor.getColumnIndex(TabelaClientes.DATA_DE_NASCIMENTO)
+            val posContatoCliente =  cursor.getColumnIndex(TabelaClientes.CONTACTO_CLIENTE)
+            val posDataNascCliente =  cursor.getColumnIndex(TabelaClientes.DATA_DE_NASCIMENTO_CLIENTE)
             val posSexo = cursor.getColumnIndex(TabelaClientes.CAMPO_FK_SEXO)
             val posNomeSexo =  cursor.getColumnIndex(TabelaSexo.NOME_SEXO)
 
             val posNomeFuncionario=  cursor.getColumnIndex(TabelaFuncionarios.NOME_FUNCIONARIO)
             val posNifFuncionario =  cursor.getColumnIndex(TabelaFuncionarios.NIF_FUNCIONARIO)
-            val posContatoFuncionario =  cursor.getColumnIndex(TabelaFuncionarios.CONTACTO)
-            val posDataNascFuncionario =  cursor.getColumnIndex(TabelaFuncionarios.DATA_DE_NASCIMENTO)
+            val posContatoFuncionario =  cursor.getColumnIndex(TabelaFuncionarios.CONTACTO_FUNCIONARIO)
+            val posDataNascFuncionario =  cursor.getColumnIndex(TabelaFuncionarios.DATA_DE_NASCIMENTO_FUNCIONARIO)
 
 
             val idCliente = cursor.getLong(posIdCliente)

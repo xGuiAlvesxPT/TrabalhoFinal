@@ -19,8 +19,8 @@ data class Funcionario(
         val valores = ContentValues()
         valores.put(TabelaFuncionarios.NOME_FUNCIONARIO,nome)
         valores.put(TabelaFuncionarios.NIF_FUNCIONARIO,nif)
-        valores.put(TabelaFuncionarios.CONTACTO,contacto)
-        valores.put(TabelaFuncionarios.DATA_DE_NASCIMENTO,data_de_nascimento)
+        valores.put(TabelaFuncionarios.CONTACTO_FUNCIONARIO,contacto)
+        valores.put(TabelaFuncionarios.DATA_DE_NASCIMENTO_FUNCIONARIO,data_de_nascimento)
         return valores
     }
 
@@ -30,8 +30,8 @@ data class Funcionario(
             val posId = cursor.getColumnIndex(BaseColumns._ID)
             val posNome = cursor.getColumnIndex(TabelaFuncionarios.NOME_FUNCIONARIO)
             val posNif = cursor.getColumnIndex(TabelaFuncionarios.NIF_FUNCIONARIO)
-            val posContacto = cursor.getColumnIndex(TabelaFuncionarios.CONTACTO)
-            val posDataNascimento = cursor.getColumnIndex(TabelaFuncionarios.DATA_DE_NASCIMENTO)
+            val posContacto = cursor.getColumnIndex(TabelaFuncionarios.CONTACTO_FUNCIONARIO)
+            val posDataNascimento = cursor.getColumnIndex(TabelaFuncionarios.DATA_DE_NASCIMENTO_FUNCIONARIO)
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
