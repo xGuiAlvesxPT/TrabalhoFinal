@@ -2,10 +2,10 @@
     <string name="app_name">TrabalhoFinal</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="FragmentPaginaInicial">First Fragment</string>
-    <string name="FragmentPaginaGestao">Second Fragment</string>
-    <string name="FragmentVerFuncionarios">Third Fragment</string>
-    <string name="FragmentVerClientes">four Fragment</string>
+    <string name="FragmentPaginaInicial">Game Store</string>
+    <string name="FragmentPaginaGestao">Gestão da Loja</string>
+    <string name="FragmentVerFuncionarios">Funcionarios</string>
+    <string name="FragmentVerClientes">Clientes</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
