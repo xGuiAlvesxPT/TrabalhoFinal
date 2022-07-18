@@ -9,7 +9,7 @@ data class Funcionario(
     var nome: String,
     var nif: String,
     var contacto: String,
-    var data_de_nascimento: String,
+    var data_de_nascimento: Long,
     var id: Long = -1
 
 ) : Serializable {
@@ -37,7 +37,7 @@ data class Funcionario(
             val nome = cursor.getString(posNome)
             val nif = cursor.getString(posNif)
             val contacto = cursor.getString(posContacto)
-            val dataNascimento = cursor.getString(posDataNascimento)
+            val dataNascimento = cursor.getLong(posDataNascimento)
 
             return Funcionario(nome,nif,contacto,dataNascimento, id)
         }

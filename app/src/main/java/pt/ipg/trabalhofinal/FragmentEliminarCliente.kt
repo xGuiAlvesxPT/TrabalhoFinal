@@ -93,7 +93,7 @@ class FragmentEliminarCliente : Fragment() {
     }
 
     private fun voltaListaClientes() {
-
-        findNavController().popBackStack()
+        val acao = FragmentEliminarClienteDirections.actionFragmentEliminarClienteToFragmentVerClientes()
+        findNavController().navigate(acao)
     }
 }

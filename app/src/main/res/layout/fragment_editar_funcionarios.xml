@@ -68,21 +68,27 @@
                         android:textColorHint="#757575"
                         tools:ignore="TextContrastCheck,DuplicateClickableBoundsCheck" />
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <TextView
+                        android:id="@+id/textViewDataNascFuncio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:orientation="vertical">
+                        android:text="@string/data_de_nascimento"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextDataNasFuncionario"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/data_de_nascimento"
-                            android:textColorHint="#757575"
-                            tools:ignore="TextContrastCheck,DuplicateClickableBoundsCheck" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                    <DatePicker
+                        android:id="@+id/datePickerFunc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:calendarViewShown="false"
+                        android:datePickerMode="spinner" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

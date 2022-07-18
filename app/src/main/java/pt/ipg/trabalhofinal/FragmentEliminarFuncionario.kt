@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.trabalhofinal.databinding.FragmentEliminarFuncionarioBinding
+import java.text.SimpleDateFormat
 
 
 class FragmentEliminarFuncionario : Fragment() {
@@ -49,7 +50,10 @@ class FragmentEliminarFuncionario : Fragment() {
         binding.textViewNomeFuncionarioEli.text = funcionario.nome
         binding.textViewNifFuncionarioEli.text = funcionario.nif
         binding.textViewContatoFuncionarioEli.text = funcionario.contacto
-        binding.textViewDataNascFuncionarioEli.text = funcionario.data_de_nascimento
+        val dateFormat = SimpleDateFormat("dd-MM-yyy")
+        val dataNasc = funcionario.data_de_nascimento
+        val data = dateFormat.format(dataNasc)
+        binding.textViewDataNascFuncionarioEli.text = data
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {

@@ -9,6 +9,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.util.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -75,7 +76,7 @@ class BaseDeDadosTest {
 
     @Before
     fun apagaBaseDados() {
-        appContext().deleteDatabase(BDLojaOpenHelper.NOME)
+       // appContext().deleteDatabase(BDLojaOpenHelper.NOME)
     }
 
     @Test
@@ -122,9 +123,9 @@ class BaseDeDadosTest {
         val sexoF = Sexo("Feminino")
         insereSexo(db,sexoF)
 
-        insereCliente(db, Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM))
-        insereCliente(db, Cliente("Maria Almeida","258524687","954798855","15/02/1998",sexoF))
-        insereCliente(db, Cliente("Joao Pires","254566278","9745354789","01/05/2010",sexoM))
+        insereCliente(db, Cliente("Guilherme Alves","250116278","963355065",5646546456,sexoM))
+        insereCliente(db, Cliente("Maria Almeida","258524687","954798855",45654645645,sexoF))
+        insereCliente(db, Cliente("Joao Pires","254566278","9745354789",45645645645,sexoM))
 
         db.close()
     }
@@ -156,9 +157,9 @@ class BaseDeDadosTest {
     fun consegueInserirFuncionario() {
         val db = getWritableDatabase()
 
-        insereFuncionario(db, Funcionario("Jacinto Alves","548625789","150116278","12/12/2005"))
-        insereFuncionario(db, Funcionario("André Almeida","247954869","248524687","30/07/1970"))
-       insereFuncionario(db, Funcionario("Pedro Pires","789546578","254565278","10/10/1974"))
+        insereFuncionario(db, Funcionario("Jacinto Alves","548625789","150116278",654645645))
+        insereFuncionario(db, Funcionario("André Almeida","247954869","248524687",45645645645))
+       insereFuncionario(db, Funcionario("Pedro Pires","789546578","254565278",456456456456))
 
         db.close()
     }
@@ -170,10 +171,10 @@ class BaseDeDadosTest {
         val sexoM = Sexo("Masculino")
         insereSexo(db, sexoM)
 
-        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM)
+        val cliente = Cliente("Guilherme Alves","250116278","963355065",15415451,sexoM)
         insereCliente(db, cliente)
 
-        val funcionario = Funcionario("Jacinto Alves","548625789","150116278","12/12/2005")
+        val funcionario = Funcionario("Jacinto Alves","548625789","150116278",787878788)
         insereFuncionario(db,funcionario)
 
         insereVenda(db, Venda("11/07/2022",cliente,funcionario, sexoM))
@@ -261,7 +262,7 @@ class BaseDeDadosTest {
     fun consegueLerFuncionario() {
         val db = getWritableDatabase()
 
-        val funcionario = Funcionario("José Alves","789546578","254564778","01/04/2000")
+        val funcionario = Funcionario("José Alves","789546578","254564778",7566767565)
         insereFuncionario(db, funcionario)
 
     val cursor = TabelaFuncionarios(db).query(
@@ -316,7 +317,7 @@ class BaseDeDadosTest {
         val sexoM = Sexo("Masculino")
         insereSexo(db,sexoM)
 
-        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM)
+        val cliente = Cliente("Guilherme Alves","250116278","963355065",5458478487,sexoM)
         insereCliente(db, cliente)
 
         val cursor = TabelaClientes(db).query(
@@ -378,10 +379,10 @@ class BaseDeDadosTest {
         val sexoM = Sexo("Masculino")
         insereSexo(db,sexoM)
 
-        val cliente = Cliente("Guilherme Alves","250116278","963355065","10/10/1985",sexoM)
+        val cliente = Cliente("Guilherme Alves","250116278","963355065",45145154,sexoM)
         insereCliente(db, cliente)
 
-        val funcionario = Funcionario("José Alves","789546578","254564778","01/04/2000")
+        val funcionario = Funcionario("José Alves","789546578","254564778",78678678678)
         insereFuncionario(db, funcionario)
 
         val venda = Venda("24/11/2013",cliente,funcionario,sexoM)

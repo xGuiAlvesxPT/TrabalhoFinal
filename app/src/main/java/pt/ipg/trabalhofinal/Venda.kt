@@ -59,7 +59,7 @@ data class Venda(
             val nomeFuncionario = cursor.getString(posNomeFuncionario)
             val NifFuncionario =  cursor.getString(posNifFuncionario)
             val ContatoFuncionario =  cursor.getString(posContatoFuncionario)
-            val DataNascFuncionario =  cursor.getString(posDataNascFuncionario)
+            val DataNascFuncionario =  cursor.getLong(posDataNascFuncionario)
             val Funcionario = Funcionario(nomeFuncionario,NifFuncionario,ContatoFuncionario,DataNascFuncionario,idFuncionario)
 
 
