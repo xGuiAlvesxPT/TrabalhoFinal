@@ -1,0 +1,220 @@
+Index: app/src/androidTest/java/pt/ipg/trabalhofinal/BaseDeDadosTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/pt/ipg/trabalhofinal/BaseDeDadosTest.kt b/app/src/androidTest/java/pt/ipg/trabalhofinal/BaseDeDadosTest.kt
+--- a/app/src/androidTest/java/pt/ipg/trabalhofinal/BaseDeDadosTest.kt	(revision 9f25b52037b49900388abf52d330fde56567290f)
++++ b/app/src/androidTest/java/pt/ipg/trabalhofinal/BaseDeDadosTest.kt	(revision 902487eb4605d82fd19f432cef1ac3d248f47f40)
+@@ -163,14 +163,23 @@
+     fun consegueInserirJogo() {
+         val db = getWritableDatabase()
+ 
+-        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",1,2,1)
++        val genero = Genero("Açao")
++        insereGenero(db, genero)
++
++        val plataforma = Plataforma("Playstation 4")
++        inserePlataforma(db, plataforma)
++
++        val publicadora= Publicadora("Take Two")
++        inserePublicadora(db, publicadora)
++
++        val jogo1 = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma,genero,publicadora)
+         insereJogo(db, jogo1)
+ 
+-        val jogo2 = Jogo("Halo Wars",39.99F,"06/02/2011",2,3,2)
+-        insereJogo(db, jogo2)
++        //val jogo2 = Jogo("Halo Wars",39.99F,"06/02/2011",2,3,2)
++       // insereJogo(db, jogo2)
+ 
+-        val jogo3 = Jogo("Legend Of Zelda",59.99F,"09/03/2015",3,1,3)
+-        insereJogo(db, jogo3)
++       // val jogo3 = Jogo("Legend Of Zelda",59.99F,"09/03/2015",3,1,3)
++       // insereJogo(db, jogo3)
+ 
+         db.close()
+     }
+@@ -426,7 +435,7 @@
+         val publicadora= Publicadora("Take Two")
+         inserePublicadora(db, publicadora)
+ 
+-        val jogo = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma.id,genero.id,publicadora.id)
++        val jogo = Jogo("Grand Theft Auto 5",30.99F,"24/11/2013",plataforma,genero,publicadora)
+         insereJogo(db, jogo)
+ 
+         val cursor = TabelaJogos(db).query(
+Index: app/src/main/java/pt/ipg/trabalhofinal/AdapterJogos.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/pt/ipg/trabalhofinal/AdapterJogos.kt b/app/src/main/java/pt/ipg/trabalhofinal/AdapterJogos.kt
+--- a/app/src/main/java/pt/ipg/trabalhofinal/AdapterJogos.kt	(revision 9f25b52037b49900388abf52d330fde56567290f)
++++ b/app/src/main/java/pt/ipg/trabalhofinal/AdapterJogos.kt	(revision 902487eb4605d82fd19f432cef1ac3d248f47f40)
+@@ -38,9 +38,9 @@
+                 textViewNomeJogo.text = Jogo?.nome ?: ""
+                 textViewPrecoJogo.text = "${Jogo?.preco}"
+                 textViewJogoDataLancamento.text = Jogo?.data_de_lancamento ?: ""
+-                textViewJogoGenero.text = "${Jogo?.idgenero}"
+-                textViewJogoPlataforma.text = "${Jogo?.idplataforma}"
+-                textViewJogoPublicadora.text = "${Jogo?.idpublicadora}"
++                textViewJogoGenero.text = Jogo?.genero?.nome ?: ""
++                textViewJogoPlataforma.text = Jogo?.plataforma?.nome ?: ""
++                textViewJogoPublicadora.text = Jogo?.publicadora?.nome ?: ""
+             }
+     }
+ 
+Index: app/src/main/java/pt/ipg/trabalhofinal/FragmentVerFuncionarios.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/pt/ipg/trabalhofinal/FragmentVerFuncionarios.kt b/app/src/main/java/pt/ipg/trabalhofinal/FragmentVerFuncionarios.kt
+--- a/app/src/main/java/pt/ipg/trabalhofinal/FragmentVerFuncionarios.kt	(revision 9f25b52037b49900388abf52d330fde56567290f)
++++ b/app/src/main/java/pt/ipg/trabalhofinal/FragmentVerFuncionarios.kt	(revision 902487eb4605d82fd19f432cef1ac3d248f47f40)
+@@ -22,7 +22,7 @@
+ 
+                 field = value
+                 (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
+-            
++
+         }
+ 
+     private var _binding: FragmentVerFuncionariosBinding? = null
+Index: app/src/main/java/pt/ipg/trabalhofinal/Jogo.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/pt/ipg/trabalhofinal/Jogo.kt b/app/src/main/java/pt/ipg/trabalhofinal/Jogo.kt
+--- a/app/src/main/java/pt/ipg/trabalhofinal/Jogo.kt	(revision 9f25b52037b49900388abf52d330fde56567290f)
++++ b/app/src/main/java/pt/ipg/trabalhofinal/Jogo.kt	(revision 902487eb4605d82fd19f432cef1ac3d248f47f40)
+@@ -9,9 +9,9 @@
+     var nome: String,
+     var preco: Float,
+     var data_de_lancamento: String,
+-    var idplataforma: Long,
+-    var idgenero: Long,
+-    var idpublicadora: Long,
++    var plataforma: Plataforma,
++    var genero: Genero,
++    var publicadora: Publicadora,
+     var id: Long = -1,
+ 
+     ) {
+@@ -22,9 +22,9 @@
+         valores.put(TabelaJogos.NOME_JOGO,nome)
+         valores.put(TabelaJogos.PRECO,preco)
+         valores.put(TabelaJogos.DATA_DE_LANCAMENTO,data_de_lancamento)
+-        valores.put(TabelaJogos.CAMPO_FK_PLATAFORMA,idplataforma)
+-        valores.put(TabelaJogos.CAMPO_FK_GENERO,idgenero)
+-        valores.put(TabelaJogos.CAMPO_FK_PUBLICADORA,idpublicadora)
++        valores.put(TabelaJogos.CAMPO_FK_PLATAFORMA,plataforma.id)
++        valores.put(TabelaJogos.CAMPO_FK_GENERO,genero.id)
++        valores.put(TabelaJogos.CAMPO_FK_PUBLICADORA,publicadora.id)
+         return valores
+     }
+ 
+@@ -38,9 +38,9 @@
+             val posIdGenero = cursor.getColumnIndex(TabelaJogos.CAMPO_FK_GENERO)
+             val posIdPublicadora = cursor.getColumnIndex(TabelaJogos.CAMPO_FK_PUBLICADORA)
+ 
+-           // val posNomeGenero =  cursor.getColumnIndex(TabelaGeneros.NOME_GENERO)
+-           // val posNomePlataformas=  cursor.getColumnIndex(TabelaPlataformas.NOME_PLATAFORMA)
+-          //  val posNomePublicadora =  cursor.getColumnIndex(TabelaPublicadora.NOME_PUBLICADORA)
++            val posNomeGenero =  cursor.getColumnIndex(TabelaGeneros.NOME_GENERO)
++            val posNomePlataformas=  cursor.getColumnIndex(TabelaPlataformas.NOME_PLATAFORMA)
++            val posNomePublicadora =  cursor.getColumnIndex(TabelaPublicadora.NOME_PUBLICADORA)
+ 
+ 
+             val id = cursor.getLong(posId)
+@@ -49,18 +49,18 @@
+             val dataLancamento = cursor.getString(posDataLancamento)
+ 
+             val idPlataforma = cursor.getLong(posIdPlataforma)
+-          //  val nomePlataforma = cursor.getString(posNomePlataformas)
+-          //  val Plataforma = Plataforma(nomePlataforma, idPlataforma)
++            val nomePlataforma = cursor.getString(posNomePlataformas)
++            val Plataforma = Plataforma(nomePlataforma, idPlataforma)
+ 
+             val idGenero = cursor.getLong(posIdGenero)
+-           // val nomeGenero = cursor.getString(posNomeGenero)
+-          //  val Genero = Genero(nomeGenero, idGenero)
++            val nomeGenero = cursor.getString(posNomeGenero)
++            val Genero = Genero(nomeGenero, idGenero)
+ 
+             val idPublicadora = cursor.getLong(posIdPublicadora)
+-           // val nomePublicadora = cursor.getString(posNomePublicadora)
+-           // val Publicadora = Publicadora(nomePublicadora, idPublicadora)
++            val nomePublicadora = cursor.getString(posNomePublicadora)
++            val Publicadora = Publicadora(nomePublicadora, idPublicadora)
+ 
+-            return Jogo(nome,preco,dataLancamento,idPlataforma,idGenero,idPublicadora,id)
++            return Jogo(nome,preco,dataLancamento,Plataforma,Genero,Publicadora,id)
+         }
+     }
+ 
+Index: app/src/main/java/pt/ipg/trabalhofinal/TabelaGeneros.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/pt/ipg/trabalhofinal/TabelaGeneros.kt b/app/src/main/java/pt/ipg/trabalhofinal/TabelaGeneros.kt
+--- a/app/src/main/java/pt/ipg/trabalhofinal/TabelaGeneros.kt	(revision 9f25b52037b49900388abf52d330fde56567290f)
++++ b/app/src/main/java/pt/ipg/trabalhofinal/TabelaGeneros.kt	(revision 902487eb4605d82fd19f432cef1ac3d248f47f40)
+@@ -16,7 +16,7 @@
+     companion object{
+         const val NOME = "Genero"
+         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
+-        const val NOME_GENERO = "Nome"
++        const val NOME_GENERO = "NomeGenero"
+         val TODAS_COLUNAS = arrayOf(CAMPO_ID, NOME_GENERO)
+ 
+     }
+Index: app/src/main/java/pt/ipg/trabalhofinal/TabelaJogos.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/pt/ipg/trabalhofinal/TabelaJogos.kt b/app/src/main/java/pt/ipg/trabalhofinal/TabelaJogos.kt
+--- a/app/src/main/java/pt/ipg/trabalhofinal/TabelaJogos.kt	(revision 9f25b52037b49900388abf52d330fde56567290f)
++++ b/app/src/main/java/pt/ipg/trabalhofinal/TabelaJogos.kt	(revision 902487eb4605d82fd19f432cef1ac3d248f47f40)
+@@ -21,9 +21,8 @@
+         orderBy: String?
+     ): Cursor {
+         val queryBuilder = SQLiteQueryBuilder()
+-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaGeneros.NOME} ON ${TabelaGeneros.CAMPO_ID} = $CAMPO_FK_GENERO "
+-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaPlataformas.NOME} ON ${TabelaPlataformas.CAMPO_ID} = $CAMPO_FK_PLATAFORMA "
+-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaPublicadora.NOME} ON ${TabelaPublicadora.CAMPO_ID} = $CAMPO_FK_PUBLICADORA"
++        queryBuilder.tables = "$NOME INNER JOIN ${TabelaGeneros.NOME} ON ${TabelaGeneros.CAMPO_ID} = $CAMPO_FK_GENERO INNER JOIN ${TabelaPlataformas.NOME} ON ${TabelaPlataformas.CAMPO_ID} = $CAMPO_FK_PLATAFORMA INNER JOIN ${TabelaPublicadora.NOME} ON ${TabelaPublicadora.CAMPO_ID} = $CAMPO_FK_PUBLICADORA "
++
+         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
+     }
+ 
+@@ -39,7 +38,7 @@
+ 
+         val TODAS_COLUNAS = arrayOf(
+             CAMPO_ID, NOME_JOGO, PRECO, DATA_DE_LANCAMENTO,
+-            CAMPO_FK_PLATAFORMA, CAMPO_FK_GENERO, CAMPO_FK_PUBLICADORA)
++            CAMPO_FK_PLATAFORMA, CAMPO_FK_GENERO, CAMPO_FK_PUBLICADORA,TabelaPlataformas.NOME_PLATAFORMA,TabelaGeneros.NOME_GENERO,TabelaPublicadora.NOME_PUBLICADORA)
+     }
+ 
+ 
+Index: app/src/main/java/pt/ipg/trabalhofinal/TabelaPlataformas.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/pt/ipg/trabalhofinal/TabelaPlataformas.kt b/app/src/main/java/pt/ipg/trabalhofinal/TabelaPlataformas.kt
+--- a/app/src/main/java/pt/ipg/trabalhofinal/TabelaPlataformas.kt	(revision 9f25b52037b49900388abf52d330fde56567290f)
++++ b/app/src/main/java/pt/ipg/trabalhofinal/TabelaPlataformas.kt	(revision 902487eb4605d82fd19f432cef1ac3d248f47f40)
+@@ -16,7 +16,7 @@
+     companion object{
+         const val NOME = "Plataformas"
+         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
+-        const val NOME_PLATAFORMA = "Nome"
++        const val NOME_PLATAFORMA = "NomePlataforma"
+         val TODAS_COLUNAS = arrayOf(CAMPO_ID, NOME_PLATAFORMA)
+ 
+     }
