@@ -66,7 +66,7 @@ class FragmentEditarFuncionarios : Fragment() {
     }
 
     private fun voltaListaFuncionarios() {
-        findNavController().navigate(R.id.action_fragmentEditarFuncionarios_to_fragmentverfuncionarios)
+        findNavController().popBackStack()
     }
 
     private fun guardar() {

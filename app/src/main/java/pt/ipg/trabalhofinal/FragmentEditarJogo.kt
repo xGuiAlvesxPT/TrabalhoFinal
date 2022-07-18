@@ -80,7 +80,7 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun voltaListaJogos() {
-        findNavController().navigate(R.id.action_fragmentEditarJogo_to_fragmentVerJogos)
+        findNavController().popBackStack()
     }
 
     private fun guardar() {

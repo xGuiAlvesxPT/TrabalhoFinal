@@ -190,7 +190,7 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         }
 
     private fun voltaListaClientes() {
-        findNavController().navigate(R.id.action_fragment_editar_cliente_to_fragmentVerClientes)
+        findNavController().popBackStack()
     }
 
     private fun guardar() {
