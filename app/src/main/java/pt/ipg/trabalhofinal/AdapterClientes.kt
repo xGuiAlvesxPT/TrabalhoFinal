@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
 
 class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<AdapterClientes.ViewHolderCliente>() {
     var cursor: Cursor? = null
@@ -40,8 +41,11 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
                 textViewNomeCliente.text = cliente?.nome ?: ""
                 textViewClienteNif.text = cliente?.nif ?: ""
                 textViewClienteContacto.text = cliente?.contacto ?: ""
-                textViewClienteDataNasc.text = cliente?.data_de_nascimento ?: ""
                 textViewClienteSexo.text = cliente?.sexo?.nomeSexo ?: ""
+                val dateFormat = SimpleDateFormat("dd-MM-yyy")
+                val dataNasc = cliente?.data_de_nascimento
+                val data= dateFormat.format(dataNasc)
+                textViewClienteDataNasc.text = data
             }
 
         /**

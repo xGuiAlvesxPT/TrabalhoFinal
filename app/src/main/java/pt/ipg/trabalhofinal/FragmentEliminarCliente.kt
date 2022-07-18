@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.trabalhofinal.databinding.FragmentEliminarClienteBinding
+import java.text.SimpleDateFormat
 
 
 class FragmentEliminarCliente : Fragment() {
@@ -49,7 +50,10 @@ class FragmentEliminarCliente : Fragment() {
         binding.textViewSexoClienteEli.text = cliente.sexo.nomeSexo
         binding.textViewNifClienteEli.text = cliente.nif
         binding.textViewContatoClienteEli.text = cliente.contacto
-        binding.textViewDataNascClienteEli.text = cliente.data_de_nascimento
+        val dateFormat = SimpleDateFormat("dd-MM-yyy")
+        val dataNasc = cliente.data_de_nascimento
+        val data = dateFormat.format(dataNasc)
+        binding.textViewDataNascClienteEli.text = data
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
@@ -89,7 +93,7 @@ class FragmentEliminarCliente : Fragment() {
     }
 
     private fun voltaListaClientes() {
-        val acao = FragmentEliminarClienteDirections.actionFragmentEliminarClienteToFragmentVerClientes()
-        findNavController().navigate(acao)
+
+        findNavController().popBackStack()
     }
 }

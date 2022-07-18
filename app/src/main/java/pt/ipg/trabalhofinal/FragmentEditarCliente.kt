@@ -1,6 +1,7 @@
 package pt.ipg.trabalhofinal
 
 import android.database.Cursor
+import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.trabalhofinal.databinding.FragmentEditarClienteBinding
+import java.util.*
 
 
 class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
@@ -27,6 +29,8 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     private val binding get() = _binding!!
 
     private var cliente: Cliente? = null
+    var dataNasc: Long = 0L
+    var data: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +59,35 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
                 binding.editTextNomeCliente.setText(cliente!!.nome)
                 binding.editTextNifCliente.setText(cliente!!.nif)
                 binding.editTextContatoCliente.setText(cliente!!.contacto)
-                binding.editTextDataNasCliente.setText(cliente!!.data_de_nascimento)
+                val getData = cliente!!.data_de_nascimento
+                val dateFormat = SimpleDateFormat("dd-MM-yyy")
+                val dataFormatada = dateFormat.format(getData)
+                val dateSplit = dataFormatada.split("-")
+                val ano = dateSplit[2]
+                val mes = dateSplit[1]
+                val dia = dateSplit[0]
+                val currentDate = Calendar.getInstance()
+                binding.datePicker.init(
+                    ano.toInt(),
+                    mes.toInt() - 1,
+                    dia.toInt()
+                ) { view, ano, mes, dia ->
+                    currentDate.set(ano, mes, dia)
+                    dataNasc = currentDate.timeInMillis
+                }
+            } else {
+                val picker = binding.datePicker
+                val currentDate = Calendar.getInstance()
+                picker.init(
+                    currentDate.get(Calendar.YEAR),
+                    currentDate.get(Calendar.MONTH),
+                    currentDate.get(Calendar.DAY_OF_MONTH)
+
+                ) { view, ano, mes, dia ->
+                    //val mes = mes
+                    currentDate.set(ano, mes, dia)
+                    dataNasc = currentDate.timeInMillis
+                }
             }
         }
 
@@ -215,12 +247,7 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             return
         }
 
-        val datanascCliente = binding.editTextDataNasCliente.text.toString()
-        if (datanascCliente.isBlank()) {
-            binding.editTextDataNasCliente.error = getString(R.string.dataNascObrigatoria)
-            binding.editTextDataNasCliente.requestFocus()
-            return
-        }
+
 
         val idSexo = binding.spinnerSexo.selectedItemId
         if (idSexo == Spinner.INVALID_ROW_ID) {
@@ -230,10 +257,10 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         }
 
         if (cliente == null) {
-            insereCliente(nomeCliente, nifCliente, contatoCliente, datanascCliente, idSexo)
+            insereCliente(nomeCliente, nifCliente, contatoCliente, dataNasc, idSexo)
         } else {
 
-            alteraCliente(nomeCliente, nifCliente, contatoCliente, datanascCliente, idSexo)
+            alteraCliente(nomeCliente, nifCliente, contatoCliente, dataNasc, idSexo)
         }
     }
 
@@ -242,7 +269,7 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         nomeCliente: String,
         nifCliente: String,
         contatoCliente: String,
-        datanascCliente: String,
+        datanascCliente: Long,
         idSexo: Long
     ) {
 
@@ -281,7 +308,7 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         nomeCliente: String,
         nifCliente: String,
         contatoCliente: String,
-        datanascCliente: String,
+        datanascCliente: Long,
         idSexo: Long
     ) {
         val cliente = Cliente(

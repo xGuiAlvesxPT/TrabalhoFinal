@@ -9,7 +9,7 @@ data class Cliente(
     var nome: String,
     var nif: String,
     var contacto: String,
-    var data_de_nascimento: String,
+    var data_de_nascimento: Long,
     var sexo: Sexo,
     var id: Long = -1
 ) : Serializable {
@@ -39,7 +39,7 @@ data class Cliente(
             val nome = cursor.getString(posNome)
             val nif = cursor.getString(posNif)
             val contacto = cursor.getString(posContacto)
-            val dataNascimento = cursor.getString(posDataNascimento)
+            val dataNascimento = cursor.getLong(posDataNascimento)
 
             val sexoid = cursor.getLong(posSexo)
             val nomeSexo = cursor.getString(posNomeSexo)

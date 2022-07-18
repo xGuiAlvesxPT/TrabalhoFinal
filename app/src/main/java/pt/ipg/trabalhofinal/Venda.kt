@@ -48,7 +48,7 @@ data class Venda(
             val nomeCliente = cursor.getString(posNomeCliente)
             val NifCliente =  cursor.getString(posNifCliente)
             val ContatoCliente =  cursor.getString(posContatoCliente)
-            val DataNascCliente =  cursor.getString(posDataNascCliente)
+            val DataNascCliente =  cursor.getLong(posDataNascCliente)
             val sexoid = cursor.getLong(posSexo)
             val nomeSexo = cursor.getString(posNomeSexo)
             val Sexo = Sexo(nomeSexo, sexoid)
