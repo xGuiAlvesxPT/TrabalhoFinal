@@ -65,7 +65,7 @@ class AdapterClientes(val fragment: FragmentVerClientes) : RecyclerView.Adapter<
         }
 
         private fun desseleciona() {
-            itemView.setBackgroundResource(android.R.drawable.alert_dark_frame)
+            itemView.setBackgroundResource(itemViewType)
         }
 
 
