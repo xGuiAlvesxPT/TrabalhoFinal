@@ -49,9 +49,11 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_editar
 
+
         if (arguments != null) {
             jogo = FragmentEditarJogoArgs.fromBundle(arguments!!).jogo
             if (jogo != null) {
+                binding.textViewNovoJogo.setText("ATUALIZAR JOGO")
                 binding.EditTextNomeJogo.setText(jogo!!.nome)
                 binding.EditTextPreco.setText(jogo!!.preco.toString())
                 binding.EditTextGenero.setText(jogo!!.genero)

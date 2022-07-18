@@ -47,9 +47,11 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_editar
 
+
         if (arguments != null) {
             cliente = FragmentEditarClienteArgs.fromBundle(arguments!!).cliente
             if (cliente != null) {
+                binding.textViewNovoCliente.setText("ATUALIZAR CLIENTE")
                 binding.editTextNomeCliente.setText(cliente!!.nome)
                 binding.editTextNifCliente.setText(cliente!!.nif)
                 binding.editTextContatoCliente.setText(cliente!!.contacto)
@@ -222,7 +224,7 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
 
         val idSexo = binding.spinnerSexo.selectedItemId
         if (idSexo == Spinner.INVALID_ROW_ID) {
-            binding.textViewSexo.error = getString(R.string.sexoObrigatorio)
+            binding.textViewSexo.error = "Sexo Obrigatorio"
             binding.spinnerSexo.requestFocus()
             return
         }
@@ -230,6 +232,7 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         if (cliente == null) {
             insereCliente(nomeCliente, nifCliente, contatoCliente, datanascCliente, idSexo)
         } else {
+
             alteraCliente(nomeCliente, nifCliente, contatoCliente, datanascCliente, idSexo)
         }
     }
@@ -242,6 +245,7 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         datanascCliente: String,
         idSexo: Long
     ) {
+
         val enderecoLivro =
             Uri.withAppendedPath(ContentProviderLojaJogos.ENDERECO_CLIENTES, "${cliente!!.id}")
 

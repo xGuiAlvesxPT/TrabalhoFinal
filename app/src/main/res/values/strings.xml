@@ -63,5 +63,4 @@
     <string name="nifObrigatorio">Nif Obrigatorio</string>
     <string name="contatoObrigatorio">Contato Obrigatorio</string>
     <string name="dataNascObrigatoria">Data de Nascimento Obrigatoria</string>
-    <string name="sexoObrigatorio">Sexo Obrigatorio</string>
 </resources>

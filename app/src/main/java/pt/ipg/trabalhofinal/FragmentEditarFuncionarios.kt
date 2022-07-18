@@ -38,9 +38,11 @@ class FragmentEditarFuncionarios : Fragment() {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_editar
 
+
         if (arguments != null) {
             funcionario = FragmentEditarFuncionariosArgs.fromBundle(arguments!!).funcionario
             if (funcionario != null) {
+                binding.textViewNovoFuncionario.setText("ATUALIZAR FUNCIONARIO")
                 binding.editTextNomeFuncionario.setText(funcionario!!.nome)
                 binding.editTextNifFuncionario.setText(funcionario!!.nif)
                 binding.editTextContatoFuncionario.setText(funcionario!!.contacto)
