@@ -4,8 +4,8 @@
     <!-- Strings used for fragments for navigation -->
     <string name="FragmentPaginaInicial">Game Store</string>
     <string name="FragmentPaginaGestao">Gestão da Loja</string>
-    <string name="FragmentVerFuncionarios">Funcionarios</string>
-    <string name="FragmentVerClientes">Clientes</string>
+    <string name="Funcionarios">Funcionarios</string>
+    <string name="Clientes">Clientes</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
