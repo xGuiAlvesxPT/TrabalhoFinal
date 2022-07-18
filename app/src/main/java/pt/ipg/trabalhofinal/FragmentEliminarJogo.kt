@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.trabalhofinal.databinding.FragmentEliminarJogoBinding
+import java.text.SimpleDateFormat
 
 
 class FragmentEliminarJogo : Fragment() {
@@ -50,8 +51,11 @@ class FragmentEliminarJogo : Fragment() {
         binding.textViewPrecoJogoEli.text = jogo.preco.toString()
         binding.textViewGeneroJogoEli.text = jogo.genero
         binding.textViewPublicadoraJogoEli.text = jogo.publicadora
-        binding.textViewDataLanJogoEli.text = jogo.data_de_lancamento
         binding.textViewPlataformaJogoEli.text = jogo.plataforma.nome
+        val dateFormat = SimpleDateFormat("dd-MM-yyy")
+        val dataLanc = jogo.data_de_lancamento
+        val data = dateFormat.format(dataLanc)
+        binding.textViewDataLanJogoEli.text = data
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {

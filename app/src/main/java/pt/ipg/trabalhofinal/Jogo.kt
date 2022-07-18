@@ -10,7 +10,7 @@ data class Jogo(
     var preco: Double,
     var genero: String,
     var publicadora: String,
-    var data_de_lancamento: String,
+    var data_de_lancamento: Long,
     var plataforma: Plataforma,
 
     var id: Long = -1,
@@ -48,7 +48,7 @@ data class Jogo(
             val preco = cursor.getDouble(posPreco)
             val genero = cursor.getString(posGenero)
             val publicadora = cursor.getString(posPublicadora)
-            val dataLancamento = cursor.getString(posDataLancamento)
+            val dataLancamento = cursor.getLong(posDataLancamento)
 
             val idPlataforma = cursor.getLong(posIdPlataforma)
             val nomePlataforma = cursor.getString(posNomePlataformas)

@@ -1,6 +1,7 @@
 package pt.ipg.trabalhofinal
 
 import android.database.Cursor
+import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,12 +18,15 @@ import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.trabalhofinal.databinding.FragmentEditarJogoBinding
+import java.util.*
 
 
 class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentEditarJogoBinding? = null
 
     private var jogo: Jogo? = null
+    var dataLanc: Long = 0L
+    var data: String = ""
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -58,8 +62,37 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 binding.EditTextPreco.setText(jogo!!.preco.toString())
                 binding.EditTextGenero.setText(jogo!!.genero)
                 binding.EditTextPublicadora.setText(jogo!!.publicadora)
-                binding.EditTextDataLancamento.setText(jogo!!.data_de_lancamento)
+                val getData = jogo!!.data_de_lancamento
+                val dateFormat = SimpleDateFormat("dd-MM-yyy")
+                val dataFormatada = dateFormat.format(getData)
+                val dateSplit = dataFormatada.split("-")
+                val ano = dateSplit[2]
+                val mes = dateSplit[1]
+                val dia = dateSplit[0]
+                val currentDate = Calendar.getInstance()
+                binding.datePickerJogo.init(
+                    ano.toInt(),
+                    mes.toInt() - 1,
+                    dia.toInt()
+                ) { view, ano, mes, dia ->
+                    currentDate.set(ano, mes, dia)
+                    dataLanc = currentDate.timeInMillis
+                }
+            } else {
+                val picker = binding.datePickerJogo
+                val currentDate = Calendar.getInstance()
+                picker.init(
+                    currentDate.get(Calendar.YEAR),
+                    currentDate.get(Calendar.MONTH),
+                    currentDate.get(Calendar.DAY_OF_MONTH)
+
+                ) { view, ano, mes, dia ->
+                    //val mes = mes
+                    currentDate.set(ano, mes, dia)
+                    dataLanc = currentDate.timeInMillis
+                }
             }
+
         }
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_PLATAFORMAS, null, this)
@@ -112,12 +145,6 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        val dataLancamento = binding.EditTextDataLancamento.text.toString()
-        if (dataLancamento.isBlank()) {
-            binding.EditTextDataLancamento.error = getString(R.string.DataLancObrigatoria)
-            binding.EditTextDataLancamento.requestFocus()
-            return
-        }
 
         val idPlataforma = binding.spinnerPlataformas.selectedItemId
         if (idPlataforma == Spinner.INVALID_ROW_ID) {
@@ -126,13 +153,17 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
         if (jogo == null) {
-            insereJogo(nomeJogo, preco,genero,publicadora,dataLancamento, idPlataforma)
+            insereJogo(nomeJogo, preco,genero,publicadora,dataLanc, idPlataforma)
         } else {
-            alteraJogo(nomeJogo, preco,genero,publicadora,dataLancamento, idPlataforma)
+            alteraJogo(nomeJogo, preco,genero,publicadora,dataLanc, idPlataforma)
         }
     }
 
-    private fun alteraJogo(nomeJogo: String, preco: String,genero:String,publicadora:String,dataLancamento:String, idPlataforma: Long) {
+    private fun alteraJogo(
+        nomeJogo: String, preco: String,
+        genero:String,
+        publicadora:String,
+        dataLancamento: Long, idPlataforma: Long) {
 
         val enderecoJogo = Uri.withAppendedPath(ContentProviderLojaJogos.ENDERECO_JOGOS, "${jogo!!.id}")
 
@@ -165,7 +196,11 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
     }
 
-    private fun insereJogo(nomeJogo: String, preco: String,genero:String,publicadora:String,dataLancamento:String, idPlataforma: Long){
+    private fun insereJogo(
+        nomeJogo: String, preco: String,
+        genero:String,
+        publicadora:String,
+        dataLancamento: Long, idPlataforma: Long){
         val jogo = Jogo(
             nomeJogo,
             preco.toDouble()  ,

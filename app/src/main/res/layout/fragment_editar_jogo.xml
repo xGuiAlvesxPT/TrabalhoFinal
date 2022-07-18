@@ -68,6 +68,30 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/publicadora"
                         tools:ignore="TextContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/textViewDataLancamento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/data_de_lancamento"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+
+                    <DatePicker
+                        android:id="@+id/datePickerJogo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="1"
+                        android:calendarViewShown="false"
+                        android:datePickerMode="spinner" />
                 </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,12 +99,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/EditTextDataLancamento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/data_de_lancamento" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"

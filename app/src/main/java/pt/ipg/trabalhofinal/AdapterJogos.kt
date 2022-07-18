@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
 
 class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<AdapterJogos.ViewHolderJogo>() {
     var cursor: Cursor? = null
@@ -41,10 +42,13 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
 
                 textViewNomeJogo.text = Jogo?.nome ?: ""
                 textViewPrecoJogo.text = "${Jogo?.preco}"
-                textViewJogoDataLancamento.text = Jogo?.data_de_lancamento ?: ""
                 textViewJogoGenero.text = Jogo?.genero ?: ""
                 textViewJogoPlataforma.text = Jogo?.plataforma?.nome ?: ""
                 textViewJogoPublicadora.text = Jogo?.publicadora ?: ""
+                val dateFormat = SimpleDateFormat("dd-MM-yyy")
+                val dataNasc = Jogo?.data_de_lancamento
+                val data= dateFormat.format(dataNasc)
+                textViewJogoDataLancamento.text = data
             }
         /**
          * Called when a view has been clicked.
