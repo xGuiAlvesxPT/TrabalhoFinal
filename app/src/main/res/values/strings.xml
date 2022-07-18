@@ -53,4 +53,15 @@
     <string name="genero">Genero</string>
     <string name="publicadora">Publicadora</string>
     <string name="eliminar_jogo">ELIMINAR JOGO</string>
+    <string name="nomeObrigatorio">Nome Obrigatorio</string>
+    <string name="precoObrigatorio">Preco Obrigatorio</string>
+    <string name="generoObrigatorio">Genero Obrigatorio</string>
+    <string name="publicadoraObrigatoria">Publicadora Obrigatoria</string>
+    <string name="DataLancObrigatoria">Data de Lancamento Obrigatoria</string>
+    <string name="plataformaObrigatoria">Plataforma Obrigatoria</string>
+    <string name="jogoAtualizadoSucesso">Jogo atualizado com sucesso</string>
+    <string name="nifObrigatorio">Nif Obrigatorio</string>
+    <string name="contatoObrigatorio">Contato Obrigatorio</string>
+    <string name="dataNascObrigatoria">Data de Nascimento Obrigatoria</string>
+    <string name="sexoObrigatorio">Sexo Obrigatorio</string>
 </resources>

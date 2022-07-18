@@ -71,28 +71,28 @@ class FragmentEditarFuncionarios : Fragment() {
 
         val nomeFuncionario = binding.editTextNomeFuncionario.text.toString()
         if (nomeFuncionario.isBlank()) {
-            binding.editTextNomeFuncionario.error = "Nome Obrigatorio"
+            binding.editTextNomeFuncionario.error = getString(R.string.nomeObrigatorio)
             binding.editTextNomeFuncionario.requestFocus()
             return
         }
 
         val nifFuncionario = binding.editTextNifFuncionario.text.toString()
         if (nifFuncionario.isBlank()) {
-            binding.editTextNifFuncionario.error = "Nif Obrigatorio"
+            binding.editTextNifFuncionario.error = getString(R.string.nifObrigatorio)
             binding.editTextNifFuncionario.requestFocus()
             return
         }
 
         val contatoFuncionario = binding.editTextContatoFuncionario.text.toString()
         if (contatoFuncionario.isBlank()) {
-            binding.editTextContatoFuncionario.error = "Contato Obrigatorio"
+            binding.editTextContatoFuncionario.error = getString(R.string.contatoObrigatorio)
             binding.editTextContatoFuncionario.requestFocus()
             return
         }
 
         val datanascFuncionario = binding.editTextDataNasFuncionario.text.toString()
         if (datanascFuncionario.isBlank()) {
-            binding.editTextDataNasFuncionario.error = "Data de Nascimento Obrigatoria"
+            binding.editTextDataNasFuncionario.error = getString(R.string.dataNascObrigatoria)
             binding.editTextDataNasFuncionario.requestFocus()
             return
         }

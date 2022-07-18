@@ -194,35 +194,35 @@ class FragmentEditarCliente : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     private fun guardar() {
         val nomeCliente = binding.editTextNomeCliente.text.toString()
         if (nomeCliente.isBlank()) {
-            binding.editTextNomeCliente.error = "Nome Obrigatorio"
+            binding.editTextNomeCliente.error = getString(R.string.nomeObrigatorio)
             binding.editTextNomeCliente.requestFocus()
             return
         }
 
         val nifCliente = binding.editTextNifCliente.text.toString()
         if (nifCliente.isBlank()) {
-            binding.editTextNifCliente.error = "Nif Obrigatorio"
+            binding.editTextNifCliente.error = getString(R.string.nifObrigatorio)
             binding.editTextNifCliente.requestFocus()
             return
         }
 
         val contatoCliente = binding.editTextContatoCliente.text.toString()
         if (contatoCliente.isBlank()) {
-            binding.editTextContatoCliente.error = "Contato Obrigatorio"
+            binding.editTextContatoCliente.error = getString(R.string.contatoObrigatorio)
             binding.editTextContatoCliente.requestFocus()
             return
         }
 
         val datanascCliente = binding.editTextDataNasCliente.text.toString()
         if (datanascCliente.isBlank()) {
-            binding.editTextDataNasCliente.error = "Data de Nascimento Obrigatoria"
+            binding.editTextDataNasCliente.error = getString(R.string.dataNascObrigatoria)
             binding.editTextDataNasCliente.requestFocus()
             return
         }
 
         val idSexo = binding.spinnerSexo.selectedItemId
         if (idSexo == Spinner.INVALID_ROW_ID) {
-            binding.textViewSexo.error = "Sexo Obrigatorio"
+            binding.textViewSexo.error = getString(R.string.sexoObrigatorio)
             binding.spinnerSexo.requestFocus()
             return
         }

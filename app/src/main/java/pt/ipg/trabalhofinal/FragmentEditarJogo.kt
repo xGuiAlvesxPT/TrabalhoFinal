@@ -84,42 +84,42 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private fun guardar() {
         val nomeJogo = binding.EditTextNomeJogo.text.toString()
         if (nomeJogo.isBlank()) {
-            binding.EditTextNomeJogo.error = "Nome Obrigatorio"
+            binding.EditTextNomeJogo.error = getString(R.string.nomeObrigatorio)
             binding.EditTextNomeJogo.requestFocus()
             return
         }
 
         val preco = binding.EditTextPreco.text.toString()
         if (preco.isBlank()) {
-            binding.EditTextPreco.error = "Preco Obrigatorio"
+            binding.EditTextPreco.error = getString(R.string.precoObrigatorio)
             binding.EditTextPreco.requestFocus()
             return
         }
 
         val genero = binding.EditTextGenero.text.toString()
         if (genero.isBlank()) {
-            binding.EditTextGenero.error = "Genero Obrigatorio"
+            binding.EditTextGenero.error = getString(R.string.generoObrigatorio)
             binding.EditTextGenero.requestFocus()
             return
         }
 
         val publicadora = binding.EditTextPublicadora.text.toString()
         if (publicadora.isBlank()) {
-            binding.EditTextPublicadora.error = "Publicadora Obrigatoria"
+            binding.EditTextPublicadora.error = getString(R.string.publicadoraObrigatoria)
             binding.EditTextPublicadora.requestFocus()
             return
         }
 
         val dataLancamento = binding.EditTextDataLancamento.text.toString()
         if (dataLancamento.isBlank()) {
-            binding.EditTextDataLancamento.error = "Data de Lancamento Obrigatoria"
+            binding.EditTextDataLancamento.error = getString(R.string.DataLancObrigatoria)
             binding.EditTextDataLancamento.requestFocus()
             return
         }
 
         val idPlataforma = binding.spinnerPlataformas.selectedItemId
         if (idPlataforma == Spinner.INVALID_ROW_ID) {
-            binding.textViewPlataforma.error = "Plataforma Obrigatoria"
+            binding.textViewPlataforma.error = getString(R.string.plataformaObrigatoria)
             binding.spinnerPlataformas.requestFocus()
             return
         }
@@ -152,7 +152,7 @@ class FragmentEditarJogo : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         )
 
         if (registosAlterados == 1) {
-            Toast.makeText(requireContext(), "Jogo atualizado com sucesso", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), getString(R.string.jogoAtualizadoSucesso), Toast.LENGTH_LONG).show()
             voltaListaJogos()
         } else {
             Snackbar.make(
