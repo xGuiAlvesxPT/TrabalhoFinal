@@ -24,6 +24,8 @@ class BDLojaOpenHelper(
        TabelaPlataformas(db).cria()
        TabelaJogos(db).cria()
        TabelaLinhaVenda(db).cria()
+        TabelaPublicadora(db).cria()
+        TabelaGeneros(db).cria()
 
 
     }

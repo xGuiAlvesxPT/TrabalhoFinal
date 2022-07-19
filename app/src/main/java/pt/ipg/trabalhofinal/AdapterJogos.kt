@@ -42,9 +42,9 @@ class AdapterJogos (val fragment: FragmentVerJogos) : RecyclerView.Adapter<Adapt
 
                 textViewNomeJogo.text = Jogo?.nome ?: ""
                 textViewPrecoJogo.text = "${Jogo?.preco}"
-                textViewJogoGenero.text = Jogo?.genero ?: ""
                 textViewJogoPlataforma.text = Jogo?.plataforma?.nome ?: ""
-                textViewJogoPublicadora.text = Jogo?.publicadora ?: ""
+                textViewJogoGenero.text = Jogo?.genero?.nome ?: ""
+                textViewJogoPublicadora.text = Jogo?.publicadora?.nome ?: ""
                 val dateFormat = SimpleDateFormat("dd-MM-yyy")
                 val dataNasc = Jogo?.data_de_lancamento
                 val data= dateFormat.format(dataNasc)
