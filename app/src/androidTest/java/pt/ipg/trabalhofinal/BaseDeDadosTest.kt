@@ -76,7 +76,7 @@ class BaseDeDadosTest {
 
     @Before
     fun apagaBaseDados() {
-       // appContext().deleteDatabase(BDLojaOpenHelper.NOME)
+        //appContext().deleteDatabase(BDLojaOpenHelper.NOME)
     }
 
     @Test
@@ -177,7 +177,13 @@ class BaseDeDadosTest {
         val funcionario = Funcionario("Jacinto Alves","548625789","150116278",787878788)
         insereFuncionario(db,funcionario)
 
-        insereVenda(db, Venda("11/07/2022",cliente,funcionario, sexoM))
+        val plataforma = Plataforma("Playstation 2")
+        inserePlataforma(db, plataforma)
+
+        val jogo = Jogo("Grand Theft Auto 5",30.99,"Açao","Take Two",5456456456,plataforma)
+        insereJogo(db, jogo)
+
+        insereVenda(db, Venda(1,29.90,545564554,cliente,funcionario,sexoM,jogo,plataforma))
 
 
         db.close()
@@ -377,15 +383,22 @@ class BaseDeDadosTest {
         val db = getWritableDatabase()
 
         val sexoM = Sexo("Masculino")
-        insereSexo(db,sexoM)
+        insereSexo(db, sexoM)
 
-        val cliente = Cliente("Guilherme Alves","250116278","963355065",45145154,sexoM)
+        val cliente = Cliente("Guilherme Alves","250116278","963355065",15415451,sexoM)
         insereCliente(db, cliente)
 
-        val funcionario = Funcionario("José Alves","789546578","254564778",78678678678)
-        insereFuncionario(db, funcionario)
+        val funcionario = Funcionario("Jacinto Alves","548625789","150116278",787878788)
+        insereFuncionario(db,funcionario)
 
-        val venda = Venda("24/11/2013",cliente,funcionario,sexoM)
+        val plataforma = Plataforma("Playstation 2")
+        inserePlataforma(db, plataforma)
+
+        val jogo = Jogo("Grand Theft Auto 5",30.99,"Açao","Take Two",5456456456,plataforma)
+        insereJogo(db, jogo)
+
+
+        val venda = Venda(1,29.90,545564554,cliente,funcionario,sexoM,jogo,plataforma)
         insereVenda(db, venda)
 
         val cursor = TabelaVendas(db).query(

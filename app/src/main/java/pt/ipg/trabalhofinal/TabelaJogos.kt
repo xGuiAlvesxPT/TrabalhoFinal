@@ -34,7 +34,7 @@ class TabelaJogos( db: SQLiteDatabase): TabelaBD(db, NOME) {
         const val GENERO= "Genero"
         const val PUBLICADORA= "Publicadora"
         const val DATA_DE_LANCAMENTO = "DatadeLancamento"
-        const val CAMPO_FK_PLATAFORMA = "idPlataforma"
+        const val CAMPO_FK_PLATAFORMA = "idPlat"
 
 
         val TODAS_COLUNAS = arrayOf(CAMPO_ID, NOME_JOGO, PRECO, GENERO, PUBLICADORA, DATA_DE_LANCAMENTO, CAMPO_FK_PLATAFORMA,TabelaPlataformas.NOME_PLATAFORMA)

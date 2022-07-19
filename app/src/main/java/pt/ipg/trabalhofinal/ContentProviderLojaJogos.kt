@@ -369,7 +369,6 @@ class ContentProviderLojaJogos : ContentProvider() {
             uriMatcher.addURI(AUTHORITY, TabelaFuncionarios.NOME, URI_FUNCIONARIO)
             uriMatcher.addURI(AUTHORITY, "${TabelaFuncionarios.NOME}/#", URI_FUNCIONARIO_ESPECIFICO)
 
-
             uriMatcher.addURI(AUTHORITY, TabelaJogos.NOME, URI_JOGO)
             uriMatcher.addURI(AUTHORITY, "${TabelaJogos.NOME}/#", URI_JOGO_ESPECIFICO)
 
@@ -381,6 +380,8 @@ class ContentProviderLojaJogos : ContentProvider() {
 
             uriMatcher.addURI(AUTHORITY, TabelaVendas.NOME, URI_VENDA)
             uriMatcher.addURI(AUTHORITY, "${TabelaVendas.NOME}/#", URI_VENDA_ESPECIFICA)
+
+
 
 
 

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
 
 class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<AdapterVendas.ViewHolderVenda>() {
     var cursor: Cursor? = null
@@ -24,6 +25,12 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
             itemVenda.findViewById<TextView>(R.id.textViewVendaFuncionario)
         val textViewVendaCliente =
             itemVenda.findViewById<TextView>(R.id.textViewVendaCliente)
+        val textViewVendaQuantidade =
+            itemVenda.findViewById<TextView>(R.id.textViewVendaQuantidade)
+        val textViewVendaPreco =
+            itemVenda.findViewById<TextView>(R.id.textViewVendaPreco)
+        val textViewVendaJogo =
+            itemVenda.findViewById<TextView>(R.id.textViewVendaNomeJogo)
 
         var Venda: Venda? = null
             get() = field
@@ -31,9 +38,16 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
                 field = value
 
 
-                textViewVendaData.text = Venda?.data_de_venda ?: ""
+                textViewVendaJogo.text = Venda?.jogo?.nome ?: ""
                 textViewVendaFuncionario.text = Venda?.funcionario?.nome ?: ""
                 textViewVendaCliente.text = Venda?.cliente?.nome ?: ""
+                textViewVendaPreco.text = "${Venda?.precoVenda}"
+                textViewVendaQuantidade.text = "${Venda?.quantidade}"
+                val dateFormat = SimpleDateFormat("dd-MM-yyy")
+                val dataVenda = Venda?.data_de_venda
+                val data= dateFormat.format(dataVenda)
+                textViewVendaData.text = data
+
 
             }
     }
