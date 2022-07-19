@@ -134,8 +134,6 @@ class ContentProviderLojaJogos : ContentProvider() {
             URI_LINHA_VENDA -> TabelaLinhaVenda(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_VENDA -> TabelaVendas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_JOGO -> TabelaJogos(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
-            URI_GENERO -> TabelaGeneros(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
-            URI_PUBLICADORA-> TabelaPublicadora(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
 
 
 
@@ -146,8 +144,6 @@ class ContentProviderLojaJogos : ContentProvider() {
             URI_LINHA_VENDA_ESPECIFICO -> TabelaLinhaVenda(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_VENDA_ESPECIFICA -> TabelaVendas(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_JOGO_ESPECIFICO -> TabelaJogos(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
-            URI_GENERO_ESPECIFICO -> TabelaGeneros(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
-            URI_PUBLICADORA_ESPECIFICA -> TabelaPublicadora(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
 
             else -> null
         }
@@ -186,8 +182,6 @@ class ContentProviderLojaJogos : ContentProvider() {
             URI_SEXO -> "$MULTIPLOS_REGISTOS/${TabelaSexo.NOME}"
             URI_VENDA -> "$MULTIPLOS_REGISTOS/${TabelaVendas.NOME}"
             URI_LINHA_VENDA -> "$MULTIPLOS_REGISTOS/${TabelaLinhaVenda.NOME}"
-            URI_GENERO -> "$MULTIPLOS_REGISTOS/${TabelaGeneros.NOME}"
-            URI_PUBLICADORA -> "$MULTIPLOS_REGISTOS/${TabelaPublicadora.NOME}"
 
             URI_CLIENTE_ESPECIFICO -> "$UNICO_REGISTO/${TabelaClientes.NOME}"
             URI_FUNCIONARIO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaFuncionarios.NOME}"
@@ -196,8 +190,6 @@ class ContentProviderLojaJogos : ContentProvider() {
             URI_SEXO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaSexo.NOME}"
             URI_VENDA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaVendas.NOME}"
             URI_LINHA_VENDA_ESPECIFICO -> "$UNICO_REGISTO/${TabelaLinhaVenda.NOME}"
-            URI_GENERO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaGeneros.NOME}"
-            URI_PUBLICADORA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaPublicadora.NOME}"
 
             else -> null
         }
@@ -226,8 +218,6 @@ class ContentProviderLojaJogos : ContentProvider() {
             URI_VENDA -> TabelaVendas(db).insert(values)
             URI_LINHA_VENDA -> TabelaLinhaVenda(db).insert(values)
             URI_SEXO -> TabelaSexo(db).insert(values)
-            URI_GENERO -> TabelaGeneros(db).insert(values)
-            URI_PUBLICADORA -> TabelaPublicadora(db).insert(values)
 
             else -> -1
         }
@@ -275,8 +265,6 @@ class ContentProviderLojaJogos : ContentProvider() {
             URI_LINHA_VENDA_ESPECIFICO -> TabelaLinhaVenda(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_VENDA_ESPECIFICA -> TabelaVendas(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_JOGO_ESPECIFICO -> TabelaJogos(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_GENERO_ESPECIFICO -> TabelaGeneros(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_PUBLICADORA_ESPECIFICA -> TabelaPublicadora(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
 
@@ -320,8 +308,6 @@ class ContentProviderLojaJogos : ContentProvider() {
             URI_LINHA_VENDA_ESPECIFICO -> TabelaLinhaVenda(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_VENDA_ESPECIFICA -> TabelaVendas(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_JOGO_ESPECIFICO -> TabelaJogos(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_GENERO_ESPECIFICO -> TabelaGeneros(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_PUBLICADORA_ESPECIFICA -> TabelaPublicadora(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
 
@@ -373,12 +359,6 @@ class ContentProviderLojaJogos : ContentProvider() {
 
         fun getUriMatcher() : UriMatcher {
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
-
-            uriMatcher.addURI(AUTHORITY, TabelaGeneros.NOME, URI_GENERO)
-            uriMatcher.addURI(AUTHORITY, "${TabelaGeneros.NOME}/#", URI_GENERO_ESPECIFICO)
-
-            uriMatcher.addURI(AUTHORITY, TabelaPublicadora.NOME, URI_PUBLICADORA)
-            uriMatcher.addURI(AUTHORITY, "${TabelaPublicadora.NOME}/#", URI_PUBLICADORA_ESPECIFICA)
 
             uriMatcher.addURI(AUTHORITY, TabelaSexo.NOME, URI_SEXO)
             uriMatcher.addURI(AUTHORITY, "${TabelaSexo.NOME}/#", URI_SEXO_ESPECIFICO)
