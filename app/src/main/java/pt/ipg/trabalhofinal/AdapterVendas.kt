@@ -17,7 +17,7 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
             }
         }
 
-    class ViewHolderVenda(itemVenda: View) : RecyclerView.ViewHolder(itemVenda), View.OnClickListener {
+   inner class ViewHolderVenda(itemVenda: View) : RecyclerView.ViewHolder(itemVenda), View.OnClickListener {
 
         init {
             itemVenda.setOnClickListener(this)
@@ -64,11 +64,13 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
          */
         override fun onClick(v: View?) {
             seleccionado?.desseleciona()
+
             this.seleciona()
         }
 
         private fun seleciona() {
             seleccionado = this
+            fragment.vendaSelecionado = Venda
             itemView.setBackgroundResource(android.R.drawable.alert_light_frame)
         }
 
@@ -76,9 +78,7 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
             itemView.setBackgroundResource(itemViewType)
         }
 
-        companion object {
-            var seleccionado : ViewHolderVenda? = null
-        }
+
     }
 
     /**
@@ -145,5 +145,9 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
         if (cursor == null) return 0
 
         return cursor!!.count
+    }
+
+    companion object {
+        var seleccionado : ViewHolderVenda? = null
     }
 }

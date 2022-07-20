@@ -17,6 +17,15 @@ import pt.ipg.trabalhofinal.databinding.FragmentVerVendasBinding
 
 class FragmentVerVendas : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
+    var vendaSelecionado: Venda? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
+            }
+        }
+
     private var _binding: FragmentVerVendasBinding? = null
     private var adapterVendas: AdapterVendas? = null
 
@@ -42,7 +51,7 @@ class FragmentVerVendas : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapterVendas = AdapterVendas(this)
         binding.RecyclerViewVendas.adapter = adapterVendas
         binding.RecyclerViewVendas.layoutManager = LinearLayoutManager(requireContext())
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista
     }
