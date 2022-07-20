@@ -63,4 +63,9 @@
     <string name="nifObrigatorio">Nif Obrigatorio</string>
     <string name="contatoObrigatorio">Contato Obrigatorio</string>
     <string name="dataNascObrigatoria">Data de Nascimento Obrigatoria</string>
+    <string name="nova_venda">NOVA VENDA</string>
+    <string name="quantidade">Quantidade</string>
+    <string name="data_de_venda">Data de Venda</string>
+    <string name="funcionario">Funcionario</string>
+    <string name="cliente">Cliente</string>
 </resources>
