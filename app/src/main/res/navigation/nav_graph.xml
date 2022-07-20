@@ -107,6 +107,9 @@
         <action
             android:id="@+id/action_fragmentVerVendas_to_FragmentPaginaGestao"
             app:destination="@id/FragmentPaginaGestao" />
+        <action
+            android:id="@+id/action_fragmentVerVendas_to_fragmentEditarVenda"
+            app:destination="@id/fragmentEditarVenda" />
     </fragment>
     <fragment
         android:id="@+id/fragmentEliminarCliente"
@@ -176,7 +179,11 @@
         android:id="@+id/fragmentEditarVenda"
         android:name="pt.ipg.trabalhofinal.FragmentEditarVenda"
         android:label="fragment_editar_venda"
-        tools:layout="@layout/fragment_editar_venda" />
+        tools:layout="@layout/fragment_editar_venda" >
+        <action
+            android:id="@+id/action_fragmentEditarVenda_to_fragmentVerVendas"
+            app:destination="@id/fragmentVerVendas" />
+    </fragment>
 
 
 </navigation>

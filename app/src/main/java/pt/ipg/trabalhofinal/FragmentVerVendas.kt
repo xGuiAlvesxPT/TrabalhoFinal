@@ -4,11 +4,13 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.trabalhofinal.databinding.FragmentVerVendasBinding
 
@@ -40,8 +42,22 @@ class FragmentVerVendas : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapterVendas = AdapterVendas(this)
         binding.RecyclerViewVendas.adapter = adapterVendas
         binding.RecyclerViewVendas.layoutManager = LinearLayoutManager(requireContext())
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_lista
     }
 
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_Inserir -> {
+                findNavController().navigate(R.id.action_fragmentVerVendas_to_fragmentEditarVenda)
+                return true
+            }
+            R.id.action_alterar -> true
+            R.id.action_eliminar -> true
+            else -> false
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
