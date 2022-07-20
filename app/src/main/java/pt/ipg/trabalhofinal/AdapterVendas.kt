@@ -17,7 +17,12 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
             }
         }
 
-    class ViewHolderVenda(itemVenda: View) : RecyclerView.ViewHolder(itemVenda) {
+    class ViewHolderVenda(itemVenda: View) : RecyclerView.ViewHolder(itemVenda), View.OnClickListener {
+
+        init {
+            itemVenda.setOnClickListener(this)
+        }
+
 
         val textViewVendaData =
             itemVenda.findViewById<TextView>(R.id.textViewDataVenda)
@@ -50,6 +55,30 @@ class AdapterVendas (val fragment: FragmentVerVendas) : RecyclerView.Adapter<Ada
 
 
             }
+
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        override fun onClick(v: View?) {
+            seleccionado?.desseleciona()
+            this.seleciona()
+        }
+
+        private fun seleciona() {
+            seleccionado = this
+            itemView.setBackgroundResource(android.R.drawable.alert_light_frame)
+        }
+
+        private fun desseleciona() {
+            itemView.setBackgroundResource(itemViewType)
+        }
+
+        companion object {
+            var seleccionado : ViewHolderVenda? = null
+        }
     }
 
     /**
