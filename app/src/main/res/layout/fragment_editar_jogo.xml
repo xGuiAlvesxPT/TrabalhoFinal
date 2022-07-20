@@ -80,7 +80,7 @@
                         android:textSize="20sp" />
 
                     <DatePicker
-                        android:id="@+id/datePickerDataVenda"
+                        android:id="@+id/datePickerJogo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -105,7 +105,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textViewJogo"
+                        android:id="@+id/textViewPlataforma"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -116,7 +116,7 @@
                         tools:ignore="TextContrastCheck" />
 
                     <Spinner
-                        android:id="@+id/spinnerJogo"
+                        android:id="@+id/spinnerPlataformas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
