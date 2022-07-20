@@ -108,7 +108,7 @@
                         android:datePickerMode="spinner" />
 
                     <TextView
-                        android:id="@+id/textViewJogo4"
+                        android:id="@+id/textViewfun"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"

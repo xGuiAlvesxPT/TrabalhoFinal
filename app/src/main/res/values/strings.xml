@@ -68,4 +68,9 @@
     <string name="data_de_venda">Data de Venda</string>
     <string name="funcionario">Funcionario</string>
     <string name="cliente">Cliente</string>
+    <string name="quantidadeObrigatoria">Quantidade Obrigatória</string>
+    <string name="precoObrigatorioo">Preco Obrigatorio</string>
+    <string name="funObrigatorio">Funcionario Obrigatorio</string>
+    <string name="clienteObrigatorio">Cliente Obrigatorio</string>
+    <string name="jogoObrigatorio">Jogo Obrigatorio</string>
 </resources>
